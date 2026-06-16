@@ -6,7 +6,7 @@
 
 ---
 
-## 🎮 Descripción del Proyecto
+##  Descripción del Proyecto
 
 **Guardianes de Costa Rica** es un videojuego educativo de exploración 2D desarrollado con React 19 y Vite. El jugador asume el rol de un Guardián que recorre Costa Rica, descubriendo su fauna, provincias, tradiciones culturales y practicando inglés.
 
@@ -21,18 +21,18 @@ El juego incluye:
 
 ---
 
-## 🌍 Los 4 Mundos
+##  Los 4 Mundos
 
 | Mundo | Temática | Mecánica |
 |-------|----------|----------|
-| 🌿 **El Bosque Vivo** | Biodiversidad | Exploración top-down. Encuentra animales, aprende sus hábitats. |
-| 🗺️ **Provincias del Paraíso** | Geografía | Mapa SVG interactivo de las 7 provincias. |
-| 🎭 **El Pueblo Tico** | Cultura | Recolección de símbolos y tradiciones en un pueblo. |
-| 🌎 **Mundo Bilingüe** | Inglés | Conversaciones RPG con turistas de todo el mundo. |
+|  **El Bosque Vivo** | Biodiversidad | Exploración top-down. Encuentra animales, aprende sus hábitats. |
+|  **Provincias del Paraíso** | Geografía | Mapa SVG interactivo de las 7 provincias. |
+|  **El Pueblo Tico** | Cultura | Recolección de símbolos y tradiciones en un pueblo. |
+|  **Mundo Bilingüe** | Inglés | Conversaciones RPG con turistas de todo el mundo. |
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+##  Tecnologías Utilizadas
 
 - **React 19** — Framework JavaScript principal
 - **Vite 5** — Bundler y servidor de desarrollo
@@ -44,7 +44,7 @@ El juego incluye:
 
 ---
 
-## 🏗️ Arquitectura del Proyecto
+##  Arquitectura del Proyecto
 
 ```text
 src/
@@ -97,7 +97,7 @@ public/
 
 ---
 
-## ⚙️ Instalación y Ejecución
+##  Instalación y Ejecución
 
 ```bash
 # Clonar el repositorio
@@ -121,7 +121,7 @@ El proyecto estará disponible en `http://localhost:5173`
 
 ---
 
-## 🎵 Recursos Multimedia
+##  Recursos Multimedia
 
 ### Imágenes necesarias (descargar y colocar en `/public/images/`)
 
@@ -144,17 +144,17 @@ El proyecto estará disponible en `http://localhost:5173`
 - `intro.mp4` — Video de naturaleza de Costa Rica (15-30 segundos, para el fondo del menú)
 
 **Fuentes gratuitas recomendadas:**
-- 🖼️ Imágenes: [Unsplash](https://unsplash.com) · [Pexels](https://pexels.com)
-- 🎵 Música: [Pixabay Music](https://pixabay.com/music)
-- 🔊 SFX: [Freesound.org](https://freesound.org) · [Pixabay SFX](https://pixabay.com/sound-effects)
-- 🎬 Videos: [Pexels Videos](https://pexels.com/videos)
+-  Imágenes: [Unsplash](https://unsplash.com) · [Pexels](https://pexels.com)
+-  Música: [Pixabay Music](https://pixabay.com/music)
+-  SFX: [Freesound.org](https://freesound.org) · [Pixabay SFX](https://pixabay.com/sound-effects)
+-  Videos: [Pexels Videos](https://pexels.com/videos)
 
 ### Mapa SVG
 Colocar el archivo `mapa.svg` en `/public/mapa.svg` con las provincias de Costa Rica como paths interactivos.
 
 ---
 
-## 📦 Dependencias
+##  Dependencias
 
 ```json
 {
@@ -191,6 +191,6 @@ Colocar el archivo `mapa.svg` en `/public/mapa.svg` con las provincias de Costa 
 
 ## 👤 Autor
 
-**Bryan Calderón**
+**Bryan Josué Calderón Espinoza**
 IF7102 — Multimedios
 I Ciclo 2026 — Universidad de Costa Rica, Sede Regional Guanacaste
