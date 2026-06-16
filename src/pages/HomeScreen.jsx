@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Particulas } from '../components/effects/Particulas';
 import { VideoPlayer } from '../components/media/VideoPlayer';
@@ -7,100 +8,112 @@ import '../styles/screens.css';
 import '../styles/effects.css';
 
 /**
- * Pantalla de inicio cinematográfica con video de fondo, partículas y parallax.
+ * Pantalla de inicio inspirada en la interfaz de Stitch (Google)
  */
 export const HomeScreen = () => {
-  const { navegarA, estado, reiniciarJuego } = useGame();
+  const { navegarA, estado, reiniciarJuego, nivelActual } = useGame();
   const [mostrarReinicio, setMostrarReinicio] = useState(false);
   const tieneProgreso = estado.xpTotal > 0;
 
   return (
-    <div className="home-screen">
-      {/* Video de fondo */}
+    <div className="home-screen stitch-theme">
+      {/* Fondo: Gradiente oscuro sobre el video */}
       <div className="home-video-fondo">
         <VideoPlayer src="/video/intro.mp4" poster="/images/fondos/bosque-fondo.webp" fondoPantalla silenciadoInicial />
-        <div className="home-video-overlay" />
+        <div className="stitch-video-overlay" />
       </div>
 
-      {/* Partículas flotantes */}
-      <Particulas cantidad={25} tipo="luces" />
-      <Particulas cantidad={12} tipo="hojas" velocidad={0.6} />
+      {/* Partículas muy sutiles, color cálido */}
+      <Particulas cantidad={15} tipo="luces" />
 
-      {/* Contenido principal */}
-      <div className="home-contenido anim-fade-in">
-        {/* Emblema */}
-        <div className="home-emblema" aria-hidden="true">🇨🇷</div>
+      {/* Header Superior estilo Stitch */}
+      <header className="stitch-header">
+        <div className="stitch-header-left">
+          <div className="stitch-avatar">
+            {/* Si no hay imagen, mostramos el emoji */}
+            <div className="stitch-avatar-fallback">🧑‍🌾</div>
+          </div>
+          <div className="stitch-header-info">
+            <span className="stitch-rango">EXPLORADOR RANGO: {nivelActual.titulo.toUpperCase()}</span>
+            <span className="stitch-nombre">{estado.nombre}</span>
+          </div>
+        </div>
+        <button className="stitch-menu-btn" aria-label="Menú">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </header>
 
-        <p className="home-titulo-sub">
-          Un videojuego educativo · UCR IF7102 Multimedios
-        </p>
-
-        <h1 className="home-titulo-principal">
+      {/* Contenido Central */}
+      <div className="stitch-contenido anim-fade-in">
+        <p className="stitch-subtitulo">U N &nbsp; V I D E O J U E G O &nbsp; E D U C A T I V O</p>
+        
+        <h1 className="stitch-titulo-principal">
           Guardianes de<br />Costa Rica
         </h1>
-
-        <p className="home-descripcion">
-          Embárcate en una aventura épica por la tierra de la Pura Vida. Descubre su biodiversidad, geografía, cultura e idioma en cuatro mundos únicos.
+        
+        <p className="stitch-descripcion">
+          Embárcate en una aventura épica por la tierra de la<br />
+          Pura Vida. Descubre su biodiversidad y cultura.
         </p>
 
-        <div className="home-separador" aria-hidden="true" />
-
-        {/* Botones del menú */}
-        <nav className="home-menu" aria-label="Menú principal">
-          <button
-            className="home-btn-principal btn-ripple"
-            onClick={() => navegarA('mapa')}
-            aria-label="Comenzar la aventura"
-          >
-            {tieneProgreso ? '▶ Continuar Aventura' : '🌿 Comenzar Aventura'}
+        {/* Botones */}
+        <div className="stitch-botones-container">
+          <button className="stitch-btn-primary btn-ripple" onClick={() => navegarA('mapa')}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ fill: 'white' }}>
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            {tieneProgreso ? 'Continuar Aventura' : 'Comenzar Aventura'}
           </button>
 
-          <div className="home-menu-secundario">
-            <Boton
-              variante="glass"
-              onClick={() => navegarA('coleccionables')}
-              ariaLabel="Ver colección de animales y objetos"
-              icono="🎒"
-            >
+          <div className="stitch-btn-row">
+            <button className="stitch-btn-secondary btn-ripple" onClick={() => navegarA('coleccionables')}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e9c46a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
               Colección
-            </Boton>
-            <Boton
-              variante="glass"
-              onClick={() => navegarA('perfil')}
-              ariaLabel="Ver perfil del jugador"
-              icono="⭐"
-            >
+            </button>
+            <button className="stitch-btn-secondary btn-ripple" onClick={() => navegarA('perfil')}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#74c69d" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
               Perfil
-            </Boton>
-            <Boton
-              variante="glass"
-              onClick={() => navegarA('creditos')}
-              ariaLabel="Ver créditos del juego"
-              icono="📜"
-            >
-              Créditos
-            </Boton>
+            </button>
           </div>
 
+          <button className="stitch-btn-secondary stitch-btn-ajustes btn-ripple" onClick={() => navegarA('creditos')}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8ecae6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+            Ajustes
+          </button>
+
           {tieneProgreso && (
-            <button
-              onClick={() => setMostrarReinicio(true)}
-              style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.35)', fontSize: '0.75rem', cursor: 'pointer', marginTop: '0.5rem' }}
-              aria-label="Reiniciar progreso"
-            >
-              Reiniciar progreso
+            <button className="stitch-btn-text" onClick={() => setMostrarReinicio(true)}>
+              REINICIAR PROGRESO
             </button>
           )}
-        </nav>
+        </div>
       </div>
 
-      {/* Diálogo de confirmación de reinicio */}
+      <footer className="stitch-footer">
+        <p>ECO-ADVENTURE STUDIOS • 2026</p>
+        <p>VERSIÓN 1.0.0-STABLE • COSTA RICA CARBON NEUTRAL</p>
+      </footer>
+
+      {/* Diálogo de confirmación de reinicio (sin cambios visuales mayores) */}
       {mostrarReinicio && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
-          <div style={{ background: 'rgba(10,25,15,0.97)', border: '1px solid rgba(249,65,68,0.4)', borderRadius: 20, padding: '2rem', maxWidth: 380, textAlign: 'center' }}>
-            <p style={{ fontSize: '2rem', marginBottom: '1rem' }}>⚠️</p>
-            <h2 style={{ marginBottom: '1rem', color: 'var(--rojo-lapa)' }}>¿Reiniciar progreso?</h2>
-            <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '1.5rem', fontSize: '0.9rem' }}>
+        <div style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(0,0,0,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+          <div style={{ background: 'rgba(15,20,18,0.98)', border: '1px solid rgba(249,65,68,0.4)', borderRadius: 24, padding: '2.5rem', maxWidth: 400, textAlign: 'center', boxShadow: '0 20px 60px rgba(0,0,0,0.6)' }}>
+            <p style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>⚠️</p>
+            <h2 style={{ marginBottom: '1rem', color: 'var(--rojo-lapa)', fontFamily: 'var(--font-ui)' }}>¿Reiniciar progreso?</h2>
+            <p style={{ color: 'rgba(255,255,255,0.6)', marginBottom: '2rem', fontSize: '0.9rem', lineHeight: 1.5 }}>
               Perderás toda tu XP, coleccionables e insignias. Esta acción no se puede deshacer.
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
@@ -114,11 +127,6 @@ export const HomeScreen = () => {
           </div>
         </div>
       )}
-
-      {/* Footer */}
-      <footer className="home-footer" aria-label="Información del proyecto">
-        IF7102 Multimedios · I Ciclo 2026 · Universidad de Costa Rica · Sede Regional Guanacaste
-      </footer>
     </div>
   );
 };

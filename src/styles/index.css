@@ -4,24 +4,25 @@
 
 /* --- Variables Globales de Diseño --- */
 :root {
-  /* Paleta Natural de Costa Rica */
-  --verde-selva:        #1a472a;
+  /* Paleta Stitch / Costa Rica */
+  --verde-selva:        #0d2b1c;
   --verde-bosque:       #2d6a4f;
   --verde-hoja:         #40916c;
   --verde-claro:        #74c69d;
-  --verde-lima:         #b7e4c7;
+  --verde-lima:         #a3e6c2;
   --azul-pacifico:      #0077b6;
   --azul-mar:           #0096c7;
   --azul-cielo:         #48cae4;
   --azul-claro:         #ade8f4;
   --dorado:             #e9c46a;
+  --dorado-palido:      #c9a765;
   --naranja-tierra:     #f4a261;
   --rojo-lapa:          #e76f51;
   --cafe-madera:        #6d4c41;
-  --crema:              #fdfcf0;
+  --crema:              #eaf2eb;
   --blanco:             #ffffff;
-  --negro-suave:        #1a1a2e;
-  --gris-oscuro:        #2c2c54;
+  --negro-suave:        #050a08;
+  --gris-oscuro:        #0f1412;
 
   /* UI del Juego */
   --color-xp:           #f9c74f;
@@ -193,68 +194,56 @@ ul, ol { list-style: none; }
 .mb-md { margin-bottom: var(--space-md); }
 .mb-lg { margin-bottom: var(--space-lg); }
 
-/* --- Botón Base del Juego --- */
+/* --- Botón Base del Juego (Estilo Stitch) --- */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-sm);
-  padding: 14px 32px;
+  gap: 10px;
+  padding: 12px 28px;
   border: none;
-  border-radius: var(--radius-full);
-  font-family: var(--font-ui);
-  font-size: 1rem;
+  border-radius: 50px; /* Estilo píldora */
+  font-family: var(--font-ui), sans-serif;
+  font-size: 0.95rem;
   font-weight: 700;
-  letter-spacing: 0.02em;
   cursor: pointer;
-  transition: all var(--transition-normal);
-  position: relative;
-  overflow: hidden;
+  transition: all 0.2s ease;
   user-select: none;
 }
 
-.btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(255,255,255,0);
-  transition: background var(--transition-fast);
-}
-.btn:hover::before { background: rgba(255,255,255,0.1); }
 .btn:active { transform: scale(0.96); }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--verde-bosque), var(--verde-selva));
+  background: var(--verde-bosque);
   color: var(--blanco);
-  box-shadow: 0 4px 20px rgba(45,106,79,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+  box-shadow: 0 10px 30px rgba(45, 106, 79, 0.4);
 }
 .btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(45,106,79,0.7), var(--glow-verde);
+  transform: translateY(-2px);
+  background: #368160;
+  box-shadow: 0 15px 40px rgba(45, 106, 79, 0.6);
 }
 
 .btn-dorado {
-  background: linear-gradient(135deg, var(--dorado), var(--naranja-tierra));
+  background: var(--dorado-palido);
   color: var(--negro-suave);
-  box-shadow: 0 4px 20px rgba(233,196,106,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+  box-shadow: 0 10px 30px rgba(201, 167, 101, 0.3);
 }
 .btn-dorado:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(233,196,106,0.6), var(--glow-dorado);
+  transform: translateY(-2px);
+  background: var(--dorado);
+  box-shadow: 0 15px 40px rgba(201, 167, 101, 0.5);
 }
 
 .btn-glass {
-  background: var(--glass-medium);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  color: var(--blanco);
-  box-shadow: var(--glass-shadow);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #eaeaea;
+  font-weight: 600;
 }
 .btn-glass:hover {
-  background: var(--glass-heavy);
-  transform: translateY(-2px);
-  box-shadow: var(--glass-shadow), var(--glow-blanco);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .btn-peligro {

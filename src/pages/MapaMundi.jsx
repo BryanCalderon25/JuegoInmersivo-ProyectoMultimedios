@@ -1,163 +1,264 @@
 import React, { useState } from 'react';
 import { useFetch } from '../hooks/useFetch';
 import { useGame } from '../hooks/useGame';
-import { Particulas } from '../components/effects/Particulas';
 import { Boton } from '../components/common/Boton';
 import '../styles/screens.css';
 
-const COLORES_MUNDO = {
-  biodiversidad: { bg: 'rgba(27,71,50,0.95)', border: 'rgba(64,145,108,0.5)', glow: '0 0 30px rgba(64,145,108,0.3)' },
-  geografia:     { bg: 'rgba(0,50,90,0.95)',  border: 'rgba(0,119,182,0.5)', glow: '0 0 30px rgba(0,119,182,0.3)' },
-  cultura:       { bg: 'rgba(90,60,10,0.95)', border: 'rgba(233,196,106,0.5)', glow: '0 0 30px rgba(233,196,106,0.3)' },
-  ingles:        { bg: 'rgba(60,20,90,0.95)', border: 'rgba(155,93,229,0.5)', glow: '0 0 30px rgba(155,93,229,0.3)' },
-};
-
 /**
- * Hub central del juego — Mapa de Costa Rica con 4 mundos seleccionables.
+ * MapaMundi rediseñado al estilo "Stitch" (Google) basado en la imagen de referencia.
  */
 export const MapaMundi = () => {
   const { data: historia, loading } = useFetch('/json/historia.json');
   const { estado, navegarA } = useGame();
   const [mundoHover, setMundoHover] = useState(null);
-  const [mundoSeleccionado, setMundoSeleccionado] = useState(null);
 
   const mundos = historia?.mundos || [];
-  const mundoInfo = mundoSeleccionado ? mundos.find(m => m.id === mundoSeleccionado) : null;
 
   const estadoMundo = (id) => estado.mundosCompletados[id] || { completado: false, estrellas: 0 };
 
-  const seleccionarMundo = (mundo) => {
+  const entrarMundo = (mundo) => {
     if (mundo.bloqueado && (estado.xpTotal < mundo.xpRequerido)) return;
-    setMundoSeleccionado(mundo.id);
-  };
-
-  const entrarMundo = () => {
-    if (mundoSeleccionado) navegarA('mundo', mundoSeleccionado);
+    navegarA('mundo', mundo.id);
   };
 
   if (loading) return (
-    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--negro-suave)' }}>
-      <div style={{ textAlign: 'center' }}>
-        <div style={{ fontSize: '3rem', animation: 'float 2s ease-in-out infinite' }}>🗺️</div>
-        <p style={{ color: 'var(--verde-claro)', marginTop: '1rem' }}>Cargando el mapa...</p>
-      </div>
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0b0908' }}>
+      <p style={{ color: '#eaf2eb' }}>Cargando destinos...</p>
     </div>
   );
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(160deg, var(--negro-suave), #0a1f0f 60%, #050d14)', position: 'relative', overflow: 'hidden', padding: '80px 2rem 2rem' }}>
-      <Particulas cantidad={15} tipo="estrellas" velocidad={0.5} />
-
-      {/* Título */}
-      <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-        <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)', fontWeight: 900 }}>
-          <span className="text-gradient-verde">Elige tu Destino</span>
-        </h1>
-        <p style={{ color: 'rgba(255,255,255,0.5)', marginTop: '0.5rem' }}>
-          Explora los cuatro mundos de Costa Rica
-        </p>
-      </div>
-
-      {/* Grid de mundos */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', maxWidth: '1100px', margin: '0 auto 2rem' }}>
-        {mundos.map(mundo => {
-          const est = estadoMundo(mundo.id);
-          const colores = COLORES_MUNDO[mundo.id] || COLORES_MUNDO.biodiversidad;
-          const bloqueado = mundo.bloqueado && estado.xpTotal < mundo.xpRequerido;
-          const activo = mundoSeleccionado === mundo.id;
-
-          return (
-            <button
-              key={mundo.id}
-              onClick={() => seleccionarMundo(mundo)}
-              onMouseEnter={() => setMundoHover(mundo.id)}
-              onMouseLeave={() => setMundoHover(null)}
-              disabled={bloqueado}
-              aria-label={`${bloqueado ? 'Bloqueado: ' : ''}Mundo ${mundo.nombre}. ${mundo.descripcion}`}
-              aria-pressed={activo}
-              style={{
-                all: 'unset',
-                display: 'block',
-                background: activo ? colores.bg : 'rgba(255,255,255,0.04)',
-                border: `2px solid ${activo ? colores.border.replace('0.5', '0.8') : colores.border}`,
-                borderRadius: '20px',
-                padding: '2rem',
-                cursor: bloqueado ? 'not-allowed' : 'pointer',
-                transition: 'all 0.3s cubic-bezier(0.16,1,0.3,1)',
-                transform: activo ? 'scale(1.03)' : mundoHover === mundo.id ? 'scale(1.01) translateY(-4px)' : 'scale(1)',
-                boxShadow: activo ? colores.glow : mundoHover === mundo.id ? '0 8px 30px rgba(0,0,0,0.3)' : 'none',
-                opacity: bloqueado ? 0.4 : 1,
-                position: 'relative',
-                overflow: 'hidden',
-                textAlign: 'left',
-              }}
-            >
-              {/* Imagen de fondo del mundo */}
-              {mundo.fondoImagen && (
-                <div style={{ position: 'absolute', inset: 0, borderRadius: 18, overflow: 'hidden', opacity: activo ? 0.2 : 0.08 }}>
-                  <img src={mundo.fondoImagen} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} aria-hidden="true" />
-                </div>
-              )}
-
-              <div style={{ position: 'relative', zIndex: 1 }}>
-                {/* Emoji e insignia de completado */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-                  <span style={{ fontSize: '3rem', animation: activo ? 'float 3s ease-in-out infinite' : 'none' }} aria-hidden="true">
-                    {mundo.emoji}
-                  </span>
-                  {bloqueado && <span style={{ fontSize: '1.5rem' }} aria-label="Bloqueado">🔒</span>}
-                  {est.completado && !bloqueado && (
-                    <div style={{ display: 'flex', gap: 2 }} aria-label={`${est.estrellas} estrellas`}>
-                      {[...Array(3)].map((_, i) => (
-                        <span key={i} style={{ fontSize: '1rem', filter: i < est.estrellas ? 'none' : 'grayscale(1) opacity(0.3)' }}>⭐</span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                <h2 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'white', marginBottom: '0.25rem' }}>
-                  {mundo.nombre}
-                </h2>
-                <p style={{ fontSize: '0.75rem', color: activo ? colores.border.replace('rgba', 'rgb').replace(',0.5)', ')') : 'rgba(255,255,255,0.4)', marginBottom: '1rem', fontWeight: 600 }}>
-                  {mundo.subtitulo}
-                </p>
-                <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.5 }}>
-                  {mundo.descripcion}
-                </p>
-
-                {bloqueado && (
-                  <div style={{ marginTop: '1rem', padding: '8px 12px', background: 'rgba(255,255,255,0.05)', borderRadius: 8, fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)' }}>
-                    🔒 Requiere {mundo.xpRequerido} XP para desbloquear
-                  </div>
-                )}
-              </div>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Panel de confirmación de entrada al mundo */}
-      {mundoInfo && (
-        <div className="anim-slide-up" style={{ maxWidth: 600, margin: '0 auto', background: COLORES_MUNDO[mundoSeleccionado]?.bg || 'rgba(10,25,15,0.95)', border: `1px solid ${COLORES_MUNDO[mundoSeleccionado]?.border || 'rgba(64,145,108,0.4)'}`, borderRadius: 20, padding: '2rem', textAlign: 'center', boxShadow: COLORES_MUNDO[mundoSeleccionado]?.glow }}>
-          <p style={{ fontSize: '3rem', marginBottom: '0.5rem' }} aria-hidden="true">{mundoInfo.emoji}</p>
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{mundoInfo.nombre}</h2>
-          <p style={{ color: 'rgba(255,255,255,0.65)', marginBottom: '1.5rem', fontSize: '0.9rem' }}>{mundoInfo.descripcion}</p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Boton variante="dorado" tamaño="lg" onClick={entrarMundo} ariaLabel={`Entrar a ${mundoInfo.nombre}`} icono="🚀">
-              ¡Entrar al Mundo!
-            </Boton>
-            <Boton variante="glass" onClick={() => setMundoSeleccionado(null)} ariaLabel="Cancelar selección">
-              Cancelar
-            </Boton>
+    <div style={{ 
+      minHeight: '100vh', 
+      background: 'radial-gradient(circle at 50% -20%, #2a1f1a 0%, #0b0908 70%)', 
+      position: 'relative', 
+      overflow: 'hidden', 
+      paddingBottom: '100px',
+      fontFamily: 'var(--font-ui), sans-serif'
+    }}>
+      
+      {/* Top Header Bar */}
+      <div style={{ padding: '20px 30px' }}>
+        <div style={{ 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'center',
+          background: 'rgba(255,255,255,0.03)',
+          border: '1px solid rgba(255,255,255,0.08)',
+          borderRadius: '16px',
+          padding: '12px 24px'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#2c3e35', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', border: '1px solid rgba(255,255,255,0.2)' }}>
+              🧑‍🌾
+            </div>
+            <span style={{ color: '#eaf2eb', fontWeight: 800, fontSize: '1.1rem', letterSpacing: '0.02em' }}>
+              Guardianes de CR
+            </span>
+          </div>
+          
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'rgba(255,255,255,0.05)', padding: '6px 16px', borderRadius: '50px', border: '1px solid rgba(255,255,255,0.1)' }}>
+            <span style={{ color: '#eaf2eb', fontWeight: 700 }}>{estado.xpTotal.toLocaleString('en-US')}</span>
+            <span style={{ fontSize: '1.1rem' }}>🪙</span>
           </div>
         </div>
-      )}
+      </div>
 
-      {/* Botón de volver */}
-      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-        <Boton variante="glass" onClick={() => navegarA('inicio')} ariaLabel="Volver al menú principal" icono="🏠">
-          Menú Principal
-        </Boton>
+      {/* Main Content Area */}
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
+        
+        {/* Títulos Centrales */}
+        <div style={{ textAlign: 'center', margin: '30px 0 50px', animation: 'slideUp 0.6s ease' }}>
+          <h1 style={{ color: '#f5e4c3', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, marginBottom: '16px', letterSpacing: '-0.02em' }}>
+            Elige tu Destino
+          </h1>
+          <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.95rem', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>
+            Explora los cuatro mundos de Costa Rica. Cada territorio esconde secretos, desafíos y la magia de nuestra biodiversidad.
+          </p>
+        </div>
+
+        {/* Grid de Mundos (Tarjetas estilo imagen) */}
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', 
+          gap: '20px',
+          animation: 'slideUp 0.8s ease 0.2s both'
+        }}>
+          {mundos.map((mundo, idx) => {
+            const est = estadoMundo(mundo.id);
+            const bloqueado = mundo.bloqueado && estado.xpTotal < mundo.xpRequerido;
+            const isHover = mundoHover === mundo.id;
+            
+            // Colores por mundo para imitar la imagen
+            const theme = {
+              biodiversidad: { accent: '#74c69d', btnBg: '#f9c74f', btnText: '#1f1a0e', label: 'BOSQUE NUBOSO', icon: '🌲', bg: 'linear-gradient(to bottom, #1d2a22, #141a17)' },
+              geografia:     { accent: '#48cae4', btnBg: '#3d2b1f', btnText: '#eaf2eb', label: 'GEOGRAFÍA & MAPAS', icon: '🗺️', bg: 'linear-gradient(to bottom, #1e1915, #14100e)' },
+              cultura:       { accent: '#f4a261', btnBg: '#3d2b1f', btnText: '#eaf2eb', label: 'CULTURA & TRADICIONES', icon: '🎭', bg: 'linear-gradient(to bottom, #1e1915, #14100e)' },
+              ingles:        { accent: '#90be6d', btnBg: '#2a1d15', btnText: '#8c7d73', label: 'INGLÉS & AVENTURA', icon: '🌍', bg: 'linear-gradient(to bottom, #1e1915, #14100e)' }
+            }[mundo.id] || { accent: '#eaf2eb', btnBg: '#3d2b1f', btnText: '#eaf2eb', label: 'ZONA DESCONOCIDA', icon: '❓', bg: '#14100e' };
+
+            const cardBorder = mundo.id === 'biodiversidad' ? '1px solid rgba(116, 198, 157, 0.4)' : '1px solid rgba(255,255,255,0.05)';
+            const cardShadow = mundo.id === 'biodiversidad' ? '0 0 40px rgba(116, 198, 157, 0.1)' : 'none';
+
+            return (
+              <div 
+                key={mundo.id}
+                onMouseEnter={() => setMundoHover(mundo.id)}
+                onMouseLeave={() => setMundoHover(null)}
+                style={{
+                  background: theme.bg,
+                  border: cardBorder,
+                  borderRadius: '24px',
+                  padding: '24px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  boxShadow: cardShadow,
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                  transform: isHover && !bloqueado ? 'translateY(-5px)' : 'translateY(0)',
+                  opacity: bloqueado ? 0.6 : 1,
+                  position: 'relative',
+                  overflow: 'hidden',
+                  minHeight: '380px'
+                }}
+              >
+                {/* Imagen/Gradiente decorativo de fondo de la tarjeta */}
+                {mundo.id === 'biodiversidad' && (
+                  <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at top right, rgba(116, 198, 157, 0.15), transparent 60%)', pointerEvents: 'none' }} />
+                )}
+
+                <div style={{ position: 'relative', zIndex: 1 }}>
+                  {/* Icono y Estrellas */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
+                    <div style={{ width: 48, height: 48, background: 'rgba(255,255,255,0.05)', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem' }}>
+                      {theme.icon}
+                    </div>
+                    <div style={{ display: 'flex', gap: '4px' }}>
+                      {[...Array(3)].map((_, i) => (
+                        <span key={i} style={{ fontSize: '0.8rem', color: i < est.estrellas ? '#f9c74f' : 'rgba(255,255,255,0.2)' }}>★</span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Textos */}
+                  <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#eaf2eb', marginBottom: '4px', lineHeight: 1.2 }}>
+                    {mundo.nombre}
+                  </h2>
+                  <p style={{ fontSize: '0.7rem', fontWeight: 700, color: theme.accent, letterSpacing: '0.05em', marginBottom: '16px' }}>
+                    {theme.label}
+                  </p>
+                  
+                  <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.5 }}>
+                    {mundo.descripcion}
+                  </p>
+                </div>
+
+                {/* Progress bar fake & Bottom Button */}
+                <div style={{ position: 'relative', zIndex: 1, marginTop: '24px' }}>
+                  {!bloqueado && (
+                    <div style={{ height: 4, background: 'rgba(255,255,255,0.1)', borderRadius: 2, marginBottom: '20px', overflow: 'hidden' }}>
+                      <div style={{ width: est.completado ? '100%' : '30%', height: '100%', background: theme.accent, borderRadius: 2 }} />
+                    </div>
+                  )}
+
+                  <button 
+                    onClick={() => entrarMundo(mundo)}
+                    disabled={bloqueado}
+                    style={{
+                      width: '100%',
+                      padding: '14px',
+                      borderRadius: '12px',
+                      border: 'none',
+                      background: bloqueado ? '#2a1d15' : theme.btnBg,
+                      color: bloqueado ? '#8c7d73' : theme.btnText,
+                      fontWeight: 800,
+                      fontSize: '0.85rem',
+                      letterSpacing: '0.02em',
+                      cursor: bloqueado ? 'not-allowed' : 'pointer',
+                      transition: 'filter 0.2s ease',
+                      fontFamily: 'var(--font-ui), sans-serif'
+                    }}
+                    onMouseEnter={e => !bloqueado && (e.currentTarget.style.filter = 'brightness(1.1)')}
+                    onMouseLeave={e => !bloqueado && (e.currentTarget.style.filter = 'brightness(1)')}
+                  >
+                    {bloqueado ? 'BLOQUEADO' : mundo.id === 'biodiversidad' ? '▶ ¡Entrar al Mundo!' : 'CONTINUAR RUTA'}
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Botón Menú Principal */}
+        <div style={{ textAlign: 'center', marginTop: '40px' }}>
+          <button 
+            onClick={() => navegarA('inicio')}
+            style={{
+              background: 'rgba(255,255,255,0.05)',
+              border: '1px solid rgba(255,255,255,0.1)',
+              color: 'rgba(255,255,255,0.7)',
+              padding: '10px 24px',
+              borderRadius: '50px',
+              fontSize: '0.85rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              fontFamily: 'var(--font-ui), sans-serif',
+              transition: 'background 0.2s ease'
+            }}
+            onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
+            onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
+          >
+            🏠 Menú Principal
+          </button>
+        </div>
+      </div>
+
+      {/* Floating Bottom Navigation Bar */}
+      <div style={{
+        position: 'fixed',
+        bottom: '24px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        background: 'rgba(20, 15, 12, 0.9)',
+        backdropFilter: 'blur(10px)',
+        border: '1px solid rgba(255,255,255,0.05)',
+        borderRadius: '50px',
+        padding: '8px 16px',
+        display: 'flex',
+        gap: '8px',
+        zIndex: 100,
+        boxShadow: '0 10px 40px rgba(0,0,0,0.5)'
+      }}>
+        {[
+          { id: 'inicio', label: 'HOME', icon: '🏠', active: false },
+          { id: 'mapa', label: 'MAP', icon: '🗺️', active: true },
+          { id: 'coleccionables', label: 'JOURNAL', icon: '📔', active: false },
+          { id: 'perfil', label: 'PROFILE', icon: '👤', active: false }
+        ].map(item => (
+          <button
+            key={item.id}
+            onClick={() => navegarA(item.id)}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '4px',
+              width: item.active ? '70px' : '60px',
+              height: '60px',
+              borderRadius: '30px',
+              border: 'none',
+              background: item.active ? '#f9c74f' : 'transparent',
+              color: item.active ? '#120f0d' : 'rgba(255,255,255,0.4)',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              fontFamily: 'var(--font-ui), sans-serif'
+            }}
+          >
+            <span style={{ fontSize: '1.2rem', filter: item.active ? 'none' : 'grayscale(1)' }}>{item.icon}</span>
+            <span style={{ fontSize: '0.6rem', fontWeight: 800, letterSpacing: '0.05em' }}>{item.label}</span>
+          </button>
+        ))}
       </div>
     </div>
   );

@@ -68,9 +68,9 @@
 }
 
 /* =====================================================
-   PANTALLA DE INICIO — CINEMATOGRÁFICA
+   PANTALLA DE INICIO — ESTILO STITCH
    ===================================================== */
-.home-screen {
+.home-screen.stitch-theme {
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -79,10 +79,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--negro-suave);
+  background: #050a08;
+  font-family: var(--font-ui), sans-serif;
 }
 
-/* Video de fondo */
+/* Video de fondo y overlay */
 .home-video-fondo {
   position: absolute;
   inset: 0;
@@ -93,154 +94,214 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.35;
-  filter: saturate(1.2) brightness(0.6);
+  opacity: 0.4;
+  filter: saturate(1.2) brightness(0.7);
 }
-.home-video-overlay {
+.stitch-video-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(10,20,15,0.3) 0%,
-    rgba(10,20,15,0.6) 50%,
-    rgba(10,20,15,0.95) 100%
+    rgba(5, 10, 8, 0.2) 0%,
+    rgba(5, 10, 8, 0.7) 50%,
+    rgba(5, 10, 8, 0.98) 100%
   );
 }
 
-/* Capas de parallax detrás del contenido */
-.home-parallax-bg {
+/* Header (Top Nav) */
+.stitch-header {
   position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 20;
 }
 
-/* Contenido principal del home */
-.home-contenido {
+.stitch-header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.stitch-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.stitch-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.stitch-avatar-fallback {
+  font-size: 1.5rem;
+}
+
+.stitch-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.stitch-rango {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: #c9a765; /* Dorado pálido */
+  font-weight: 600;
+}
+.stitch-nombre {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #a3e6c2; /* Verde pálido */
+}
+
+.stitch-menu-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.stitch-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Contenido Principal */
+.stitch-contenido {
   position: relative;
   z-index: 10;
   text-align: center;
-  padding: var(--space-xl);
-  max-width: 900px;
+  max-width: 700px;
   width: 100%;
+  margin-top: 60px;
 }
 
-.home-emblema {
-  font-size: clamp(3rem, 8vw, 5rem);
-  margin-bottom: var(--space-md);
-  animation: float 4s ease-in-out infinite;
-  filter: drop-shadow(0 0 30px rgba(233,196,106,0.5));
-}
-
-.home-titulo-sub {
-  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+.stitch-subtitulo {
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--dorado);
-  margin-bottom: var(--space-md);
+  color: #c9a765;
+  letter-spacing: 0.35em;
+  margin-bottom: 20px;
   animation: fadeIn 1s ease 0.5s both;
 }
 
-.home-titulo-principal {
-  font-size: clamp(2.5rem, 8vw, 5.5rem);
+.stitch-titulo-principal {
+  font-size: clamp(3rem, 8vw, 5.5rem);
   font-weight: 900;
-  line-height: 1.05;
-  margin-bottom: var(--space-lg);
-  background: linear-gradient(
-    135deg,
-    var(--blanco) 0%,
-    var(--verde-lima) 40%,
-    var(--dorado) 70%,
-    var(--blanco) 100%
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer-texto 4s linear infinite, slideUp 0.8s ease 0.3s both;
+  line-height: 1.1;
+  color: #eaf2eb;
+  margin-bottom: 24px;
+  animation: slideUp 0.8s ease 0.3s both;
 }
 
-@keyframes shimmer-texto {
-  from { background-position: 0% center; }
-  to   { background-position: 200% center; }
-}
-
-.home-descripcion {
-  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
-  color: rgba(255,255,255,0.7);
-  line-height: 1.7;
-  max-width: 600px;
-  margin: 0 auto var(--space-xl);
+.stitch-descripcion {
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  margin-bottom: 45px;
   animation: slideUp 0.8s ease 0.5s both;
 }
 
-/* Menú de botones del home */
-.home-menu {
+/* Botones */
+.stitch-botones-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-md);
+  gap: 16px;
   animation: slideUp 0.8s ease 0.7s both;
 }
 
-.home-btn-principal {
-  font-size: 1.2rem;
-  padding: 20px 60px;
-  background: linear-gradient(135deg, var(--verde-hoja), var(--verde-bosque));
-  color: white;
-  border: none;
-  border-radius: var(--radius-full);
-  cursor: pointer;
-  font-family: var(--font-ui);
-  font-weight: 800;
-  letter-spacing: 0.03em;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 6px 30px rgba(64,145,108,0.5), var(--glow-verde);
-  transition: all var(--transition-normal);
-}
-.home-btn-principal:hover {
-  transform: scale(1.05) translateY(-3px);
-  box-shadow: 0 12px 50px rgba(64,145,108,0.7), var(--glow-verde);
-}
-.home-btn-principal::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%);
-  background-size: 200% 100%;
-  animation: boton-brillo 3s infinite;
-}
-@keyframes boton-brillo {
-  0%   { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-.home-menu-secundario {
+.stitch-btn-primary {
   display: flex;
-  gap: var(--space-md);
-  flex-wrap: wrap;
-  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: #2d6a4f;
+  color: white;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  padding: 16px 45px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(45, 106, 79, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.stitch-btn-primary:hover {
+  transform: translateY(-2px);
+  background: #368160;
+  box-shadow: 0 15px 40px rgba(45, 106, 79, 0.6);
 }
 
-/* Separador decorativo */
-.home-separador {
-  width: 80px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--verde-hoja), transparent);
-  margin: var(--space-lg) auto;
+.stitch-btn-row {
+  display: flex;
+  gap: 16px;
 }
 
-/* Footer del home */
-.home-footer {
+.stitch-btn-secondary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #eaeaea;
+  font-family: var(--font-ui), sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.stitch-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.stitch-btn-ajustes {
+  margin-top: 4px;
+}
+
+.stitch-btn-text {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  margin-top: 16px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.stitch-btn-text:hover {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Footer */
+.stitch-footer {
   position: absolute;
-  bottom: var(--space-lg);
+  bottom: 24px;
   left: 0;
   right: 0;
   text-align: center;
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.35);
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  line-height: 1.8;
   z-index: 10;
 }
 
