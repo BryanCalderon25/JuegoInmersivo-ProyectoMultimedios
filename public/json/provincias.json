@@ -1,0 +1,184 @@
+[
+  {
+    "id": "san-jose",
+    "nombre": "San José",
+    "capital": "San José",
+    "emoji": "🏙️",
+    "imagen": "/images/provincias/san-jose.webp",
+    "color": "#e63946",
+    "svgPath": "sanjose",
+    "descripcion": "San José es la capital y provincia más poblada de Costa Rica. Centro político, económico y cultural del país. Alberga el Teatro Nacional, símbolo de la cultura costarricense construido en 1897.",
+    "datos": {
+      "fundacion": 1751,
+      "poblacion": 1404242,
+      "extension": "4965.9 km²"
+    },
+    "cantones": 20,
+    "parquesNacionales": ["Parque Nacional Braulio Carrillo", "Parque Nacional Tapantí"],
+    "lugaresDestacados": ["Teatro Nacional", "Museo del Jade", "Museo Nacional", "Mercado Central", "Barrio Escalante"],
+    "volcanCercano": "Volcán Irazú",
+    "desafio": {
+      "tipo": "pregunta",
+      "pregunta": "¿En qué año se construyó el Teatro Nacional de San José?",
+      "opciones": ["1871", "1897", "1921", "1850"],
+      "respuestaCorrecta": 1,
+      "explicacion": "El Teatro Nacional fue inaugurado el 21 de octubre de 1897, financiado con un impuesto al café."
+    }
+  },
+  {
+    "id": "alajuela",
+    "nombre": "Alajuela",
+    "capital": "Alajuela",
+    "emoji": "🥭",
+    "imagen": "/images/provincias/alajuela.webp",
+    "color": "#2a9d8f",
+    "svgPath": "alajuela",
+    "descripcion": "Conocida como 'La Ciudad de los Mangos', Alajuela alberga el Aeropuerto Internacional Juan Santamaría y el Parque Nacional Volcán Arenal, uno de los más activos del mundo.",
+    "datos": {
+      "fundacion": 1782,
+      "poblacion": 998723,
+      "extension": "9757.5 km²"
+    },
+    "cantones": 15,
+    "parquesNacionales": ["Parque Nacional Volcán Arenal", "Reserva Biológica Alberto Manuel Brenes"],
+    "lugaresDestacados": ["Volcán Arenal", "Laguna de Arenal", "Sarchi", "Naranjo", "Zarcero"],
+    "volcanCercano": "Volcán Arenal",
+    "desafio": {
+      "tipo": "pregunta",
+      "pregunta": "¿Cuál fue el último año en que el Volcán Arenal tuvo actividad eruptiva significativa?",
+      "opciones": ["1968", "1984", "2010", "2023"],
+      "respuestaCorrecta": 2,
+      "explicacion": "El Arenal entró en período de reposo eruptivo en 2010, tras 42 años de actividad constante desde 1968."
+    }
+  },
+  {
+    "id": "cartago",
+    "nombre": "Cartago",
+    "capital": "Cartago",
+    "emoji": "⛪",
+    "imagen": "/images/provincias/cartago.webp",
+    "color": "#e9c46a",
+    "svgPath": "cartago",
+    "descripcion": "Primera capital de Costa Rica, fundada en 1563. Sede de la Basílica de Nuestra Señora de los Ángeles, el principal símbolo religioso del país y destino de la peregrinación anual del 2 de agosto.",
+    "datos": {
+      "fundacion": 1563,
+      "poblacion": 508452,
+      "extension": "3124.7 km²"
+    },
+    "cantones": 8,
+    "parquesNacionales": ["Parque Nacional Volcán Irazú", "Parque Nacional Tapantí"],
+    "lugaresDestacados": ["Basílica de los Ángeles", "Volcán Irazú", "Valle de Orosi", "Las Ruinas"],
+    "volcanCercano": "Volcán Irazú",
+    "desafio": {
+      "tipo": "pregunta",
+      "pregunta": "¿Cuál es el volcán más alto de Costa Rica, ubicado en Cartago?",
+      "opciones": ["Volcán Arenal", "Volcán Poás", "Volcán Irazú", "Volcán Turrialba"],
+      "respuestaCorrecta": 2,
+      "explicacion": "El Volcán Irazú, con 3,432 metros de altura, es el volcán más alto de Costa Rica."
+    }
+  },
+  {
+    "id": "heredia",
+    "nombre": "Heredia",
+    "capital": "Heredia",
+    "emoji": "☕",
+    "imagen": "/images/provincias/heredia.webp",
+    "color": "#f4a261",
+    "svgPath": "heredia",
+    "descripcion": "Conocida como 'La Ciudad de las Flores', Heredia es cuna del café de montaña y alberga la Universidad Nacional. El Parque Nacional Braulio Carrillo protege uno de los bosques más biodiversos del país.",
+    "datos": {
+      "fundacion": 1763,
+      "poblacion": 433677,
+      "extension": "2656.9 km²"
+    },
+    "cantones": 10,
+    "parquesNacionales": ["Parque Nacional Braulio Carrillo", "Parque Nacional Volcán Poás"],
+    "lugaresDestacados": ["Parque Nacional Braulio Carrillo", "Barva", "Santa Bárbara", "Haciendas cafetaleras"],
+    "volcanCercano": "Volcán Poás",
+    "desafio": {
+      "tipo": "pregunta",
+      "pregunta": "¿Por qué apodo es conocida la ciudad de Heredia?",
+      "opciones": ["La Ciudad de los Mangos", "La Ciudad de las Flores", "La Perla del Pacífico", "El Granero de Costa Rica"],
+      "respuestaCorrecta": 1,
+      "explicacion": "Heredia es llamada 'La Ciudad de las Flores' por sus jardines y tradición cafetalera."
+    }
+  },
+  {
+    "id": "guanacaste",
+    "nombre": "Guanacaste",
+    "capital": "Liberia",
+    "emoji": "🤠",
+    "imagen": "/images/provincias/guanacaste.webp",
+    "color": "#457b9d",
+    "svgPath": "guanacaste",
+    "descripcion": "Provincia del noroeste, con el árbol de Guanacaste como símbolo nacional. Alberga el Parque Nacional Santa Rosa, escenario de la Batalla de 1856, y las mejores playas del Pacífico Norte.",
+    "datos": {
+      "fundacion": 1824,
+      "poblacion": 354253,
+      "extension": "10140.7 km²"
+    },
+    "cantones": 11,
+    "parquesNacionales": ["Parque Nacional Santa Rosa", "Parque Nacional Rincón de la Vieja", "Parque Nacional Las Baulas"],
+    "lugaresDestacados": ["Playas del Coco", "Tamarindo", "Liberia", "Parque Nacional Santa Rosa", "Volcán Rincón de la Vieja"],
+    "volcanCercano": "Volcán Rincón de la Vieja",
+    "desafio": {
+      "tipo": "pregunta",
+      "pregunta": "¿En qué año se anexó Guanacaste a Costa Rica?",
+      "opciones": ["1821", "1824", "1848", "1856"],
+      "respuestaCorrecta": 1,
+      "explicacion": "El 25 de julio de 1824, el Partido de Nicoya (actual Guanacaste) decidió unirse libremente a Costa Rica mediante un plebiscito."
+    }
+  },
+  {
+    "id": "puntarenas",
+    "nombre": "Puntarenas",
+    "capital": "Puntarenas",
+    "emoji": "🌊",
+    "imagen": "/images/provincias/puntarenas.webp",
+    "color": "#48cae4",
+    "svgPath": "puntarenas",
+    "descripcion": "La provincia más extensa de Costa Rica incluye la Península de Osa con el Parque Nacional Corcovado, considerado uno de los ecosistemas más biodiversos del planeta, y las Islas del Golfo.",
+    "datos": {
+      "fundacion": 1858,
+      "poblacion": 422993,
+      "extension": "11277.2 km²"
+    },
+    "cantones": 11,
+    "parquesNacionales": ["Parque Nacional Corcovado", "Parque Nacional Manuel Antonio", "Parque Nacional Chirripó"],
+    "lugaresDestacados": ["Puerto Jiménez", "Dominical", "Uvita", "Quepos", "Reserva Biológica Isla del Caño"],
+    "volcanCercano": "Cerro Chirripó (no volcánico)",
+    "desafio": {
+      "tipo": "pregunta",
+      "pregunta": "¿Qué organización ha llamado al Parque Nacional Corcovado 'el lugar más biodiverso de la Tierra'?",
+      "opciones": ["UNESCO", "National Geographic", "UICN", "ONU"],
+      "respuestaCorrecta": 1,
+      "explicacion": "National Geographic llamó al Parque Nacional Corcovado 'el lugar biológicamente más intenso de la Tierra' en la Península de Osa."
+    }
+  },
+  {
+    "id": "limon",
+    "nombre": "Limón",
+    "capital": "Limón",
+    "emoji": "🌴",
+    "imagen": "/images/provincias/limon.webp",
+    "color": "#6a994e",
+    "svgPath": "limon",
+    "descripcion": "Costa Rica caribeña. Limón alberga una rica mezcla cultural afrocostarricense, indígena y mestiza. El Parque Nacional Tortuguero es uno de los más importantes sitios de anidación de tortuga verde en el mundo.",
+    "datos": {
+      "fundacion": 1892,
+      "poblacion": 404045,
+      "extension": "9188.5 km²"
+    },
+    "cantones": 6,
+    "parquesNacionales": ["Parque Nacional Tortuguero", "Parque Nacional Cahuita", "Reserva Indígena Bribri"],
+    "lugaresDestacados": ["Tortuguero", "Cahuita", "Puerto Viejo", "Manzanillo", "Gandoca-Manzanillo"],
+    "volcanCercano": "Ninguno activo",
+    "desafio": {
+      "tipo": "pregunta",
+      "pregunta": "¿Cuál es la principal especie de tortuga que anida en el Parque Nacional Tortuguero?",
+      "opciones": ["Tortuga Baula", "Tortuga Carey", "Tortuga Verde", "Tortuga Lora"],
+      "respuestaCorrecta": 2,
+      "explicacion": "El Parque Nacional Tortuguero es uno de los sitios más importantes del mundo para la anidación de la Tortuga Verde (Chelonia mydas)."
+    }
+  }
+]
