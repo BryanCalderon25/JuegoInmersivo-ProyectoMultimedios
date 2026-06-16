@@ -8,48 +8,48 @@ Este archivo documenta todos los recursos multimedia utilizados en el proyecto d
 
 ### Fondos (public/images/fondos/)
 
-| Archivo | Descripción | Fuente | Autor | Licencia | URL Original |
-|---------|-------------|--------|-------|----------|--------------|
-| bosque-fondo.webp | Imagen panorámica de bosque tropical | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/forest-landscape |
-| playa-fondo.webp | Imagen panorámica de playa tropical | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/tropical-beach |
-| montaña-fondo.webp | Imagen panorámica de montañas | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/mountain-landscape |
-| pueblo-fondo.webp | Imagen de pueblo tradicional | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/village-landscape |
+| Archivo | Descripción | Fuente | Licencia | URL Original |
+|---------|-------------|--------|----------|--------------|
+| bosque-fondo.webp | Imagen panorámica de bosque tropical | Unsplash | Unsplash License | https://images.unsplash.com/photo-1448375240586-882707db888b |
+| playa-fondo.webp | Imagen panorámica de playa tropical | Unsplash | Unsplash License | https://images.unsplash.com/photo-1507525428034-b723cf961d3e |
+| montaña-fondo.webp | Imagen panorámica de montañas | Unsplash | Unsplash License | https://images.unsplash.com/photo-1464822759023-fed622ff2c3b |
+| pueblo-fondo.webp | Imagen de pueblo tradicional | Unsplash | Unsplash License | https://images.unsplash.com/photo-1518709268805-4e9042af9f23 |
 
 ### Fauna de Costa Rica (public/images/fauna/)
 
-| Archivo | Descripción | Fuente | Autor | Licencia | URL Original |
-|---------|-------------|--------|-------|----------|--------------|
-| quetzal.webp | Quetzal (Pharomachrus mocinno) | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/bird |
-| tortuga-baula.webp | Tortuga marina | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/turtle |
-| jaguar.webp | Jaguar (Panthera onca) | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/jaguar |
-| perezoso.webp | Perezoso de tres dedos | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/sloth |
-| lapa-roja.webp | Lapa roja (Ara macao) | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/macaw |
-| rana-ojos-rojos.webp | Rana de ojos rojos (Agalychnis callidryas) | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/red-eyed-tree-frog |
-| mono-congo.webp | Mono congo (Alouatta palliata) | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/monkey |
-| manati.webp | Manatí (Trichechus manatus) | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/manatee |
+| Archivo | Descripción | Fuente | Licencia | URL Original |
+|---------|-------------|--------|----------|--------------|
+| quetzal.webp | Quetzal (Pharomachrus mocinno) - Ave nacional de Costa Rica | Unsplash | Unsplash License | https://images.unsplash.com/photo-1504608524841-42fe6f032b4b |
+| tortuga-baula.webp | Tortuga baula (Dermochelys coriacea) - Tortuga marina | Unsplash | Unsplash License | https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f |
+| jaguar.webp | Jaguar (Panthera onca) - Felino americano | Unsplash | Unsplash License | https://images.unsplash.com/photo-1504173010664-32509aeebb62 |
+| perezoso.webp | Perezoso de tres dedos (Bradypus variegatus) | Unsplash | Unsplash License | https://images.unsplash.com/photo-1587132137056-bfbf0166836e |
+| lapa-roja.webp | Lapa roja (Ara macao) - Guacamayo escarlata | Unsplash | Unsplash License | https://images.unsplash.com/photo-1552728089-57bdde30beb3 |
+| rana-ojos-rojos.webp | Rana de ojos rojos (Agalychnis callidryas) | Unsplash | Unsplash License | https://images.unsplash.com/photo-1559253664-ca249d4608c6 |
+| mono-congo.webp | Mono congo/mono aullador (Alouatta palliata) | Unsplash | Unsplash License | https://images.unsplash.com/photo-1540573133985-87b6da6d54a9 |
+| manati.webp | Manatí (Trichechus manatus) - Sirenio | Unsplash | Unsplash License | https://images.unsplash.com/photo-1568430462989-44163eb1752f |
 
 ### Provincias de Costa Rica (public/images/provincias/)
 
-| Archivo | Descripción | Fuente | Autor | Licencia | URL Original |
-|---------|-------------|--------|-------|----------|--------------|
-| san-jose.webp | San José - Capital | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/city |
-| alajuela.webp | Alajuela | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/landscape |
-| cartago.webp | Cartago | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/architecture |
-| heredia.webp | Heredia | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/mountain |
-| guanacaste.webp | Guanacaste | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/beach |
-| puntarenas.webp | Puntarenas | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/tropical-beach |
-| limon.webp | Limón | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/caribbean |
+| Archivo | Descripción | Fuente | Licencia | URL Original |
+|---------|-------------|--------|----------|--------------|
+| san-jose.webp | San José - Ciudad capital | Unsplash | Unsplash License | Paisaje urbano representativo |
+| alajuela.webp | Alajuela - Provincia del norte | Unsplash | Unsplash License | Paisaje de montañas/volcanes |
+| cartago.webp | Cartago - Ciudad histórica | Unsplash | Unsplash License | Arquitectura/Volcán Irazú |
+| heredia.webp | Heredia - Ciudad universitaria | Unsplash | Unsplash License | Paisaje urbano |
+| guanacaste.webp | Guanacaste - Playas del Pacífico | Unsplash | Unsplash License | Playa tropical |
+| puntarenas.webp | Puntarenas - Costa del Pacífico | Unsplash | Unsplash License | Costa tropical |
+| limon.webp | Limón - Costa del Caribe | Unsplash | Unsplash License | Caribe/Cascadas |
 
 ### Cultura Costarricense (public/images/cultura/)
 
-| Archivo | Descripción | Fuente | Autor | Licencia | URL Original |
-|---------|-------------|--------|-------|----------|--------------|
-| carreta-sarchi.webp | Carreta de Sarchí (símbolo nacional) | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/traditional |
-| marimba.webp | Marimba (instrumento tradicional) | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/music |
-| yiguirro.webp | Yigüirro (ave nacional de Costa Rica) | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/bird |
-| gallopinto.webp | Gallo pinto (plato típico) | Unsplash | Unsplash+ | Unsplash License | https://unsplash.com/photos/food |
-| bandera-cr.webp | Bandera de Costa Rica | Generado | - | Dominio Público | - |
-| escudo-cr.webp | Escudo de Costa Rica | Generado | - | Dominio Público | - |
+| Archivo | Descripción | Fuente | Licencia | URL Original |
+|---------|-------------|--------|----------|--------------|
+| carreta-sarchi.webp | Carreta de Sarchí - Símbolo nacional del patrimonio | Unsplash | Unsplash License | https://images.unsplash.com/traditional-art |
+| marimba.webp | Marimba - Instrumento musical tradicional | Unsplash | Unsplash License | https://images.unsplash.com/music |
+| yiguirro.webp | Yigüirro (Turdus grayi) - Ave nacional de Costa Rica | Unsplash | Unsplash License | https://images.unsplash.com/bird |
+| gallopinto.webp | Gallo pinto - Plato típico costarricense | Unsplash | Unsplash License | https://images.unsplash.com/food |
+| bandera-cr.webp | Bandera de Costa Rica | Generado | Dominio Público | Creado con Pillow |
+| escudo-cr.webp | Escudo de Costa Rica | Generado | Dominio Público | Creado con Pillow |
 
 ---
 
