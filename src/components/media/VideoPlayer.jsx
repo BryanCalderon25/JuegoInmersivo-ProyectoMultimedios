@@ -9,6 +9,18 @@ export const VideoPlayer = ({ src, poster, titulo, enBucle = false, fondoPantall
   const [reproduciendo, setReproduciendo] = useState(false);
   const [silenciado, setSilenciado] = useState(silenciadoInicial);
 
+  // Helper para resolver rutas estáticas en public/ considerando la BASE_URL de Vite (para GitHub Pages)
+  const resolvePublicPath = (path) => {
+    if (!path) return path;
+    if (path.startsWith('/')) {
+      return `${import.meta.env.BASE_URL}${path.slice(1)}`;
+    }
+    return path;
+  };
+
+  const resolvedSrc = resolvePublicPath(src);
+  const resolvedPoster = resolvePublicPath(poster);
+
   const alternarPlay = () => {
     if (!videoRef.current) return;
     if (reproduciendo) {
@@ -23,8 +35,8 @@ export const VideoPlayer = ({ src, poster, titulo, enBucle = false, fondoPantall
     return (
       <video
         ref={videoRef}
-        src={src}
-        poster={poster}
+        src={resolvedSrc}
+        poster={resolvedPoster}
         autoPlay
         muted
         loop
@@ -39,8 +51,8 @@ export const VideoPlayer = ({ src, poster, titulo, enBucle = false, fondoPantall
     <div style={{ position: 'relative', borderRadius: '16px', overflow: 'hidden', background: '#000', boxShadow: '0 8px 30px rgba(0,0,0,0.5)' }}>
       <video
         ref={videoRef}
-        src={src}
-        poster={poster}
+        src={resolvedSrc}
+        poster={resolvedPoster}
         loop={enBucle}
         muted={silenciado}
         playsInline
