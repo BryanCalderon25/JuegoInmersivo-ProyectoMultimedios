@@ -18,7 +18,7 @@ export const HomeScreen = () => {
     <div className="home-screen">
       {/* Video de fondo */}
       <div className="home-video-fondo">
-        <VideoPlayer src="/video/intro.mp4" poster="/images/fondos/bosque-fondo.webp" fondoPantalla silenciadoInicial />
+        <VideoPlayer src={`${import.meta.env.BASE_URL}video/intro.mp4`} poster={`${import.meta.env.BASE_URL}images/fondos/bosque-fondo.webp`} fondoPantalla silenciadoInicial />
         <div className="home-video-overlay" />
       </div>
 

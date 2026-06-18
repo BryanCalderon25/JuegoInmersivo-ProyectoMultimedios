@@ -108,7 +108,7 @@ export const MundoGeografia = ({ onSalir }) => {
   );
 
   return (
-    <div className="anim-fade-in" style={{ minHeight: '100vh', background: 'url(/images/fondos/montaña-fondo.webp) center/cover no-repeat fixed', position: 'relative', overflowX: 'hidden', overflowY: 'auto', paddingTop: 70, paddingBottom: '2rem' }}>
+    <div className="anim-fade-in" style={{ minHeight: '100vh', background: `url(${import.meta.env.BASE_URL}images/fondos/montaña-fondo.webp) center/cover no-repeat fixed`, position: 'relative', overflowX: 'hidden', overflowY: 'auto', paddingTop: 70, paddingBottom: '2rem' }}>
       <div style={{ position: 'absolute', inset: 0, background: 'rgba(5,21,37,0.75)', zIndex: 0 }} />
       <div style={{ position: 'relative', zIndex: 1 }}>
         <HUD enMundo onSalir={onSalir} />

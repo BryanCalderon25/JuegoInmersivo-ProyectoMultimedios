@@ -213,7 +213,7 @@ export const MundoBiodiversidad = ({ onSalir }) => {
   const opciones = animalEncontrado?.desafio?.opciones || [];
 
   return (
-    <div className="anim-fade-in" style={{ position: 'fixed', inset: 0, overflow: 'hidden', background: 'url(/images/fondos/bosque-fondo.webp) center/cover no-repeat fixed', userSelect: 'none' }}>
+    <div className="anim-fade-in" style={{ position: 'fixed', inset: 0, overflow: 'hidden', background: `url(${import.meta.env.BASE_URL}images/fondos/bosque-fondo.webp) center/cover no-repeat fixed`, userSelect: 'none' }}>
       <div style={{ position: 'absolute', inset: 0, background: 'rgba(0, 20, 10, 0.4)', zIndex: 0 }} />
       <div style={{ position: 'relative', zIndex: 1, width: '100%', height: '100%' }}>
       
@@ -377,7 +377,7 @@ export const MundoBiodiversidad = ({ onSalir }) => {
               transform: seEstaMoviendo ? 'scale(1.05) translateY(-4px)' : 'scale(1) translateY(0)',
               transition: 'transform 0.1s ease-in-out',
             }}>
-              <img src="/images/sprite_guardian.jpg?v=3" alt="Personaje" style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='inline' }} />
+              <img src={`${import.meta.env.BASE_URL}images/sprite_guardian.jpg?v=3`} alt="Personaje" style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='inline' }} />
               <span style={{ fontSize: '2.5rem', display: 'none' }}>🧑‍🌾</span>
             </div>
             {/* Sombra debajo del personaje */}

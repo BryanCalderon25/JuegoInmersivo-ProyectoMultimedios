@@ -26,7 +26,7 @@ export const HUD = ({ enMundo = false, onToggleInventario, onSalir }) => {
             </button>
           )}
           <div className="hud-avatar" aria-hidden="true" style={{ overflow: 'hidden', padding: 0 }}>
-            <img src="/images/avatar_guardian.png" alt="Avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='inline' }} />
+            <img src={`${import.meta.env.BASE_URL}images/avatar_guardian.png`} alt="Avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='inline' }} />
             <span style={{ fontSize: '2rem', display: 'none' }}>🌿</span>
           </div>
           <div>

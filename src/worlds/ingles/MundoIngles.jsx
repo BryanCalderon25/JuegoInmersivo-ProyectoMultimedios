@@ -107,7 +107,7 @@ export const MundoIngles = ({ onSalir }) => {
   );
 
   return (
-    <div className="anim-fade-in" style={{ minHeight: '100vh', background: 'url(/images/fondos/playa-fondo.webp) center/cover no-repeat fixed', position: 'relative', paddingTop: 70 }}>
+    <div className="anim-fade-in" style={{ minHeight: '100vh', background: `url(${import.meta.env.BASE_URL}images/fondos/playa-fondo.webp) center/cover no-repeat fixed`, position: 'relative', paddingTop: 70 }}>
       <div style={{ position: 'absolute', inset: 0, background: 'rgba(10,5,32,0.8)', zIndex: 0 }} />
       <div style={{ position: 'relative', zIndex: 1, height: '100%', display: 'flex', flexDirection: 'column' }}>
       

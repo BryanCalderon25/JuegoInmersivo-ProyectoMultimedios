@@ -37,7 +37,7 @@ export const MapaMundi = () => {
     </div>
   );
 
-  const fondoActivo = mundoHover ? mundos.find(m => m.id === mundoHover)?.fondoImagen : '/images/fondos/bosque-fondo.webp';
+  const fondoActivo = mundoHover ? mundos.find(m => m.id === mundoHover)?.fondoImagen : `${import.meta.env.BASE_URL}images/fondos/bosque-fondo.webp`;
 
   return (
     <div className="anim-fade-in" style={{ minHeight: '100vh', position: 'relative', overflow: 'hidden', padding: '80px 2rem 2rem', display: 'flex', flexDirection: 'column' }}>

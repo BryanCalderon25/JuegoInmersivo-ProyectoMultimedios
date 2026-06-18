@@ -12,12 +12,19 @@ export const useFetch = (url) => {
 
   const fetchData = useCallback(async () => {
     if (!url) return;
+    
+    // Resolver ruta para GitHub Pages
+    let fetchUrl = url;
+    if (fetchUrl.startsWith('/')) {
+      fetchUrl = `${import.meta.env.BASE_URL}${fetchUrl.slice(1)}`;
+    }
+
     setLoading(true);
     setError(null);
     try {
-      const respuesta = await fetch(url);
+      const respuesta = await fetch(fetchUrl);
       if (!respuesta.ok) {
-        throw new Error(`Error ${respuesta.status}: No se pudo cargar ${url}`);
+        throw new Error(`Error ${respuesta.status}: No se pudo cargar ${fetchUrl}`);
       }
       const datos = await respuesta.json();
       setData(datos);
