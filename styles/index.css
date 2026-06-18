@@ -1,0 +1,422 @@
+/* =====================================================
+   GUARDIANES DE COSTA RICA — Sistema de Diseño Base
+   ===================================================== */
+
+/* --- Variables Globales de Diseño --- */
+:root {
+  /* Paleta Natural de Costa Rica */
+  --verde-selva:        #1a472a;
+  --verde-bosque:       #2d6a4f;
+  --verde-hoja:         #40916c;
+  --verde-claro:        #74c69d;
+  --verde-lima:         #b7e4c7;
+  --azul-pacifico:      #0077b6;
+  --azul-mar:           #0096c7;
+  --azul-cielo:         #48cae4;
+  --azul-claro:         #ade8f4;
+  --dorado:             #e9c46a;
+  --naranja-tierra:     #f4a261;
+  --rojo-lapa:          #e76f51;
+  --cafe-madera:        #6d4c41;
+  --crema:              #fdfcf0;
+  --blanco:             #ffffff;
+  --negro-suave:        #1a1a2e;
+  --gris-oscuro:        #2c2c54;
+
+  /* UI del Juego */
+  --color-xp:           #f9c74f;
+  --color-nivel:        #90be6d;
+  --color-vida:         #f94144;
+  --color-mana:         #577590;
+  --color-logro:        #9b5de5;
+
+  /* Glassmorphism */
+  --glass-light:        rgba(255,255,255,0.12);
+  --glass-medium:       rgba(255,255,255,0.20);
+  --glass-heavy:        rgba(255,255,255,0.35);
+  --glass-dark:         rgba(0,0,0,0.25);
+  --glass-border:       rgba(255,255,255,0.25);
+  --glass-blur:         blur(16px) saturate(180%);
+  --glass-shadow:       0 8px 32px rgba(0,0,0,0.3);
+
+  /* Efectos de Luz y Glow */
+  --glow-verde:         0 0 20px rgba(64,145,108,0.6), 0 0 60px rgba(64,145,108,0.2);
+  --glow-dorado:        0 0 20px rgba(233,196,106,0.6), 0 0 60px rgba(233,196,106,0.2);
+  --glow-azul:          0 0 20px rgba(0,119,182,0.6), 0 0 60px rgba(0,119,182,0.2);
+  --glow-rojo:          0 0 20px rgba(231,111,81,0.6);
+  --glow-blanco:        0 0 30px rgba(255,255,255,0.4);
+
+  /* Tipografía */
+  --font-game:          'Press Start 2P', monospace;
+  --font-ui:            'Outfit', sans-serif;
+
+  /* Espaciados */
+  --space-xs:   4px;
+  --space-sm:   8px;
+  --space-md:   16px;
+  --space-lg:   24px;
+  --space-xl:   40px;
+  --space-2xl:  64px;
+
+  /* Radios de borde */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-xl:   32px;
+  --radius-full: 9999px;
+
+  /* Transiciones */
+  --transition-fast:   0.15s ease;
+  --transition-normal: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow:   0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Tamaño del Viewport del Juego */
+  --game-width:  1200px;
+  --game-height: 100vh;
+}
+
+/* --- Reset Universal --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-ui);
+  background-color: var(--negro-suave);
+  color: var(--blanco);
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* --- Scrollbar personalizado --- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--negro-suave); }
+::-webkit-scrollbar-thumb { background: var(--verde-bosque); border-radius: 3px; }
+
+/* --- Tipografía base --- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-ui);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+p { line-height: 1.65; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; height: auto; }
+button { font-family: var(--font-ui); cursor: pointer; }
+ul, ol { list-style: none; }
+
+/* =====================================================
+   UTILIDADES GLOBALES
+   ===================================================== */
+
+/* Glassmorphism */
+.glass {
+  background: var(--glass-medium);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+.glass-dark {
+  background: var(--glass-dark);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: var(--glass-shadow);
+}
+.glass-light {
+  background: var(--glass-light);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* Gradientes de texto */
+.text-gradient-verde {
+  background: linear-gradient(135deg, var(--verde-claro), var(--verde-lima));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-gradient-dorado {
+  background: linear-gradient(135deg, var(--dorado), var(--naranja-tierra));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-gradient-fuego {
+  background: linear-gradient(135deg, #ff6b6b, var(--naranja-tierra), var(--dorado));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow Effects */
+.glow-verde { text-shadow: 0 0 20px rgba(116,198,157,0.8); }
+.glow-dorado { text-shadow: 0 0 20px rgba(233,196,106,0.8); }
+
+/* Layout */
+.flex-center   { display: flex; align-items: center; justify-content: center; }
+.flex-between  { display: flex; align-items: center; justify-content: space-between; }
+.flex-col      { display: flex; flex-direction: column; }
+.flex-col-center { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.gap-sm   { gap: var(--space-sm); }
+.gap-md   { gap: var(--space-md); }
+.gap-lg   { gap: var(--space-lg); }
+.full-screen { width: 100%; min-height: 100vh; }
+.fill { position: absolute; inset: 0; }
+.overlay { position: fixed; inset: 0; z-index: 100; }
+
+/* Espaciados */
+.p-md  { padding: var(--space-md); }
+.p-lg  { padding: var(--space-lg); }
+.mt-sm { margin-top: var(--space-sm); }
+.mt-md { margin-top: var(--space-md); }
+.mt-lg { margin-top: var(--space-lg); }
+.mb-md { margin-bottom: var(--space-md); }
+.mb-lg { margin-bottom: var(--space-lg); }
+
+/* --- Botón Base del Juego --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 14px 32px;
+  border: none;
+  border-radius: var(--radius-full);
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0);
+  transition: background var(--transition-fast);
+}
+.btn:hover::before { background: rgba(255,255,255,0.1); }
+.btn:active { transform: scale(0.96); }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--verde-bosque), var(--verde-selva));
+  color: var(--blanco);
+  box-shadow: 0 4px 20px rgba(45,106,79,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(45,106,79,0.7), var(--glow-verde);
+}
+
+.btn-dorado {
+  background: linear-gradient(135deg, var(--dorado), var(--naranja-tierra));
+  color: var(--negro-suave);
+  box-shadow: 0 4px 20px rgba(233,196,106,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+.btn-dorado:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(233,196,106,0.6), var(--glow-dorado);
+}
+
+.btn-glass {
+  background: var(--glass-medium);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  color: var(--blanco);
+  box-shadow: var(--glass-shadow);
+}
+.btn-glass:hover {
+  background: var(--glass-heavy);
+  transform: translateY(-2px);
+  box-shadow: var(--glass-shadow), var(--glow-blanco);
+}
+
+.btn-peligro {
+  background: linear-gradient(135deg, var(--color-vida), #c1121f);
+  color: white;
+}
+.btn-peligro:hover { transform: translateY(-2px); box-shadow: var(--glow-rojo); }
+
+.btn-icon {
+  padding: 12px;
+  border-radius: var(--radius-full);
+  aspect-ratio: 1;
+}
+
+.btn-lg { padding: 18px 48px; font-size: 1.15rem; }
+.btn-sm { padding: 10px 20px; font-size: 0.875rem; }
+
+/* Ripple effect */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  width: 0; height: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s, opacity 0.6s;
+  opacity: 0;
+}
+.btn-ripple:active::after {
+  width: 300px; height: 300px; opacity: 1;
+}
+
+/* --- Barra de Progreso Base --- */
+.barra-base {
+  width: 100%;
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+.barra-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+.barra-fill::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 30px; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4));
+  animation: shimmer 1.5s infinite;
+}
+
+/* --- Animaciones Globales --- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes zoomOut {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.8); }
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.05); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes shimmer {
+  from { transform: translateX(-30px); }
+  to   { transform: translateX(30px); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); animation-timing-function: cubic-bezier(0.8,0,1,1); }
+  50%       { transform: translateY(-10px); animation-timing-function: cubic-bezier(0,0,0.2,1); }
+}
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%  { transform: translateX(-8px); }
+  40%  { transform: translateX(8px); }
+  60%  { transform: translateX(-5px); }
+  80%  { transform: translateX(5px); }
+}
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: var(--glow-verde); }
+  50%       { box-shadow: none; }
+}
+@keyframes appear-text {
+  from { opacity: 0; transform: scale(0.5) rotate(-5deg); }
+  to   { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+@keyframes slide-curtain {
+  from { transform: scaleX(1); }
+  to   { transform: scaleX(0); }
+}
+
+/* Clases de animación */
+.anim-fade-in     { animation: fadeIn var(--transition-slow) forwards; }
+.anim-fade-out    { animation: fadeOut var(--transition-slow) forwards; }
+.anim-slide-up    { animation: slideUp var(--transition-slow) forwards; }
+.anim-slide-down  { animation: slideDown var(--transition-slow) forwards; }
+.anim-zoom-in     { animation: zoomIn var(--transition-normal) forwards; }
+.anim-float       { animation: float 3s ease-in-out infinite; }
+.anim-pulse       { animation: pulse 2s ease-in-out infinite; }
+.anim-bounce      { animation: bounce 1s infinite; }
+.anim-spin        { animation: spin 2s linear infinite; }
+.anim-shake       { animation: shake 0.5s ease-in-out; }
+
+/* Delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-800 { animation-delay: 0.8s; }
+
+/* Estados iniciales para animaciones con delay */
+[class*="delay-"] { opacity: 0; }
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  :root { font-size: 15px; }
+}
+@media (max-width: 768px) {
+  :root { font-size: 14px; }
+  .btn-lg { padding: 14px 32px; font-size: 1rem; }
+}
+@media (max-width: 480px) {
+  :root { font-size: 13px; }
+}
