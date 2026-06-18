@@ -73,7 +73,7 @@ export const MinijuegoParque = ({ data, onVolver, onGanarItem, reproducirSFX, ya
       </button>
 
       <div style={{ maxWidth: 700, margin: '0 auto', textAlign: 'center' }}>
-        <h1 style={{ fontSize: '2.5rem', fontWeight: 900, color: 'white', marginBottom: '0.5rem' }}>🌳 Parque Central</h1>
+        <h1 style={{ fontSize: '2.5rem', fontWeight: 900, color: 'white', marginBottom: '0.5rem' }}>Parque Central</h1>
         <p style={{ color: 'rgba(255,255,255,0.8)', marginBottom: '2rem' }}>Responde las preguntas de los turistas sobre nuestras expresiones.</p>
 
         {completado ? (

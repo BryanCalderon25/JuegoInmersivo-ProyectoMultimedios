@@ -67,7 +67,7 @@ export const MinijuegoMuseo = ({ data, onVolver, onGanarItem, reproducirSFX }) =
       </button>
 
       <div style={{ maxWidth: 800, margin: '0 auto', textAlign: 'center' }}>
-        <h1 style={{ fontSize: '2.5rem', fontWeight: 900, color: 'var(--dorado)', marginBottom: '0.5rem' }}>🏛️ Museo Histórico</h1>
+        <h1 style={{ fontSize: '2.5rem', fontWeight: 900, color: 'var(--dorado)', marginBottom: '0.5rem' }}>Museo Histórico</h1>
         <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '2rem' }}>Encuentra las parejas para aprender sobre nuestros símbolos patrios e historia.</p>
         
         {/* Barra de progreso */}

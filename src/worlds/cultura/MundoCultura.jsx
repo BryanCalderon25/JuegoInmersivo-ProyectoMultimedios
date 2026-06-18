@@ -78,9 +78,9 @@ export const MundoCultura = ({ onSalir }) => {
                 Nuestra cultura es rica en tradiciones, símbolos, comidas y frases únicas. Tu misión es visitar los lugares del pueblo para jugar y aprender.
               </p>
               <ul style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem', paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <li>🏛️ <strong>Museo:</strong> Juega memoria con símbolos patrios.</li>
-                <li>🍽️ <strong>Soda:</strong> Ayuda a preparar los platillos típicos.</li>
-                <li>🌳 <strong>Parque:</strong> Demuestra que entiendes nuestras expresiones.</li>
+                <li><strong>Museo:</strong> Juega memoria con símbolos patrios.</li>
+                <li><strong>Soda:</strong> Ayuda a preparar los platillos típicos.</li>
+                <li><strong>Parque:</strong> Demuestra que entiendes nuestras expresiones.</li>
               </ul>
             </div>
             
@@ -121,7 +121,7 @@ export const MundoCultura = ({ onSalir }) => {
                 aria-label="Entrar al Museo Histórico"
               >
                 <div style={{ background: 'rgba(0,0,0,0.7)', padding: '6px 16px', borderRadius: 12, color: 'white', fontWeight: 900, fontSize: '1rem', marginBottom: '1rem', backdropFilter: 'blur(5px)', border: '2px solid rgba(255,255,255,0.3)', boxShadow: '0 4px 10px rgba(0,0,0,0.5)' }}>
-                  🏛️ Museo
+                  Museo
                 </div>
                 <img src="/images/cultura/bandera-cr.png" alt="Museo" style={{ height: 'clamp(80px, 15vw, 150px)', filter: 'drop-shadow(0 15px 20px rgba(0,0,0,0.6))', objectFit: 'contain' }} />
               </button>
@@ -135,7 +135,7 @@ export const MundoCultura = ({ onSalir }) => {
                 aria-label="Entrar a la Soda Tica"
               >
                 <div style={{ background: 'rgba(0,0,0,0.7)', padding: '6px 16px', borderRadius: 12, color: 'white', fontWeight: 900, fontSize: '1rem', marginBottom: '1rem', backdropFilter: 'blur(5px)', border: '2px solid rgba(255,255,255,0.3)', boxShadow: '0 4px 10px rgba(0,0,0,0.5)' }}>
-                  🍽️ Soda
+                  Soda
                 </div>
                 <img src="/images/cultura/casado.webp" alt="Soda" style={{ height: 'clamp(80px, 15vw, 150px)', filter: 'drop-shadow(0 15px 20px rgba(0,0,0,0.6))', objectFit: 'contain' }} />
               </button>
@@ -149,7 +149,7 @@ export const MundoCultura = ({ onSalir }) => {
                 aria-label="Entrar al Parque Central"
               >
                 <div style={{ background: 'rgba(0,0,0,0.7)', padding: '6px 16px', borderRadius: 12, color: 'white', fontWeight: 900, fontSize: '1rem', marginBottom: '1rem', backdropFilter: 'blur(5px)', border: '2px solid rgba(255,255,255,0.3)', boxShadow: '0 4px 10px rgba(0,0,0,0.5)' }}>
-                  🌳 Parque
+                  Parque
                 </div>
                 <img src="/images/cultura/arbol-guanacaste.webp" alt="Parque" style={{ height: 'clamp(80px, 15vw, 150px)', filter: 'drop-shadow(0 15px 20px rgba(0,0,0,0.6))', objectFit: 'contain' }} />
               </button>
@@ -159,7 +159,7 @@ export const MundoCultura = ({ onSalir }) => {
             {/* Progreso */}
             <div style={{ textAlign: 'center', background: 'rgba(0,0,0,0.6)', borderRadius: 12, padding: '1rem 2rem', border: '1px solid rgba(255,255,255,0.2)', width: 'fit-content', margin: '0 auto', backdropFilter: 'blur(10px)' }}>
               <span style={{ color: 'var(--dorado)', fontWeight: 800, fontSize: '1.2rem' }}>
-                🎭 {objetosRecogidos.length} Tesoros Culturales Obtenidos
+                {objetosRecogidos.length} Tesoros Culturales Obtenidos
               </span>
             </div>
           </div>

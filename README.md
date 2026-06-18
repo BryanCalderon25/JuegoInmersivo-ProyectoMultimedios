@@ -49,7 +49,7 @@ El juego incluye:
 ```text
 src/
 ├── components/
-│   ├── common/     # Boton, Modal, BarraVida, Temporizador
+│   ├── common/     # Boton, BotonVolver, Modal, BarraVida
 │   ├── effects/    # Particulas, Lluvia
 │   ├── game/       # DialogoRPG
 │   ├── hud/        # HUD, LogroPopup
@@ -121,36 +121,16 @@ El proyecto estará disponible en `http://localhost:5173`
 
 ---
 
-##  Recursos Multimedia
+##  Recursos Multimedia Integrados
 
-### Imágenes necesarias (descargar y colocar en `/public/images/`)
+Todos los recursos multimedia (imágenes, audio, video y SVGs) ya están integrados en el repositorio dentro de la carpeta `/public`. Han sido cuidadosamente seleccionados bajo licencias de uso libre y están listos para utilizarse sin configuraciones extra:
 
-| Carpeta | Archivos |
-|---------|----------|
-| `fondos/` | `bosque-fondo.webp`, `playa-fondo.webp`, `montaña-fondo.webp`, `pueblo-fondo.webp` |
-| `fauna/` | `quetzal.webp`, `tortuga-baula.webp`, `jaguar.webp`, `perezoso.webp`, `lapa-roja.webp`, `rana-ojos-rojos.webp`, `mono-congo.webp`, `manati.webp` |
-| `provincias/` | `san-jose.webp`, `alajuela.webp`, `cartago.webp`, `heredia.webp`, `guanacaste.webp`, `puntarenas.webp`, `limon.webp` |
-| `cultura/` | `carreta-sarchi.webp`, `marimba.webp`, `yiguirro.webp`, `gallopinto.webp`, `bandera-cr.png`, `escudo-cr.png` |
+- **Imágenes (`/public/images/`)**: Fotografías en formato `.webp` de alta calidad sobre la fauna (quetzal, perezoso, etc.), mapas, fondos inmersivos y elementos culturales de Costa Rica.
+- **Audio (`/public/audio/`)**: Música ambiental temática para cada mundo, efectos de sonido interactivos (botones, victorias, recolecciones) y sonidos naturales de fondo (aves, viento, olas).
+- **Video (`/public/video/`)**: Video cinemático en MP4 utilizado como fondo inmersivo en la pantalla principal.
+- **Gráficos Vectoriales**: Archivo `mapa.svg` interactivo con los *paths* precisos de todas las provincias costarricenses.
 
-### Audios necesarios (colocar en `/public/audio/`)
-
-| Carpeta | Archivos |
-|---------|----------|
-| `musica/` | `menu-principal.mp3`, `bosque.mp3`, `aventura.mp3`, `pueblo.mp3`, `rpg-ingles.mp3` |
-| `efectos/` | `clic.mp3`, `victoria.mp3`, `error.mp3`, `coleccionable.mp3`, `encuentro.mp3` |
-| `ambiente/` | `aves.mp3`, `rio.mp3`, `olas.mp3`, `viento.mp3` |
-
-### Videos necesarios (`/public/video/`)
-- `intro.mp4` — Video de naturaleza de Costa Rica (15-30 segundos, para el fondo del menú)
-
-**Fuentes gratuitas recomendadas:**
--  Imágenes: [Unsplash](https://unsplash.com) · [Pexels](https://pexels.com)
--  Música: [Pixabay Music](https://pixabay.com/music)
--  SFX: [Freesound.org](https://freesound.org) · [Pixabay SFX](https://pixabay.com/sound-effects)
--  Videos: [Pexels Videos](https://pexels.com/videos)
-
-### Mapa SVG
-Colocar el archivo `mapa.svg` en `/public/mapa.svg` con las provincias de Costa Rica como paths interactivos.
+Para conocer las licencias detalladas, créditos a los autores y las URLs de las fuentes originales de cada recurso (Unsplash, Pixabay, Freesound, etc.), por favor consulta el documento [REFERENCIAS.md](./REFERENCIAS.md) incluido en este repositorio.
 
 ---
 
@@ -168,24 +148,6 @@ Colocar el archivo `mapa.svg` en `/public/mapa.svg` con las provincias de Costa 
   }
 }
 ```
-
----
-
-## ✅ Cumplimiento del Enunciado IF7102
-
-| Requisito | Estado |
-|-----------|--------|
-| React + Vite | ✅ React 19 + Vite 5 |
-| pnpm | ✅ Todos los comandos con pnpm |
-| JavaScript (sin TypeScript) | ✅ Solo .jsx y .js |
-| Mínimo 4 componentes reutilizables | ✅ 15+ componentes |
-| JSON cargados con fetch() | ✅ useFetch hook en 5 archivos JSON |
-| Responsive | ✅ CSS responsive, joystick táctil |
-| Multimedia (audio, video, imágenes) | ✅ AudioPlayer, VideoPlayer, efectos |
-| README | ✅ Este archivo |
-| REFERENCIAS.md | ✅ Ver REFERENCIAS.md |
-| Código limpio | ✅ Componentes pequeños, hooks, utils |
-| Arquitectura profesional | ✅ Separación por capas y dominio |
 
 ---
 

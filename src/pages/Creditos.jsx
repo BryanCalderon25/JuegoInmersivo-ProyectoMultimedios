@@ -22,7 +22,7 @@ export const Creditos = () => {
           </h1>
 
           {[
-            { rol: 'Desarrollador', nombre: 'Bryan Calderón — IF7102 UCR' },
+            { rol: 'Desarrollador', nombre: 'Bryan Josué Calderón Espinoza' },
             { rol: 'Curso', nombre: 'Multimedios — I Ciclo 2026' },
             { rol: 'Universidad', nombre: 'Universidad de Costa Rica, Sede Guanacaste' },
             { rol: 'Framework', nombre: 'React 19 + Vite + JavaScript' },

@@ -81,7 +81,7 @@ export const MinijuegoSoda = ({ data, onVolver, onGanarItem, reproducirSFX, yaCo
       </button>
 
       <div style={{ maxWidth: 800, margin: '0 auto', textAlign: 'center' }}>
-        <h1 style={{ fontSize: '2.5rem', fontWeight: 900, color: 'white', marginBottom: '0.5rem' }}>🍽️ La Soda Tica</h1>
+        <h1 style={{ fontSize: '2.5rem', fontWeight: 900, color: 'white', marginBottom: '0.5rem' }}>La Soda Tica</h1>
         <p style={{ color: 'rgba(255,255,255,0.8)', marginBottom: '2rem' }}>Selecciona los ingredientes correctos para preparar el platillo tradicional.</p>
 
         {completado ? (

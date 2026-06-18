@@ -140,7 +140,7 @@ export const MundoGeografia = ({ onSalir }) => {
                 <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🗺️</div>
                 <p style={{ color: 'rgba(255,255,255,0.5)' }}>Selecciona una provincia del mapa para ver su información y superar el desafío.</p>
                 <div style={{ marginTop: '1.5rem', padding: '12px', background: 'rgba(0,119,182,0.15)', borderRadius: 12, fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)' }}>
-                  📍 {provinciasCompletadas.length}/7 provincias completadas
+                  {provinciasCompletadas.length}/7 provincias completadas
                 </div>
               </div>
             ) : (
@@ -166,10 +166,10 @@ export const MundoGeografia = ({ onSalir }) => {
                 {/* Datos rápidos */}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', marginBottom: '1.5rem' }}>
                   {[
-                    { etiqueta: '👥 Población', valor: provinciaActiva.datos?.poblacion?.toLocaleString('es-CR') },
-                    { etiqueta: '📐 Extensión', valor: provinciaActiva.datos?.extension },
-                    { etiqueta: '🏛️ Fundación', valor: provinciaActiva.datos?.fundacion },
-                    { etiqueta: '🏘️ Cantones', valor: provinciaActiva.cantones },
+                    { etiqueta: 'Población', valor: provinciaActiva.datos?.poblacion?.toLocaleString('es-CR') },
+                    { etiqueta: 'Extensión', valor: provinciaActiva.datos?.extension },
+                    { etiqueta: 'Fundación', valor: provinciaActiva.datos?.fundacion },
+                    { etiqueta: 'Cantones', valor: provinciaActiva.cantones },
                   ].map(item => (
                     <div key={item.etiqueta} style={{ background: 'rgba(255,255,255,0.05)', borderRadius: 10, padding: '8px 12px' }}>
                       <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>{item.etiqueta}</div>
@@ -181,7 +181,7 @@ export const MundoGeografia = ({ onSalir }) => {
                 {/* Parques Nacionales */}
                 {provinciaActiva.parquesNacionales?.length > 0 && (
                   <div style={{ marginBottom: '1.5rem' }}>
-                    <p style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 6 }}>🌳 Parques Nacionales</p>
+                    <p style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 6 }}>Parques Nacionales</p>
                     {provinciaActiva.parquesNacionales.map(p => (
                       <div key={p} style={{ background: 'rgba(64,145,108,0.15)', borderRadius: 6, padding: '4px 10px', fontSize: '0.8rem', color: 'var(--verde-claro)', marginBottom: 4 }}>
                         {p}
@@ -192,11 +192,11 @@ export const MundoGeografia = ({ onSalir }) => {
 
                 {/* Botón de desafío */}
                 {!desafioActivo ? (
-                  <Boton variante="dorado" onClick={iniciarDesafio} ariaLabel={`Comenzar desafío de ${provinciaActiva.nombre}`} icono="🎯" estiloExtra={{ width: '100%', justifyContent: 'center' }}>
+                  <Boton variante="dorado" onClick={iniciarDesafio} ariaLabel={`Comenzar desafío de ${provinciaActiva.nombre}`} estiloExtra={{ width: '100%', justifyContent: 'center' }}>
                     ¡Superar el Desafío!
                   </Boton>
                 ) : (
-                  <Boton variante="glass" onClick={() => setDesafioActivo(false)} icono="⬅️" estiloExtra={{ width: '100%', justifyContent: 'center' }}>
+                  <Boton variante="glass" onClick={() => setDesafioActivo(false)} estiloExtra={{ width: '100%', justifyContent: 'center' }}>
                     Ocultar Desafío
                   </Boton>
                 )}

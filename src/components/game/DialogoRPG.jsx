@@ -124,9 +124,9 @@ export const DialogoRPG = ({ npc, dialogos = [], onOpcionSeleccionada, onFin, au
           )}
 
           {/* Audio opcional */}
-          {audioSrc && (
+          {(audioSrc || dialogoActual.audio) && (
             <div style={{ marginTop: '0.75rem' }}>
-              <AudioPlayer src={audioSrc} titulo="Escuchar pronunciación" compacto autoPlay />
+              <AudioPlayer src={audioSrc || dialogoActual.audio} titulo="Escuchar audio del entorno" compacto autoPlay />
             </div>
           )}
 

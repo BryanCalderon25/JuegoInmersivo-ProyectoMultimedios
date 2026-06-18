@@ -194,13 +194,13 @@ export const MundoBiodiversidad = ({ onSalir }) => {
                 Costa Rica posee casi el 6% de la biodiversidad mundial. Tu misión es explorar este bosque lluvioso y encontrar a las especies ocultas.
               </p>
               <ul style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem', paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <li>🕹️ Usa las teclas <strong>W, A, S, D</strong> o las flechas para moverte.</li>
-                <li>🐾 Acércate a los animales escondidos para interactuar con ellos.</li>
-                <li>🧠 Responde correctamente sus desafíos para ganar XP.</li>
+                <li>Usa las teclas <strong>W, A, S, D</strong> o las flechas para moverte.</li>
+                <li>Acércate a los animales escondidos para interactuar con ellos.</li>
+                <li>Responde correctamente sus desafíos para ganar XP.</li>
               </ul>
             </div>
             
-            <Boton variante="dorado" tamaño="lg" onClick={() => setIntroVisible(false)} icono="🚀">
+            <Boton variante="dorado" tamaño="lg" onClick={() => setIntroVisible(false)}>
               ¡Comenzar Expedición!
             </Boton>
           </div>
@@ -318,12 +318,12 @@ export const MundoBiodiversidad = ({ onSalir }) => {
 
       {/* Instrucciones de control */}
       <div style={{ position: 'fixed', bottom: 20, left: 20, zIndex: 100, background: 'rgba(0,0,0,0.7)', borderRadius: 12, padding: '8px 14px', fontSize: '0.7rem', color: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(8px)' }}>
-        🕹️ WASD o flechas para moverte · Acércate a los animales para encontrarlos
+        WASD o flechas para moverte · Acércate a los animales para encontrarlos
       </div>
 
       {/* Contador de animales */}
       <div style={{ position: 'fixed', bottom: 20, right: 20, zIndex: 100, background: 'rgba(0,0,0,0.7)', borderRadius: 12, padding: '8px 14px', fontSize: '0.8rem', color: 'var(--verde-claro)', backdropFilter: 'blur(8px)' }}>
-        🦎 {animalesVistos.length}/{SPAWN_ANIMALES.length} animales encontrados
+        {animalesVistos.length}/{SPAWN_ANIMALES.length} animales encontrados
       </div>
 
       {/* Joystick Virtual (móvil) */}
@@ -358,7 +358,7 @@ export const MundoBiodiversidad = ({ onSalir }) => {
               /* Pregunta del reto */
               <div>
                 <p style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--dorado)', marginBottom: '2rem', textShadow: '0 2px 5px rgba(0,0,0,0.5)' }}>
-                  ❓ {animalEncontrado.desafio?.pregunta}
+                  {animalEncontrado.desafio?.pregunta}
                 </p>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
                   {opciones.map((opTexto, i) => {
@@ -393,18 +393,18 @@ export const MundoBiodiversidad = ({ onSalir }) => {
                   {feedback.explicacion}
                 </p>
                 <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(0,0,0,0.4)', padding: '10px 20px', borderRadius: 50, color: 'var(--dorado)', fontWeight: 800, fontSize: '1.3rem', marginBottom: '2rem' }}>
-                  <span>🌟</span> +{feedback.xpGanada} XP
+                  +{feedback.xpGanada} XP
                 </div>
                 
                 {animalEncontrado.datoCurioso && (
                   <div style={{ marginTop: '1rem', background: 'rgba(64,145,108,0.2)', borderLeft: '4px solid var(--verde-claro)', borderRadius: '0 12px 12px 0', padding: '16px 20px', textAlign: 'left', marginBottom: '2rem' }}>
-                    <p style={{ fontSize: '0.9rem', color: 'var(--verde-claro)', fontWeight: 800, marginBottom: 8, textTransform: 'uppercase', letterSpacing: 1 }}>💡 Dato Curioso</p>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--verde-claro)', fontWeight: 800, marginBottom: 8, textTransform: 'uppercase', letterSpacing: 1 }}>Dato Curioso</p>
                     <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.9)', lineHeight: 1.5 }}>{animalEncontrado.datoCurioso}</p>
                   </div>
                 )}
                 
                 <div>
-                  <Boton variante="dorado" tamaño="lg" onClick={cerrarEncuentro} icono="🌿">
+                  <Boton variante="dorado" tamaño="lg" onClick={cerrarEncuentro}>
                     ¡Seguir Explorando!
                   </Boton>
                 </div>

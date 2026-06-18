@@ -81,7 +81,19 @@ export const Coleccionables = () => {
                 onMouseEnter={e => { if (desbloqueado) { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(64,145,108,0.3)'; } }}
                 onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
               >
-                <span style={{ fontSize: '2.5rem' }} aria-hidden="true">{item.emoji}</span>
+                {item.imagen ? (
+                  <img 
+                    src={item.imagen} 
+                    alt="" 
+                    style={{ 
+                      width: 64, height: 64, objectFit: 'cover', borderRadius: 12, 
+                      marginBottom: '0.5rem',
+                      border: `2px solid ${desbloqueado ? 'rgba(64,145,108,0.5)' : 'rgba(255,255,255,0.1)'}` 
+                    }} 
+                    onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }}
+                  />
+                ) : null}
+                <span style={{ fontSize: '2.5rem', display: item.imagen ? 'none' : 'block' }} aria-hidden="true">{item.emoji}</span>
                 <span style={{ fontSize: '0.72rem', textAlign: 'center', color: desbloqueado ? 'white' : 'rgba(255,255,255,0.4)', fontWeight: 600, lineHeight: 1.3 }}>
                   {desbloqueado ? item.nombre : '???'}
                 </span>
@@ -101,7 +113,19 @@ export const Coleccionables = () => {
       <Modal isOpen={!!itemActivo} onClose={() => setItemActivo(null)} titulo={itemActivo?.nombre} sinBotones>
         {itemActivo && (
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '5rem', marginBottom: '1rem', animation: 'float 3s ease-in-out infinite' }}>{itemActivo.emoji}</div>
+            {itemActivo.imagen ? (
+              <img 
+                src={itemActivo.imagen} 
+                alt={itemActivo.nombre} 
+                style={{ 
+                  width: '100%', maxWidth: 320, height: 220, objectFit: 'cover', 
+                  borderRadius: 16, marginBottom: '1.25rem', boxShadow: '0 10px 30px rgba(0,0,0,0.4)',
+                  border: '2px solid rgba(64,145,108,0.4)'
+                }} 
+              />
+            ) : (
+              <div style={{ fontSize: '5rem', marginBottom: '1rem', animation: 'float 3s ease-in-out infinite' }}>{itemActivo.emoji}</div>
+            )}
             <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.9rem', lineHeight: 1.65, marginBottom: '1.5rem' }}>
               {itemActivo.descripcion}
             </p>

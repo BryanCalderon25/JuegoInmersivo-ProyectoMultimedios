@@ -101,14 +101,12 @@ export const MundoIngles = ({ onSalir }) => {
               <p style={{ color: 'rgba(255,255,255,0.8)', lineHeight: 1.6, marginBottom: '1rem' }}>
                 Costa Rica recibe turistas de todo el mundo. ¡Es hora de poner en práctica tu inglés ayudando a visitantes en diferentes locaciones turísticas!
               </p>
-              <ul style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem', paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <li>🗺️ Selecciona a un turista en el mapa para iniciar una conversación.</li>
-                <li>💬 Lee lo que te dicen y elige la mejor respuesta en inglés.</li>
-                <li>📚 Aprende nuevo vocabulario después de cada interacción.</li>
-              </ul>
+                <li>Selecciona a un turista en el mapa para iniciar una conversación.</li>
+                <li>Lee lo que te dicen y elige la mejor respuesta en inglés.</li>
+                <li>Aprende nuevo vocabulario después de cada interacción.</li>
             </div>
             
-            <Boton variante="dorado" tamaño="lg" onClick={() => setIntroVisible(false)} icono="🚀">
+            <Boton variante="dorado" tamaño="lg" onClick={() => setIntroVisible(false)}>
               ¡Hablar con Turistas!
             </Boton>
           </div>
@@ -120,7 +118,7 @@ export const MundoIngles = ({ onSalir }) => {
       <div style={{ padding: '1.5rem', maxWidth: 1000, margin: '0 auto' }}>
         <h1 style={{ textAlign: 'center', fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', fontWeight: 900, marginBottom: '0.5rem' }}>
           <span style={{ background: 'linear-gradient(135deg, #9b5de5, #c77dff)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-            Mundo Bilingüe 🌎
+            Mundo Bilingüe
           </span>
         </h1>
         <p style={{ textAlign: 'center', color: 'rgba(255,255,255,0.5)', marginBottom: '2rem', fontSize: '0.9rem' }}>
@@ -160,13 +158,13 @@ export const MundoIngles = ({ onSalir }) => {
                   </div>
 
                   <div style={{ background: 'rgba(155,93,229,0.15)', borderRadius: 10, padding: '8px 12px', marginBottom: '0.75rem' }}>
-                    <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 4 }}>📍 Locación</div>
+                    <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 4 }}>Locación</div>
                     <div style={{ color: 'white', fontSize: '0.88rem', fontWeight: 600 }}>{conv.locacion}</div>
                     <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.75rem', marginTop: 2 }}>{conv.locacionDescripcion}</div>
                   </div>
 
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--dorado)' }}>⚡ {conv.xpAlCompletar} XP</span>
+                    <span style={{ fontSize: '0.75rem', color: 'var(--dorado)' }}>{conv.xpAlCompletar} XP</span>
                     <span style={{ background: 'var(--color-logro)', color: 'white', padding: '2px 10px', borderRadius: 20, fontSize: '0.7rem', fontWeight: 700 }}>
                       HABLAR
                     </span>
@@ -179,7 +177,7 @@ export const MundoIngles = ({ onSalir }) => {
             {vocabularioActual.length > 0 && (
               <div style={{ marginTop: '2rem', background: 'rgba(155,93,229,0.08)', borderRadius: 16, padding: '1.5rem', border: '1px solid rgba(155,93,229,0.2)' }}>
                 <h3 style={{ color: 'var(--color-logro)', marginBottom: '1rem', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-                  📚 Vocabulario de la última conversación
+                  Vocabulario de la última conversación
                 </h3>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.75rem' }}>
                   {vocabularioActual.map((v, i) => (
@@ -202,7 +200,7 @@ export const MundoIngles = ({ onSalir }) => {
             <div style={{ background: 'rgba(155,93,229,0.1)', borderRadius: 20, padding: '1.5rem', marginBottom: '1.5rem', border: '1px solid rgba(155,93,229,0.2)', textAlign: 'center' }}>
               <p style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>{convActual.avatarEmoji}</p>
               <h2 style={{ fontSize: '1.2rem', fontWeight: 800 }}>{convActual.npc}</h2>
-              <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem' }}>📍 {convActual.locacion} · {convActual.locacionDescripcion}</p>
+              <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem' }}>{convActual.locacion} · {convActual.locacionDescripcion}</p>
             </div>
 
             <DialogoRPG
@@ -228,14 +226,14 @@ export const MundoIngles = ({ onSalir }) => {
 
             <div style={{ background: 'rgba(233,196,106,0.15)', borderRadius: 12, padding: '1.2rem', marginBottom: '2rem' }}>
               <p style={{ color: 'var(--dorado)', fontWeight: 800, fontSize: '1.2rem' }}>
-                ⚡ +{convActual.xpAlCompletar} XP
+                +{convActual.xpAlCompletar} XP
               </p>
             </div>
 
             {/* Vocabulario aprendido */}
             {convActual.vocabulario?.length > 0 && (
               <div style={{ marginBottom: '2rem', textAlign: 'left' }}>
-                <h3 style={{ color: 'white', marginBottom: '0.75rem', fontSize: '0.9rem' }}>📚 Vocabulario aprendido:</h3>
+                <h3 style={{ color: 'white', marginBottom: '0.75rem', fontSize: '0.9rem' }}>Vocabulario aprendido:</h3>
                 {convActual.vocabulario.map((v, i) => (
                   <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 12px', background: 'rgba(255,255,255,0.05)', borderRadius: 8, marginBottom: 4 }}>
                     <span style={{ color: 'rgba(255,255,255,0.8)' }}>{v.espanol}</span>

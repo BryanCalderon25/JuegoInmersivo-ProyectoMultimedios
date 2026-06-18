@@ -14,9 +14,9 @@
       "extension": "4965.9 km²"
     },
     "cantones": 20,
-    "parquesNacionales": ["Parque Nacional Braulio Carrillo", "Parque Nacional Tapantí"],
-    "lugaresDestacados": ["Teatro Nacional", "Museo del Jade", "Museo Nacional", "Mercado Central", "Barrio Escalante"],
-    "volcanCercano": "Volcán Irazú",
+    "parquesNacionales": ["Parque Nacional Braulio Carrillo", "Parque Nacional Chirripó"],
+    "lugaresDestacados": ["Teatro Nacional", "Cerro Chirripó", "Museo Nacional", "Mercado Central", "Barrio Escalante"],
+    "volcanCercano": "Ninguno (pero alberga el Cerro Chirripó)",
     "desafio": {
       "tipo": "pregunta",
       "pregunta": "¿En qué año se construyó el Teatro Nacional de San José?",
@@ -40,7 +40,7 @@
       "extension": "9757.5 km²"
     },
     "cantones": 15,
-    "parquesNacionales": ["Parque Nacional Volcán Arenal", "Reserva Biológica Alberto Manuel Brenes"],
+    "parquesNacionales": ["Parque Nacional Volcán Arenal", "Parque Nacional Volcán Poás"],
     "lugaresDestacados": ["Volcán Arenal", "Laguna de Arenal", "Sarchi", "Naranjo", "Zarcero"],
     "volcanCercano": "Volcán Arenal",
     "desafio": {
@@ -92,9 +92,9 @@
       "extension": "2656.9 km²"
     },
     "cantones": 10,
-    "parquesNacionales": ["Parque Nacional Braulio Carrillo", "Parque Nacional Volcán Poás"],
+    "parquesNacionales": ["Parque Nacional Braulio Carrillo", "Parque Nacional Volcán Barva"],
     "lugaresDestacados": ["Parque Nacional Braulio Carrillo", "Barva", "Santa Bárbara", "Haciendas cafetaleras"],
-    "volcanCercano": "Volcán Poás",
+    "volcanCercano": "Volcán Barva",
     "desafio": {
       "tipo": "pregunta",
       "pregunta": "¿Por qué apodo es conocida la ciudad de Heredia?",
@@ -144,9 +144,9 @@
       "extension": "11277.2 km²"
     },
     "cantones": 11,
-    "parquesNacionales": ["Parque Nacional Corcovado", "Parque Nacional Manuel Antonio", "Parque Nacional Chirripó"],
+    "parquesNacionales": ["Parque Nacional Corcovado", "Parque Nacional Manuel Antonio", "Parque Nacional Carara"],
     "lugaresDestacados": ["Puerto Jiménez", "Dominical", "Uvita", "Quepos", "Reserva Biológica Isla del Caño"],
-    "volcanCercano": "Cerro Chirripó (no volcánico)",
+    "volcanCercano": "Ninguno activo",
     "desafio": {
       "tipo": "pregunta",
       "pregunta": "¿Qué organización ha llamado al Parque Nacional Corcovado 'el lugar más biodiverso de la Tierra'?",
