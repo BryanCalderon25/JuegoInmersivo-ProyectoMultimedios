@@ -30,7 +30,7 @@ export const MapaCostaRica = ({
 
   const getColor = (idInterno) => {
     if (provinciaActiva === idInterno) return '#f9c74f'; // Amarilla seleccionada
-    if (provinciasCompletadas.includes(idInterno)) return '#74c69d'; // Verde claro completada
+    if (provinciasCompletadas.includes(idInterno)) return '#ffd166'; // Dorado brillante completada
     if (hoveredPath === idInterno) return '#95d5b2'; // Hover
     return '#40916c'; // Verde base
   };

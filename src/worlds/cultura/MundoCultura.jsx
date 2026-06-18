@@ -19,7 +19,10 @@ export const MundoCultura = ({ onSalir }) => {
   const { reproducirBGM, reproducirSFX } = useAudio();
 
   const [vistaActual, setVistaActual] = useState('pueblo'); // pueblo | museo | soda | parque
-  const [objetosRecogidos, setObjetosRecogidos] = useState([]);
+  const [objetosRecogidos, setObjetosRecogidos] = useState(() => {
+    const guardados = localStorage.getItem('guardianes_cr_cultura_objetos');
+    return guardados ? JSON.parse(guardados) : [];
+  });
   const [introVisible, setIntroVisible] = useState(true);
 
   // Música del pueblo (solo cuando está en 'pueblo')
@@ -39,6 +42,7 @@ export const MundoCultura = ({ onSalir }) => {
       });
       setObjetosRecogidos(prev => {
         const nuevos = [...prev, objeto.id];
+        localStorage.setItem('guardianes_cr_cultura_objetos', JSON.stringify(nuevos));
         // Asumimos ~10 items requeridos para completar el mundo de cultura (o más)
         if (nuevos.length >= 10) {
           setTimeout(() => {
@@ -59,6 +63,10 @@ export const MundoCultura = ({ onSalir }) => {
       </div>
     </div>
   );
+
+  const museoCompletado = culturaData?.simbolos?.every(s => objetosRecogidos.includes(s.id)) && culturaData?.historia?.every(h => objetosRecogidos.includes(h.id));
+  const sodaCompletada = culturaData?.comidas?.every(c => objetosRecogidos.includes(c.id));
+  const parqueCompletado = culturaData?.expresiones?.every(e => objetosRecogidos.includes(e.id));
 
   return (
     <div className="anim-fade-in" style={{ minHeight: '100vh', background: 'url(/images/fondos/pueblo-fondo.webp) center/cover no-repeat fixed', position: 'relative', paddingTop: 70, overflow: 'hidden' }}>
@@ -120,8 +128,8 @@ export const MundoCultura = ({ onSalir }) => {
                 onMouseLeave={e => e.currentTarget.style.transform = 'scale(1) translateY(0)'}
                 aria-label="Entrar al Museo Histórico"
               >
-                <div style={{ background: 'rgba(0,0,0,0.7)', padding: '6px 16px', borderRadius: 12, color: 'white', fontWeight: 900, fontSize: '1rem', marginBottom: '1rem', backdropFilter: 'blur(5px)', border: '2px solid rgba(255,255,255,0.3)', boxShadow: '0 4px 10px rgba(0,0,0,0.5)' }}>
-                  Museo
+                <div style={{ background: museoCompletado ? 'rgba(64,145,108,0.9)' : 'rgba(0,0,0,0.7)', padding: '6px 16px', borderRadius: 12, color: 'white', fontWeight: 900, fontSize: '1rem', marginBottom: '1rem', backdropFilter: 'blur(5px)', border: `2px solid ${museoCompletado ? 'var(--verde-claro)' : 'rgba(255,255,255,0.3)'}`, boxShadow: '0 4px 10px rgba(0,0,0,0.5)' }}>
+                  {museoCompletado ? '✓ Museo Completado' : 'Museo'}
                 </div>
                 <img src="/images/cultura/bandera-cr.png" alt="Museo" style={{ height: 'clamp(80px, 15vw, 150px)', filter: 'drop-shadow(0 15px 20px rgba(0,0,0,0.6))', objectFit: 'contain' }} />
               </button>
@@ -134,8 +142,8 @@ export const MundoCultura = ({ onSalir }) => {
                 onMouseLeave={e => e.currentTarget.style.transform = 'scale(1) translateY(0)'}
                 aria-label="Entrar a la Soda Tica"
               >
-                <div style={{ background: 'rgba(0,0,0,0.7)', padding: '6px 16px', borderRadius: 12, color: 'white', fontWeight: 900, fontSize: '1rem', marginBottom: '1rem', backdropFilter: 'blur(5px)', border: '2px solid rgba(255,255,255,0.3)', boxShadow: '0 4px 10px rgba(0,0,0,0.5)' }}>
-                  Soda
+                <div style={{ background: sodaCompletada ? 'rgba(64,145,108,0.9)' : 'rgba(0,0,0,0.7)', padding: '6px 16px', borderRadius: 12, color: 'white', fontWeight: 900, fontSize: '1rem', marginBottom: '1rem', backdropFilter: 'blur(5px)', border: `2px solid ${sodaCompletada ? 'var(--verde-claro)' : 'rgba(255,255,255,0.3)'}`, boxShadow: '0 4px 10px rgba(0,0,0,0.5)' }}>
+                  {sodaCompletada ? '✓ Soda Completada' : 'Soda'}
                 </div>
                 <img src="/images/cultura/casado.webp" alt="Soda" style={{ height: 'clamp(80px, 15vw, 150px)', filter: 'drop-shadow(0 15px 20px rgba(0,0,0,0.6))', objectFit: 'contain' }} />
               </button>
@@ -148,8 +156,8 @@ export const MundoCultura = ({ onSalir }) => {
                 onMouseLeave={e => e.currentTarget.style.transform = 'scale(1) translateY(0)'}
                 aria-label="Entrar al Parque Central"
               >
-                <div style={{ background: 'rgba(0,0,0,0.7)', padding: '6px 16px', borderRadius: 12, color: 'white', fontWeight: 900, fontSize: '1rem', marginBottom: '1rem', backdropFilter: 'blur(5px)', border: '2px solid rgba(255,255,255,0.3)', boxShadow: '0 4px 10px rgba(0,0,0,0.5)' }}>
-                  Parque
+                <div style={{ background: parqueCompletado ? 'rgba(64,145,108,0.9)' : 'rgba(0,0,0,0.7)', padding: '6px 16px', borderRadius: 12, color: 'white', fontWeight: 900, fontSize: '1rem', marginBottom: '1rem', backdropFilter: 'blur(5px)', border: `2px solid ${parqueCompletado ? 'var(--verde-claro)' : 'rgba(255,255,255,0.3)'}`, boxShadow: '0 4px 10px rgba(0,0,0,0.5)' }}>
+                  {parqueCompletado ? '✓ Parque Completado' : 'Parque'}
                 </div>
                 <img src="/images/cultura/arbol-guanacaste.webp" alt="Parque" style={{ height: 'clamp(80px, 15vw, 150px)', filter: 'drop-shadow(0 15px 20px rgba(0,0,0,0.6))', objectFit: 'contain' }} />
               </button>

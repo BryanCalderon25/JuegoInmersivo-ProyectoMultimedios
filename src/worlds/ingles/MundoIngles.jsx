@@ -7,6 +7,7 @@ import { DialogoRPG } from '../../components/game/DialogoRPG';
 import { Boton } from '../../components/common/Boton';
 import { BarraVida } from '../../components/common/BarraVida';
 import { AudioPlayer } from '../../components/media/AudioPlayer';
+import { PantallaDerrota } from '../../components/game/PantallaDerrota';
 import '../../styles/game.css';
 import '../../styles/effects.css';
 
@@ -15,7 +16,7 @@ import '../../styles/effects.css';
  */
 export const MundoIngles = ({ onSalir }) => {
   const { data: inglesData, loading } = useFetch('/json/ingles.json');
-  const { ganarXP, completarMundo, mostrarLogro } = useGame();
+  const { ganarXP, perderXP, completarMundo, mostrarLogro } = useGame();
   const { reproducirBGM, reproducirSFX } = useAudio();
 
   const [convIndex, setConvIndex] = useState(0);
@@ -25,6 +26,12 @@ export const MundoIngles = ({ onSalir }) => {
   const [vocabularioActual, setVocabularioActual] = useState([]);
   const [mostrarVocabulario, setMostrarVocabulario] = useState(false);
   const [introVisible, setIntroVisible] = useState(true);
+  const [errores, setErrores] = useState(0);
+  const [derrota, setDerrota] = useState(false);
+  const [convsCompletadas, setConvsCompletadas] = useState(() => {
+    const guardadas = localStorage.getItem('guardianes_cr_ingles_convs');
+    return guardadas ? JSON.parse(guardadas) : [];
+  });
 
   const conversaciones = inglesData?.conversaciones || [];
   const convActual = conversaciones[convIndex];
@@ -49,6 +56,12 @@ export const MundoIngles = ({ onSalir }) => {
       reproducirSFX('/audio/efectos/victoria.mp3', 0.5);
     } else {
       reproducirSFX('/audio/efectos/error.mp3', 0.5);
+      perderXP(15, 'Respuesta incorrecta en Inglés');
+      const nuevosErrores = errores + 1;
+      setErrores(nuevosErrores);
+      if (nuevosErrores >= 3) {
+        setTimeout(() => setDerrota(true), 800);
+      }
     }
   };
 
@@ -56,6 +69,15 @@ export const MundoIngles = ({ onSalir }) => {
     const xp = convActual?.xpAlCompletar || 100;
     ganarXP(xp, `Inglés: ${convActual?.locacion}`);
     setEstadoConv('resultado');
+    
+    setConvsCompletadas(prev => {
+      if (!prev.includes(convActual.id)) {
+        const nuevas = [...prev, convActual.id];
+        localStorage.setItem('guardianes_cr_ingles_convs', JSON.stringify(nuevas));
+        return nuevas;
+      }
+      return prev;
+    });
 
     if (convIndex + 1 >= conversaciones.length) {
       setTimeout(() => {
@@ -165,9 +187,15 @@ export const MundoIngles = ({ onSalir }) => {
 
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span style={{ fontSize: '0.75rem', color: 'var(--dorado)' }}>{conv.xpAlCompletar} XP</span>
-                    <span style={{ background: 'var(--color-logro)', color: 'white', padding: '2px 10px', borderRadius: 20, fontSize: '0.7rem', fontWeight: 700 }}>
-                      HABLAR
-                    </span>
+                    {convsCompletadas.includes(conv.id) ? (
+                      <span style={{ background: 'rgba(64,145,108,0.2)', color: 'var(--verde-claro)', border: '1px solid var(--verde-claro)', padding: '2px 10px', borderRadius: 20, fontSize: '0.7rem', fontWeight: 700 }}>
+                        ✓ COMPLETADO
+                      </span>
+                    ) : (
+                      <span style={{ background: 'var(--color-logro)', color: 'white', padding: '2px 10px', borderRadius: 20, fontSize: '0.7rem', fontWeight: 700 }}>
+                        HABLAR
+                      </span>
+                    )}
                   </div>
                 </button>
               ))}
@@ -254,6 +282,14 @@ export const MundoIngles = ({ onSalir }) => {
           </div>
         )}
       </div>
+        {/* Pantalla Derrota */}
+        {derrota && (
+          <PantallaDerrota
+            xpPerdida={0}
+            onReintentar={() => { setDerrota(false); setErrores(0); setConvIndex(0); setEstadoConv('mapa'); }}
+            onSalir={onSalir}
+          />
+        )}
       </div>
     </div>
   );

@@ -25,7 +25,10 @@ export const HUD = ({ enMundo = false, onToggleInventario, onSalir }) => {
               <span aria-hidden="true" style={{ fontSize: '1.2rem' }}>⬅</span> Volver
             </button>
           )}
-          <div className="hud-avatar" aria-hidden="true">🌿</div>
+          <div className="hud-avatar" aria-hidden="true" style={{ overflow: 'hidden', padding: 0 }}>
+            <img src="/images/avatar_guardian.png" alt="Avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='inline' }} />
+            <span style={{ fontSize: '2rem', display: 'none' }}>🌿</span>
+          </div>
           <div>
             <div className="hud-nombre">{estado.nombre}</div>
             <div className="hud-nivel">{nivelActual.titulo}</div>

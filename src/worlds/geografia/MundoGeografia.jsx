@@ -6,6 +6,8 @@ import { HUD } from '../../components/hud/HUD';
 import { Boton } from '../../components/common/Boton';
 import { Modal } from '../../components/common/Modal';
 import { Particulas } from '../../components/effects/Particulas';
+import { PantallaDerrota } from '../../components/game/PantallaDerrota';
+import { PantallaVictoria } from '../../components/game/PantallaVictoria';
 import { MapaCostaRica } from '../../components/game/MapaCostaRica';
 import '../../styles/game.css';
 import '../../styles/effects.css';
@@ -16,7 +18,7 @@ import '../../styles/effects.css';
  */
 export const MundoGeografia = ({ onSalir }) => {
   const { data: provincias, loading } = useFetch('/json/provincias.json');
-  const { ganarXP, completarMundo, desbloquearColeccionable, mostrarLogro } = useGame();
+  const { estado, ganarXP, perderXP, completarMundo, desbloquearColeccionable, mostrarLogro } = useGame();
   const { reproducirBGM } = useAudio();
 
   const [provinciaActiva, setProvinciaActiva] = useState(null);
@@ -24,7 +26,13 @@ export const MundoGeografia = ({ onSalir }) => {
   const [desafioActivo, setDesafioActivo] = useState(false);
   const [opcionSeleccionada, setOpcionSeleccionada] = useState(null);
   const [feedback, setFeedback] = useState(null);
-  const [provinciasCompletadas, setProvinciasCompletadas] = useState([]);
+  const [provinciasCompletadas, setProvinciasCompletadas] = useState(() => {
+    const saved = localStorage.getItem('guardianes_cr_geo_provincias');
+    return saved ? JSON.parse(saved) : [];
+  });
+  const [intentos, setIntentos] = useState(3);
+  const [derrota, setDerrota] = useState(false);
+  const [mostrarVictoria, setMostrarVictoria] = useState(false);
 
   useEffect(() => {
     reproducirBGM('/audio/musica/aventura.mp3', 0.35);
@@ -54,13 +62,26 @@ export const MundoGeografia = ({ onSalir }) => {
     if (opcionSeleccionada !== null) return;
     setOpcionSeleccionada(index);
     const esCorrecta = index === provinciaActiva.desafio.respuestaCorrecta;
-    const xpGanada = esCorrecta ? 100 : 30;
-    setFeedback({ esCorrecta, xpGanada, explicacion: provinciaActiva.desafio.explicacion });
-    ganarXP(xpGanada, `Geografía: ${provinciaActiva.nombre}`);
+    
+    if (esCorrecta) {
+      const xpGanada = 100;
+      setFeedback({ esCorrecta, xpGanada, explicacion: provinciaActiva.desafio.explicacion });
+      ganarXP(xpGanada, `Geografía: ${provinciaActiva.nombre}`);
+    } else {
+      const xpPerdida = 20;
+      setFeedback({ esCorrecta, xpGanada: -xpPerdida, explicacion: provinciaActiva.desafio.explicacion });
+      perderXP(xpPerdida, `Fallo en Geografía`);
+      const nuevosIntentos = intentos - 1;
+      setIntentos(nuevosIntentos);
+      if (nuevosIntentos <= 0) {
+        setTimeout(() => setDerrota(true), 1000);
+      }
+    }
 
     if (esCorrecta && !provinciasCompletadas.includes(provinciaActiva.id)) {
       setProvinciasCompletadas(prev => {
         const nuevas = [...prev, provinciaActiva.id];
+        localStorage.setItem('guardianes_cr_geo_provincias', JSON.stringify(nuevas));
         desbloquearColeccionable(`provincia-${provinciaActiva.id}`, {
           icono: provinciaActiva.emoji,
           nombre: `Provincia: ${provinciaActiva.nombre}`,
@@ -70,6 +91,7 @@ export const MundoGeografia = ({ onSalir }) => {
           setTimeout(() => {
             completarMundo('geografia', 3, 700);
             mostrarLogro({ icono: '🗺️', nombre: '¡Explorador Nacional!', descripcion: 'Conoces las 7 provincias.' });
+            setMostrarVictoria(true);
           }, 800);
         }
         return nuevas;
@@ -93,9 +115,14 @@ export const MundoGeografia = ({ onSalir }) => {
       <Particulas cantidad={10} tipo="estrellas" velocidad={0.3} />
 
       <div style={{ padding: '1rem', maxWidth: 1300, margin: '0 auto' }}>
-        <h1 style={{ textAlign: 'center', fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', fontWeight: 900, marginBottom: '0.2rem', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.8))' }}>
-          <span className="text-gradient-verde">Provincias de Costa Rica</span>
-        </h1>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+          <h1 style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', fontWeight: 900, filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.8))' }}>
+            <span className="text-gradient-verde">Provincias de Costa Rica</span>
+          </h1>
+          <div style={{ background: 'rgba(255,255,255,0.1)', padding: '8px 16px', borderRadius: 20, fontWeight: 800, color: intentos > 1 ? 'var(--verde-claro)' : 'var(--rojo)', border: '1px solid rgba(255,255,255,0.2)' }}>
+            Intentos: {intentos}
+          </div>
+        </div>
         <p style={{ textAlign: 'center', color: 'rgba(255,255,255,0.8)', marginBottom: '1rem', fontSize: '0.9rem', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
           Haz clic en una provincia para conocerla y superar su desafío
         </p>
@@ -284,6 +311,47 @@ export const MundoGeografia = ({ onSalir }) => {
             )}
           </div>
         </div>
+      )}
+
+      {/* Estado del Mundo */}
+      <div style={{ position: 'fixed', bottom: 20, right: 20, zIndex: 100, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px' }}>
+        <div style={{ background: estado.mundosCompletados['geografia']?.completado ? 'rgba(64,145,108,0.9)' : 'rgba(0,0,0,0.7)', borderRadius: 12, padding: '8px 14px', fontSize: '0.8rem', color: estado.mundosCompletados['geografia']?.completado ? 'white' : 'var(--dorado)', backdropFilter: 'blur(8px)', border: estado.mundosCompletados['geografia']?.completado ? '2px solid var(--verde-claro)' : 'none', fontWeight: estado.mundosCompletados['geografia']?.completado ? 900 : 'normal' }}>
+          {estado.mundosCompletados['geografia']?.completado ? '✓ GEOGRAFÍA COMPLETADA' : `Provincias: ${provinciasCompletadas.length}/${provincias?.length || 7}`}
+        </div>
+        {estado.mundosCompletados['geografia']?.completado && (
+          <button 
+            onClick={() => {
+              if (window.confirm('¿Quieres reiniciar este mapa para volver a jugar?')) {
+                setProvinciasCompletadas([]);
+                setIntentos(3);
+                seleccionarProvincia(null);
+              }
+            }}
+            style={{ background: 'rgba(0,0,0,0.7)', border: '1px solid var(--dorado)', borderRadius: 8, padding: '6px 12px', color: 'var(--dorado)', cursor: 'pointer', fontSize: '0.75rem', fontWeight: 'bold', backdropFilter: 'blur(4px)', transition: 'all 0.2s' }}
+            onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,215,0,0.2)'}
+            onMouseLeave={e => e.currentTarget.style.background = 'rgba(0,0,0,0.7)'}
+          >
+            🔄 Volver a Jugar
+          </button>
+        )}
+      </div>
+
+      {derrota && (
+        <PantallaDerrota
+          xpPerdida={0} // La xp se perdió dinámicamente en los intentos
+          onReintentar={() => { setDerrota(false); setIntentos(3); seleccionarProvincia(null); setProvinciasCompletadas([]); }}
+          onSalir={onSalir}
+        />
+      )}
+
+      {mostrarVictoria && (
+        <PantallaVictoria 
+          xpGanada={700}
+          titulo="¡Mapa Completado!"
+          mensaje="Has demostrado conocer todas las provincias de Costa Rica."
+          onContinuar={() => setMostrarVictoria(false)}
+          onSalir={onSalir}
+        />
       )}
       </div>
     </div>

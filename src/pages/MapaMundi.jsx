@@ -123,11 +123,27 @@ export const MapaMundi = () => {
                   </div>
                   
                   {est.completado && !bloqueado && (
-                    <div style={{ fontSize: '1.2rem', marginBottom: '0.5rem', opacity: activo ? 1 : 0.5, transition: 'opacity 0.3s' }}>
-                      {activo ? '' : ''}
-                      {[...Array(3)].map((_, i) => (
-                        <span key={i} style={{ fontSize: '1rem', color: i < est.estrellas ? 'var(--dorado)' : 'rgba(255,255,255,0.2)' }}>★</span>
-                      ))}
+                    <div className="anim-fade-in" style={{ 
+                      background: 'linear-gradient(90deg, transparent, rgba(64,145,108,0.8), transparent)',
+                      padding: '4px 20px', 
+                      borderRadius: 12,
+                      marginTop: '-10px',
+                      marginBottom: '1rem',
+                      display: 'flex', 
+                      flexDirection: 'column', 
+                      alignItems: 'center',
+                      opacity: activo ? 1 : 0.8,
+                      borderTop: '1px solid var(--verde-claro)',
+                      borderBottom: '1px solid var(--verde-claro)'
+                    }}>
+                      <span style={{ color: 'var(--verde-claro)', fontWeight: 900, letterSpacing: 2, fontSize: activo ? '0.9rem' : '0.7rem' }}>
+                        ✓ COMPLETADO
+                      </span>
+                      <div style={{ marginTop: '0.2rem' }}>
+                        {[...Array(3)].map((_, i) => (
+                          <span key={i} style={{ fontSize: activo ? '1.2rem' : '0.9rem', color: i < est.estrellas ? 'var(--dorado)' : 'rgba(255,255,255,0.2)' }}>★</span>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>

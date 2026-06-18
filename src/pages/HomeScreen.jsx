@@ -12,7 +12,7 @@ import '../styles/effects.css';
 export const HomeScreen = () => {
   const { navegarA, estado, reiniciarJuego } = useGame();
   const [mostrarReinicio, setMostrarReinicio] = useState(false);
-  const tieneProgreso = estado.xpTotal > 0;
+  const tieneProgreso = estado.xpTotal > 0 || estado.coleccionables.length > 0 || estado.insignias.length > 0 || Object.keys(estado.mundosCompletados).length > 0;
 
   return (
     <div className="home-screen">

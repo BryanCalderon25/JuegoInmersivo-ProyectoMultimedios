@@ -95,6 +95,18 @@ export const GameProvider = ({ children }) => {
     });
   }, []);
 
+  // Perder XP (Penalización)
+  const perderXP = useCallback((cantidad, razon = '') => {
+    setEstado(prev => {
+      const xpAnterior = prev.xpTotal;
+      const xpNueva = Math.max(0, xpAnterior - cantidad); // Nunca baja de 0
+      
+      // Opcional: mostrar notificación de pérdida si se requiere
+      
+      return { ...prev, xpTotal: xpNueva };
+    });
+  }, []);
+
   // Desbloquear coleccionable
   const desbloquearColeccionable = useCallback((id, datosLogro = null) => {
     setEstado(prev => {
@@ -148,9 +160,18 @@ export const GameProvider = ({ children }) => {
 
   // Resetear progreso
   const reiniciarJuego = useCallback(() => {
-    setEstado({ ...ESTADO_INICIAL });
-    localStorage.removeItem('guardianes_cr_estado');
-    setPantalla('inicio');
+    // Eliminar todas las llaves de localStorage asociadas al juego
+    const keysToRemove = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith('guardianes_cr_')) {
+        keysToRemove.push(key);
+      }
+    }
+    keysToRemove.forEach(k => localStorage.removeItem(k));
+    
+    // Forzar recarga de la página para destruir el estado en memoria
+    window.location.reload();
   }, []);
 
   const valor = {
@@ -168,6 +189,7 @@ export const GameProvider = ({ children }) => {
 
     // Acciones del juego
     ganarXP,
+    perderXP,
     desbloquearColeccionable,
     ganarInsignia,
     completarMundo,
