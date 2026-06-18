@@ -15,8 +15,8 @@
       "descripcion": "Explora el bosque tropical y encuentra animales increíbles. Cada encuentro te enseña sobre la biodiversidad de Costa Rica.",
       "bloqueado": false,
       "xpRequerido": 0,
-      "bgm": "/audio/musica/bosque.mp3",
-      "fondoImagen": "/images/fondos/bosque-fondo.webp"
+      "bgm": "./audio/musica/bosque.mp3",
+      "fondoImagen": "./images/fondos/bosque-fondo.webp"
     },
     {
       "id": "geografia",
@@ -28,8 +28,8 @@
       "descripcion": "Navega el mapa de Costa Rica. Descubre sus siete provincias, volcanes y parques nacionales.",
       "bloqueado": false,
       "xpRequerido": 0,
-      "bgm": "/audio/musica/aventura.mp3",
-      "fondoImagen": "/images/fondos/montaña-fondo.webp"
+      "bgm": "./audio/musica/aventura.mp3",
+      "fondoImagen": "./images/fondos/montaña-fondo.webp"
     },
     {
       "id": "cultura",
@@ -41,8 +41,8 @@
       "descripcion": "Recorre un pueblo típico y descubre los símbolos, comidas y tradiciones que hacen única a Costa Rica.",
       "bloqueado": false,
       "xpRequerido": 0,
-      "bgm": "/audio/musica/pueblo.mp3",
-      "fondoImagen": "/images/fondos/pueblo-fondo.webp"
+      "bgm": "./audio/musica/pueblo.mp3",
+      "fondoImagen": "./images/fondos/pueblo-fondo.webp"
     },
     {
       "id": "ingles",
@@ -54,8 +54,8 @@
       "descripcion": "Interactúa con turistas de todo el mundo. Practica tu inglés mientras aprendes sobre Costa Rica.",
       "bloqueado": false,
       "xpRequerido": 0,
-      "bgm": "/audio/musica/rpg-ingles.mp3",
-      "fondoImagen": "/images/fondos/playa-fondo.webp"
+      "bgm": "./audio/musica/rpg-ingles.mp3",
+      "fondoImagen": "./images/fondos/playa-fondo.webp"
     }
   ],
   "tips": [
