@@ -4,8 +4,8 @@
       "id": "arbol-guanacaste",
       "nombre": "Árbol Nacional: Guanacaste",
       "emoji": "🌳",
-      "imagen": "/images/cultura/arbol-guanacaste.webp",
-      "audio": "/audio/ambiente/viento.mp3",
+      "imagen": "./images/cultura/arbol-guanacaste.webp",
+      "audio": "./audio/ambiente/viento.mp3",
       "descripcion": "El árbol de Guanacaste (Enterolobium cyclocarpum) fue declarado árbol nacional en 1959. Es el árbol más frondoso de Costa Rica, con copas que pueden alcanzar 30 metros de diámetro. Da nombre a la provincia de Guanacaste.",
       "xpAlRecoger": 60,
       "categoria": "simbolo"
@@ -14,8 +14,8 @@
       "id": "ave-yiguirro",
       "nombre": "Ave Nacional: Yigüirro",
       "emoji": "🐦",
-      "imagen": "/images/cultura/yiguirro.webp",
-      "audio": "/audio/ambiente/aves.mp3",
+      "imagen": "./images/cultura/yiguirro.webp",
+      "audio": "./audio/ambiente/aves.mp3",
       "descripcion": "El yigüirro (Turdus grayi) fue declarado ave nacional en 1977. Su canto resuena al inicio de la temporada lluviosa. El poeta Aquileo J. Echeverría lo inmortalizó en sus famosas 'Concherías'.",
       "xpAlRecoger": 60,
       "categoria": "simbolo"
@@ -24,7 +24,7 @@
       "id": "flor-guaria-morada",
       "nombre": "Flor Nacional: Guaria Morada",
       "emoji": "🌸",
-      "imagen": "/images/cultura/guaria-morada.webp",
+      "imagen": "./images/cultura/guaria-morada.webp",
       "audio": null,
       "descripcion": "La orquídea Guaria Morada (Guarianthe skinneri) fue declarada flor nacional en 1939. Florece entre enero y abril y es símbolo de paz y bienvenida en los hogares costarricenses.",
       "xpAlRecoger": 50,
@@ -34,8 +34,8 @@
       "id": "carreta-sarchi",
       "nombre": "Carreta Típica de Sarchí",
       "emoji": "🛻",
-      "imagen": "/images/cultura/carreta-sarchi.webp",
-      "audio": "/audio/efectos/coleccionable.mp3",
+      "imagen": "./images/cultura/carreta-sarchi.webp",
+      "audio": "./audio/efectos/coleccionable.mp3",
       "descripcion": "La carreta típica costarricense, originaria de Sarchí en Alajuela, fue declarada Patrimonio Cultural Inmaterial por la UNESCO en 2005. Sus coloridos diseños geométricos son únicos en el mundo.",
       "xpAlRecoger": 80,
       "categoria": "artesania"
@@ -44,8 +44,8 @@
       "id": "marimba",
       "nombre": "Marimba",
       "emoji": "🎹",
-      "imagen": "/images/cultura/marimba.webp",
-      "audio": "/audio/musica/pueblo.mp3",
+      "imagen": "./images/cultura/marimba.webp",
+      "audio": "./audio/musica/pueblo.mp3",
       "descripcion": "La marimba es un instrumento de percusión de madera considerado parte esencial de la identidad musical costarricense. Su sonido acompaña festividades, turnos y celebraciones tradicionales.",
       "xpAlRecoger": 70,
       "categoria": "musica"
@@ -54,7 +54,7 @@
       "id": "bandera-cr",
       "nombre": "Bandera Nacional",
       "emoji": "🇨🇷",
-      "imagen": "/images/cultura/bandera-cr.png",
+      "imagen": "./images/cultura/bandera-cr.png",
       "audio": null,
       "descripcion": "La bandera de Costa Rica tiene cinco franjas horizontales: azul, blanco, rojo (más ancho), blanco y azul. El azul representa el cielo, las oportunidades y el idealismo. El blanco, la paz y la sabiduría. El rojo, la sangre de los libertadores y la calidez del pueblo.",
       "xpAlRecoger": 90,
@@ -66,7 +66,7 @@
       "id": "independencia",
       "titulo": "Independencia de Costa Rica",
       "fecha": "15 de septiembre de 1821",
-      "imagen": "/images/cultura/independencia.webp",
+      "imagen": "./images/cultura/independencia.webp",
       "descripcion": "Costa Rica se independizó de España en 1821 junto con el resto de Centroamérica. Se sabe que la noticia llegó a Cartago el 13 de octubre, casi un mes después, debido a las distancias. El proceso fue pacífico, sin derramamiento de sangre.",
       "xpAlRecoger": 100,
       "categoria": "historia"
@@ -76,7 +76,7 @@
       "titulo": "Abolición del Ejército",
       "fecha": "1 de diciembre de 1948",
       "personaje": "José Figueres Ferrer",
-      "imagen": "/images/cultura/abolicion.webp",
+      "imagen": "./images/cultura/abolicion.webp",
       "descripcion": "Tras la guerra civil de 1948, el presidente provisional José Figueres Ferrer abolió el ejército costarricense y dedicó el presupuesto militar a la educación y la salud. Fue el primer país del mundo en abolir constitucionalmente su ejército.",
       "xpAlRecoger": 150,
       "categoria": "historia"
@@ -87,7 +87,7 @@
       "id": "gallo-pinto",
       "nombre": "Gallo Pinto",
       "emoji": "🍛",
-      "imagen": "/images/cultura/gallopinto.webp",
+      "imagen": "./images/cultura/gallopinto.webp",
       "descripcion": "Mezcla de arroz y frijoles negros (o rojos) salteados con cebolla, culantro y salsa Lizano. Es el desayuno tradicional costarricense y considerado el plato más representativo del país.",
       "xpAlRecoger": 50,
       "categoria": "comida"
@@ -96,7 +96,7 @@
       "id": "casado",
       "nombre": "Casado",
       "emoji": "🍽️",
-      "imagen": "/images/cultura/casado.webp",
+      "imagen": "./images/cultura/casado.webp",
       "descripcion": "Plato completo que incluye arroz, frijoles, ensalada, plátano maduro o verde, y una proteína (carne, pollo, pescado o vegetariano). El almuerzo típico costarricense por excelencia.",
       "xpAlRecoger": 45,
       "categoria": "comida"
@@ -105,7 +105,7 @@
       "id": "chifrijo",
       "nombre": "Chifrijo",
       "emoji": "🥗",
-      "imagen": "/images/cultura/chifrijo.webp",
+      "imagen": "./images/cultura/chifrijo.webp",
       "descripcion": "Invento costarricense de los años 80. Combina chicharrón de cerdo y frijoles molidos (de ahí el nombre chi-fri-jo), con arroz, pico de gallo y tortillas de maíz. Muy popular en las sodas.",
       "xpAlRecoger": 40,
       "categoria": "comida"
@@ -114,7 +114,7 @@
       "id": "olla-carne",
       "nombre": "Olla de Carne",
       "emoji": "🍲",
-      "imagen": "/images/cultura/olla-carne.webp",
+      "imagen": "./images/cultura/olla-carne.webp",
       "descripcion": "Sopa tradicional muy sustanciosa preparada con carne de res y verduras en trozos grandes como yuca, papa, plátano, zanahoria y chayote.",
       "xpAlRecoger": 50,
       "categoria": "comida"
@@ -123,7 +123,7 @@
       "id": "tamal",
       "nombre": "Tamal de Cerdo",
       "emoji": "🫔",
-      "imagen": "/images/cultura/tamal.webp",
+      "imagen": "./images/cultura/tamal.webp",
       "descripcion": "Platillo indispensable en la Navidad costarricense. Masa de maíz rellena de arroz, cerdo, zanahoria y chile dulce, envuelta en hojas de plátano.",
       "xpAlRecoger": 45,
       "categoria": "comida"
@@ -132,7 +132,7 @@
       "id": "picadillo",
       "nombre": "Picadillo de Papa",
       "emoji": "🥘",
-      "imagen": "/images/cultura/picadillo.webp",
+      "imagen": "./images/cultura/picadillo.webp",
       "descripcion": "Guarnición típica hecha con papas cortadas finamente, carne molida, achiote, cebolla y culantro. Ideal para acompañar con tortillas.",
       "xpAlRecoger": 40,
       "categoria": "comida"

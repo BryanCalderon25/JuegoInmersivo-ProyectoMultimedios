@@ -10,7 +10,7 @@
         {
           "hablante": "Sarah",
           "texto": "Hello! I am a birdwatcher looking for the Resplendent Quetzal. Do you know what this beautiful bird mainly eats?",
-          "audio": "/audio/ingles/quetzal-question.mp3"
+          "audio": "./audio/ingles/quetzal-question.mp3"
         },
         {
           "hablante": "jugador",
@@ -38,7 +38,7 @@
         {
           "hablante": "Marco",
           "texto": "Hi! I love the beaches in Guanacaste. I heard leatherback turtles nest here. When do they usually come?",
-          "audio": "/audio/ingles/playa-question.mp3"
+          "audio": "./audio/ingles/playa-question.mp3"
         },
         {
           "hablante": "jugador",
@@ -66,7 +66,7 @@
         {
           "hablante": "Emma",
           "texto": "Oh my goodness! Look at that sloth! I know they are very slow, but do they have any hidden skills?",
-          "audio": "/audio/ingles/perezoso-question.mp3"
+          "audio": "./audio/ingles/perezoso-question.mp3"
         },
         {
           "hablante": "jugador",
@@ -94,7 +94,7 @@
         {
           "hablante": "David",
           "texto": "Greetings! I am studying the Arenal Volcano. Can you tell me what kind of energy Costa Rica produces using volcanoes?",
-          "audio": "/audio/ingles/volcan-question.mp3"
+          "audio": "./audio/ingles/volcan-question.mp3"
         },
         {
           "hablante": "jugador",
@@ -122,7 +122,7 @@
         {
           "hablante": "Ana",
           "texto": "I love this market! What is the most famous traditional breakfast dish of Costa Rica?",
-          "audio": "/audio/ingles/comida-question.mp3"
+          "audio": "./audio/ingles/comida-question.mp3"
         },
         {
           "hablante": "jugador",
