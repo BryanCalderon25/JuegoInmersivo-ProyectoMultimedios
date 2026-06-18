@@ -12,6 +12,7 @@ import { PantallaDerrota } from '../../components/game/PantallaDerrota';
 import { PantallaVictoria } from '../../components/game/PantallaVictoria';
 import { Modal } from '../../components/common/Modal';
 import { AudioPlayer } from '../../components/media/AudioPlayer';
+import { JoystickVirtual } from '../../components/game/JoystickVirtual';
 import '../../styles/game.css';
 import '../../styles/effects.css';
 
@@ -45,6 +46,7 @@ export const MundoBiodiversidad = ({ onSalir }) => {
 
   const [posJugador, setPosJugador] = useState({ x: 5 * TILE_SIZE, y: 5 * TILE_SIZE });
   const [direccion, setDireccion] = useState('abajo');
+  const [joystickDir, setJoystickDir] = useState({ arriba: false, abajo: false, izquierda: false, derecha: false });
   const [animalEncontrado, setAnimalEncontrado] = useState(null);
   const [animalesVistos, setAnimalesVistos] = useState(() => {
     const guardados = localStorage.getItem('guardianes_cr_bio_animales');
@@ -60,6 +62,8 @@ export const MundoBiodiversidad = ({ onSalir }) => {
   const [derrota, setDerrota] = useState(false);
   const [mostrarVictoria, setMostrarVictoria] = useState(false);
   const animacionRef = useRef(null);
+
+  const isMoviendose = seEstaMoviendo || joystickDir.arriba || joystickDir.abajo || joystickDir.izquierda || joystickDir.derecha;
 
   // Iniciar música y ambience
   useEffect(() => {
@@ -97,10 +101,15 @@ export const MundoBiodiversidad = ({ onSalir }) => {
         let { x, y } = prev;
         let nuevaDireccion = direccion;
 
-        if (arriba)    { y -= VELOCIDAD_JUGADOR; nuevaDireccion = 'arriba'; }
-        if (abajo)     { y += VELOCIDAD_JUGADOR; nuevaDireccion = 'abajo'; }
-        if (izquierda) { x -= VELOCIDAD_JUGADOR; nuevaDireccion = 'izquierda'; }
-        if (derecha)   { x += VELOCIDAD_JUGADOR; nuevaDireccion = 'derecha'; }
+        const moviendoArriba = arriba || joystickDir.arriba;
+        const moviendoAbajo = abajo || joystickDir.abajo;
+        const moviendoIzquierda = izquierda || joystickDir.izquierda;
+        const moviendoDerecha = derecha || joystickDir.derecha;
+
+        if (moviendoArriba)    { y -= VELOCIDAD_JUGADOR; nuevaDireccion = 'arriba'; }
+        if (moviendoAbajo)     { y += VELOCIDAD_JUGADOR; nuevaDireccion = 'abajo'; }
+        if (moviendoIzquierda) { x -= VELOCIDAD_JUGADOR; nuevaDireccion = 'izquierda'; }
+        if (moviendoDerecha)   { x += VELOCIDAD_JUGADOR; nuevaDireccion = 'derecha'; }
 
         if (nuevaDireccion !== direccion) setDireccion(nuevaDireccion);
 
@@ -113,7 +122,7 @@ export const MundoBiodiversidad = ({ onSalir }) => {
 
     animacionRef.current = setInterval(mover, 16);
     return () => clearInterval(animacionRef.current);
-  }, [arriba, abajo, izquierda, derecha, mostrarEncuentro, direccion]);
+  }, [arriba, abajo, izquierda, derecha, joystickDir, mostrarEncuentro, direccion, introVisible]);
 
   // Detectar colisión con animales
   useEffect(() => {
@@ -374,7 +383,7 @@ export const MundoBiodiversidad = ({ onSalir }) => {
             <div style={{
               width: 48, height: 48, position: 'relative',
               filter: 'drop-shadow(0 6px 4px rgba(0,0,0,0.6))',
-              transform: seEstaMoviendo ? 'scale(1.05) translateY(-4px)' : 'scale(1) translateY(0)',
+              transform: isMoviendose ? 'scale(1.05) translateY(-4px)' : 'scale(1) translateY(0)',
               transition: 'transform 0.1s ease-in-out',
             }}>
               <img src={`${import.meta.env.BASE_URL}images/sprite_guardian.jpg?v=3`} alt="Personaje" style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='inline' }} />
@@ -416,10 +425,8 @@ export const MundoBiodiversidad = ({ onSalir }) => {
       </div>
 
       {/* Joystick Virtual (móvil) */}
-      <div style={{ position: 'fixed', bottom: 80, left: 30, zIndex: 200 }} className="joystick-container">
-        <div className="joystick-base">
-          <div className="joystick-thumb" />
-        </div>
+      <div style={{ position: 'fixed', bottom: 40, left: 30, zIndex: 200, display: ('ontouchstart' in window) || navigator.maxTouchPoints > 0 ? 'block' : 'none' }}>
+        <JoystickVirtual onMove={setJoystickDir} />
       </div>
 
       {/* OVERLAY ESPECTACULAR DE ENCUENTRO CON ANIMAL */}

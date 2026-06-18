@@ -42,7 +42,7 @@ export const AudioPlayer = ({ src, titulo = 'Audio', autoPlay = false, volumenIn
   if (compacto) {
     return (
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'rgba(255,255,255,0.08)', borderRadius: '50px', padding: '8px 16px' }}>
-        <audio ref={audioRef} src={src} onTimeUpdate={() => setProgreso(audioRef.current?.currentTime || 0)} onLoadedMetadata={() => setDuracion(audioRef.current?.duration || 0)} onEnded={() => setReproduciendo(false)} />
+        <audio ref={audioRef} src={typeof src === 'string' && src.startsWith('/') ? `${import.meta.env.BASE_URL}${src.slice(1)}` : src} onTimeUpdate={() => setProgreso(audioRef.current?.currentTime || 0)} onLoadedMetadata={() => setDuracion(audioRef.current?.duration || 0)} onEnded={() => setReproduciendo(false)} />
         <button onClick={alternarPlay} aria-label={reproduciendo ? 'Pausar' : 'Reproducir'} style={{ background: 'none', border: 'none', color: 'var(--verde-claro)', fontSize: '1.2rem', cursor: 'pointer' }}>
           {reproduciendo ? '⏸' : '▶'}
         </button>
@@ -60,7 +60,7 @@ export const AudioPlayer = ({ src, titulo = 'Audio', autoPlay = false, volumenIn
     <div style={{ background: 'rgba(255,255,255,0.06)', borderRadius: '12px', padding: '16px', border: '1px solid rgba(255,255,255,0.1)' }}>
       <audio
         ref={audioRef}
-        src={src}
+        src={typeof src === 'string' && src.startsWith('/') ? `${import.meta.env.BASE_URL}${src.slice(1)}` : src}
         onTimeUpdate={() => setProgreso(audioRef.current?.currentTime || 0)}
         onLoadedMetadata={() => setDuracion(audioRef.current?.duration || 0)}
         onEnded={() => setReproduciendo(false)}

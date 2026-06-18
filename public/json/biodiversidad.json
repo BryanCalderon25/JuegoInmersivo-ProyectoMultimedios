@@ -3,7 +3,7 @@
     "id": "bio-1",
     "tipo": "pregunta",
     "pregunta": "¿Cuál es el hábitat natural de la Rana de Ojos Rojos (Agalychnis callidryas)?",
-    "imagen": "/images/rana-ojos-rojos.jpg",
+    "imagen": "./images/rana-ojos-rojos.jpg",
     "opciones": [
       "Zonas áridas y desiertos",
       "Bosques tropicales húmedos",
@@ -17,7 +17,7 @@
     "id": "bio-2",
     "tipo": "asociacion",
     "pregunta": "¿Qué especie se considera un símbolo de conservación marina y anida en el Parque Nacional Marino Las Baulas?",
-    "imagen": "/images/tortuga-baula.jpg",
+    "imagen": "./images/tortuga-baula.jpg",
     "opciones": [
       "Manatí",
       "Tortuga Carey",
@@ -31,7 +31,7 @@
     "id": "bio-3",
     "tipo": "pregunta",
     "pregunta": "¿En cuál Parque Nacional es más probable observar un Quetzal Resplandeciente?",
-    "imagen": "/images/quetzal.jpg",
+    "imagen": "./images/quetzal.jpg",
     "opciones": [
       "Parque Nacional Manuel Antonio",
       "Parque Nacional Tortuguero",
@@ -45,7 +45,7 @@
     "id": "bio-4",
     "tipo": "pregunta",
     "pregunta": "Este animal es conocido por sus movimientos extremadamente lentos y pasa la mayor parte de su vida en los árboles.",
-    "imagen": "/images/perezoso.jpg",
+    "imagen": "./images/perezoso.jpg",
     "opciones": [
       "Mono Congo",
       "Perezoso de tres dedos",

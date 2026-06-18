@@ -74,7 +74,11 @@ export const MapaMundi = () => {
       </div>
 
       {/* ACORDEÓN DE MUNDOS */}
-      <div style={{ display: 'flex', gap: '1rem', flex: 1, maxWidth: '1400px', margin: '0 auto', width: '100%', position: 'relative', zIndex: 1, minHeight: '500px' }}>
+      <div style={{ 
+        display: 'flex', gap: '1rem', flex: 1, maxWidth: '1400px', margin: '0 auto', width: '100%', 
+        position: 'relative', zIndex: 1, minHeight: '500px', 
+        overflowX: 'auto', overflowY: 'hidden', paddingBottom: '1rem', scrollSnapType: 'x mandatory' 
+      }}>
         {mundos.map(mundo => {
           const est = estadoMundo(mundo.id);
           const colores = COLORES_MUNDO[mundo.id] || COLORES_MUNDO.biodiversidad;
@@ -84,12 +88,38 @@ export const MapaMundi = () => {
           return (
             <div
               key={mundo.id}
-              onMouseEnter={() => !bloqueado && setMundoHover(mundo.id)}
-              onMouseLeave={() => setMundoHover(null)}
-              onClick={() => { if(!bloqueado) entrarMundo(mundo.id); }}
+              onMouseEnter={() => {
+                if (window.matchMedia('(hover: hover)').matches && !bloqueado) {
+                  setMundoHover(mundo.id);
+                }
+              }}
+              onMouseLeave={() => {
+                if (window.matchMedia('(hover: hover)').matches) {
+                  setMundoHover(null);
+                }
+              }}
+              onClick={() => {
+                if (bloqueado) return;
+                
+                // En dispositivos con mouse (computadoras), entra directamente
+                if (window.matchMedia('(hover: hover)').matches) {
+                  entrarMundo(mundo.id);
+                } else {
+                  // En dispositivos táctiles (celulares):
+                  // Primer toque -> Expande (anima)
+                  // Segundo toque -> Entra al mundo
+                  if (mundoHover !== mundo.id) {
+                    setMundoHover(mundo.id);
+                  } else {
+                    entrarMundo(mundo.id);
+                  }
+                }
+              }}
               style={{
                 flex: activo ? 4 : 1,
-                minWidth: activo ? '300px' : '100px',
+                minWidth: activo ? '300px' : '120px',
+                flexShrink: 0,
+                scrollSnapAlign: 'start',
                 position: 'relative',
                 borderRadius: '24px',
                 overflow: 'hidden',

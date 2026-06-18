@@ -10,13 +10,21 @@ export const useAudio = () => {
   const ambienteRef = useRef(null);
   const sfxRefs    = useRef({});
 
+  // Función para resolver rutas para GitHub Pages
+  const resolvePath = (src) => {
+    if (typeof src === 'string' && src.startsWith('/')) {
+      return `${import.meta.env.BASE_URL}${src.slice(1)}`;
+    }
+    return src;
+  };
+
   // Reproducir música de fondo (BGM) con crossfade
   const reproducirBGM = useCallback((src, volumen = 0.4) => {
     if (bgmRef.current) {
       bgmRef.current.pause();
       bgmRef.current.currentTime = 0;
     }
-    const audio = new Audio(src);
+    const audio = new Audio(resolvePath(src));
     audio.loop = true;
     audio.volume = 0;
     audio.play().catch(() => {}); // Silenciar error de autoplay
@@ -50,7 +58,7 @@ export const useAudio = () => {
   // Reproducir sonido de ambiente (loop)
   const reproducirAmbiente = useCallback((src, volumen = 0.25) => {
     if (ambienteRef.current) ambienteRef.current.pause();
-    const audio = new Audio(src);
+    const audio = new Audio(resolvePath(src));
     audio.loop = true;
     audio.volume = volumen;
     audio.play().catch(() => {});
@@ -59,7 +67,7 @@ export const useAudio = () => {
 
   // Reproducir efecto de sonido (SFX) puntual
   const reproducirSFX = useCallback((src, volumen = 0.7) => {
-    const audio = new Audio(src);
+    const audio = new Audio(resolvePath(src));
     audio.volume = volumen;
     audio.play().catch(() => {});
     return audio;

@@ -148,6 +148,33 @@ export const GameProvider = ({ children }) => {
     setTimeout(() => setLogroReciente(null), 4000);
   }, []);
 
+  // Escuchar el botón de atrás del navegador/móvil
+  useEffect(() => {
+    // Al iniciar, reemplazamos el estado actual para tener un punto de partida
+    window.history.replaceState({ pantalla: 'carga', mundoId: null }, '');
+
+    const handlePopState = (e) => {
+      if (e.state && e.state.pantalla) {
+        setTransicionActiva(true);
+        setTimeout(() => {
+          setPantalla(e.state.pantalla);
+          if (e.state.mundoId) setMundoActual(e.state.mundoId);
+          setTransicionActiva(false);
+        }, 600);
+      } else {
+        // Fallback si no hay estado previo válido
+        setTransicionActiva(true);
+        setTimeout(() => {
+          setPantalla('inicio');
+          setTransicionActiva(false);
+        }, 600);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   // Navegación entre pantallas con transición
   const navegarA = useCallback((nuevaPantalla, mundoId = null) => {
     setTransicionActiva(true);
@@ -155,6 +182,9 @@ export const GameProvider = ({ children }) => {
       setPantalla(nuevaPantalla);
       if (mundoId) setMundoActual(mundoId);
       setTransicionActiva(false);
+      
+      // Empujar al historial del navegador para que funcione el botón "Atrás"
+      window.history.pushState({ pantalla: nuevaPantalla, mundoId: mundoId }, '');
     }, 600);
   }, []);
 

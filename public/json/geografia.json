@@ -3,7 +3,7 @@
     "id": "geo-1",
     "tipo": "pregunta",
     "pregunta": "¿Cuál es el volcán más alto de Costa Rica?",
-    "imagen": "/images/volcan-irazu.jpg",
+    "imagen": "./images/volcan-irazu.jpg",
     "opciones": [
       "Volcán Arenal",
       "Volcán Poás",
@@ -17,7 +17,7 @@
     "id": "geo-2",
     "tipo": "pregunta",
     "pregunta": "¿Qué provincia es conocida como 'La Ciudad de los Mangos'?",
-    "imagen": "/images/alajuela.jpg",
+    "imagen": "./images/alajuela.jpg",
     "opciones": [
       "Alajuela",
       "Heredia",
@@ -31,7 +31,7 @@
     "id": "geo-3",
     "tipo": "pregunta",
     "pregunta": "¿En qué provincia se encuentra el Parque Nacional Corcovado?",
-    "imagen": "/images/corcovado.jpg",
+    "imagen": "./images/corcovado.jpg",
     "opciones": [
       "Limón",
       "Guanacaste",
