@@ -80,7 +80,6 @@ export const MundoGeografia = ({ onSalir }) => {
   if (loading) return (
     <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--negro-suave)' }}>
       <div style={{ textAlign: 'center', color: 'var(--azul-cielo)' }}>
-        <div style={{ fontSize: '4rem', animation: 'float 2s ease-in-out infinite' }}>🗺️</div>
         <p style={{ marginTop: '1rem' }}>Cargando mapa de Costa Rica...</p>
       </div>
     </div>
@@ -127,7 +126,7 @@ export const MundoGeografia = ({ onSalir }) => {
                   aria-label={`Seleccionar ${p.nombre}`}
                   aria-pressed={provinciaActiva?.id === p.id}
                 >
-                  {p.emoji} {p.nombre} {provinciasCompletadas.includes(p.id) ? '✅' : ''}
+                  {p.nombre} {provinciasCompletadas.includes(p.id) ? ' ✓' : ''}
                 </button>
               ))}
             </div>
@@ -137,7 +136,6 @@ export const MundoGeografia = ({ onSalir }) => {
           <div>
             {!provinciaActiva ? (
               <div style={{ background: 'rgba(255,255,255,0.04)', borderRadius: 20, padding: '2rem', border: '1px solid rgba(255,255,255,0.08)', textAlign: 'center' }}>
-                <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🗺️</div>
                 <p style={{ color: 'rgba(255,255,255,0.5)' }}>Selecciona una provincia del mapa para ver su información y superar el desafío.</p>
                 <div style={{ marginTop: '1.5rem', padding: '12px', background: 'rgba(0,119,182,0.15)', borderRadius: 12, fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)' }}>
                   {provinciasCompletadas.length}/7 provincias completadas
@@ -147,14 +145,13 @@ export const MundoGeografia = ({ onSalir }) => {
               <div className="anim-zoom-in" style={{ background: `linear-gradient(135deg, rgba(5,20,35,0.98), rgba(10,30,50,0.98))`, border: `2px solid ${provinciaActiva.color}60`, borderRadius: 20, padding: '1.5rem', boxShadow: `0 0 30px ${provinciaActiva.color}20` }}>
                 {/* Encabezado de provincia */}
                 <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem', alignItems: 'flex-start' }}>
-                  <span style={{ fontSize: '3rem', animation: 'float 3s ease-in-out infinite' }}>{provinciaActiva.emoji}</span>
                   <div>
                     <h2 style={{ fontSize: '1.4rem', fontWeight: 900, color: 'white' }}>{provinciaActiva.nombre}</h2>
                     <p style={{ fontSize: '0.8rem', color: provinciaActiva.color, fontWeight: 600 }}>Capital: {provinciaActiva.capital}</p>
                   </div>
                   {provinciasCompletadas.includes(provinciaActiva.id) && (
                     <div style={{ marginLeft: 'auto', background: 'rgba(64,145,108,0.2)', border: '1px solid var(--verde-hoja)', borderRadius: 8, padding: '4px 10px', fontSize: '0.75rem', color: 'var(--verde-claro)' }}>
-                      ✅ Completada
+                      ✓ Completada
                     </div>
                   )}
                 </div>

@@ -27,7 +27,9 @@ export const Perfil = () => {
 
         {/* Tarjeta principal del jugador */}
         <div style={{ background: 'rgba(255,255,255,0.06)', borderRadius: 20, padding: '2rem', border: '1px solid rgba(255,255,255,0.1)', marginBottom: '1.5rem', textAlign: 'center' }}>
-          <div style={{ fontSize: '5rem', marginBottom: '1rem' }}>🧑‍🌾</div>
+          <div style={{ width: 100, height: 100, borderRadius: '50%', background: 'linear-gradient(135deg, var(--verde-hoja), var(--verde-bosque))', margin: '0 auto 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '3px solid rgba(255,255,255,0.2)' }}>
+            <span style={{ fontSize: '2.5rem', fontWeight: 900, color: 'white', letterSpacing: 2 }}>{estado.nombre.substring(0,2).toUpperCase()}</span>
+          </div>
           <h2 style={{ fontSize: '1.8rem', fontWeight: 900 }}>{estado.nombre}</h2>
           <p style={{ color: 'var(--verde-claro)', fontWeight: 600, marginBottom: '1.5rem' }}>{nivelActual.titulo}</p>
 
@@ -47,9 +49,9 @@ export const Perfil = () => {
         {/* Stats rápidos */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
           {[
-            { etiqueta: '⚡ XP Total', valor: estado.xpTotal.toLocaleString('es-CR') },
-            { etiqueta: '🎒 Coleccionables', valor: estado.coleccionables.length },
-            { etiqueta: '🏅 Insignias', valor: estado.insignias.length },
+            { etiqueta: 'XP Total', valor: estado.xpTotal.toLocaleString('es-CR') },
+            { etiqueta: 'Coleccionables', valor: estado.coleccionables.length },
+            { etiqueta: 'Insignias', valor: estado.insignias.length },
           ].map(s => (
             <div key={s.etiqueta} style={{ background: 'rgba(255,255,255,0.05)', borderRadius: 16, padding: '1.25rem', textAlign: 'center', border: '1px solid rgba(255,255,255,0.08)' }}>
               <div style={{ fontSize: '1.8rem', fontWeight: 900, color: 'var(--dorado)' }}>{s.valor}</div>
@@ -60,7 +62,7 @@ export const Perfil = () => {
 
         {/* Mundos completados */}
         <div style={{ background: 'rgba(255,255,255,0.04)', borderRadius: 20, padding: '1.5rem', border: '1px solid rgba(255,255,255,0.08)', marginBottom: '2rem' }}>
-          <h3 style={{ marginBottom: '1.5rem', color: 'var(--verde-claro)', fontWeight: 800 }}>🌍 Progreso por Mundo</h3>
+          <h3 style={{ marginBottom: '1.5rem', color: 'var(--verde-claro)', fontWeight: 800 }}>Progreso por Mundo</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {mundos.map(m => {
               const progreso = estado.mundosCompletados[m.id];
@@ -68,7 +70,7 @@ export const Perfil = () => {
               const estrellas = progreso?.estrellas || 0;
               return (
                 <div key={m.id} style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '0.75rem 1rem', background: completado ? 'rgba(64,145,108,0.12)' : 'rgba(255,255,255,0.03)', borderRadius: 14, border: `1px solid ${completado ? 'rgba(64,145,108,0.3)' : 'rgba(255,255,255,0.08)'}` }}>
-                  <span style={{ fontSize: '1.8rem' }}>{m.emoji}</span>
+                  <div style={{ width: 40, height: 40, borderRadius: 8, background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, color: 'rgba(255,255,255,0.5)' }}>{m.id.substring(0,2).toUpperCase()}</div>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontWeight: 700, color: 'white', fontSize: '0.95rem' }}>{m.nombre}</div>
                     <div style={{ fontSize: '0.75rem', color: completado ? 'var(--verde-claro)' : 'rgba(255,255,255,0.4)', marginTop: 2 }}>
@@ -77,7 +79,7 @@ export const Perfil = () => {
                   </div>
                   <div style={{ display: 'flex', gap: 2 }} aria-label={`${estrellas} de 3 estrellas`}>
                     {[...Array(3)].map((_, i) => (
-                      <span key={i} style={{ fontSize: '1.1rem', filter: i < estrellas ? 'none' : 'grayscale(1) opacity(0.25)' }}>⭐</span>
+                      <span key={i} style={{ fontSize: '1.1rem', color: i < estrellas ? 'var(--dorado)' : 'rgba(255,255,255,0.2)' }}>★</span>
                     ))}
                   </div>
                 </div>
@@ -87,7 +89,7 @@ export const Perfil = () => {
         </div>
 
         <div style={{ textAlign: 'center' }}>
-          <Boton variante="glass" onClick={() => navegarA('inicio')} icono="🏠">Menú Principal</Boton>
+          <Boton variante="glass" onClick={() => navegarA('inicio')}>Menú Principal</Boton>
         </div>
       </div>
     </div>

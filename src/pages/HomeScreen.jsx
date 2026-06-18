@@ -29,7 +29,7 @@ export const HomeScreen = () => {
       {/* Contenido principal */}
       <div className="home-contenido anim-fade-in">
         {/* Emblema */}
-        <div className="home-emblema" aria-hidden="true">🇨🇷</div>
+        <div className="home-emblema" aria-hidden="true" style={{ fontSize: '3rem', fontWeight: 900, color: 'var(--verde-claro)', filter: 'none', border: '3px solid var(--verde-claro)', borderRadius: '50%', width: 80, height: 80, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', letterSpacing: 2 }}>CR</div>
 
         <p className="home-titulo-sub">
           Un videojuego educativo · UCR IF7102 Multimedios
@@ -60,7 +60,6 @@ export const HomeScreen = () => {
               variante="glass"
               onClick={() => navegarA('coleccionables')}
               ariaLabel="Ver colección de animales y objetos"
-              icono="🎒"
             >
               Colección
             </Boton>
@@ -68,7 +67,6 @@ export const HomeScreen = () => {
               variante="glass"
               onClick={() => navegarA('perfil')}
               ariaLabel="Ver perfil del jugador"
-              icono="⭐"
             >
               Perfil
             </Boton>
@@ -76,7 +74,6 @@ export const HomeScreen = () => {
               variante="glass"
               onClick={() => navegarA('creditos')}
               ariaLabel="Ver créditos del juego"
-              icono="📜"
             >
               Créditos
             </Boton>

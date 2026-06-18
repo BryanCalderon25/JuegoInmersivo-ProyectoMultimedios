@@ -32,7 +32,6 @@ export const MapaMundi = () => {
   if (loading) return (
     <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0a0a0a' }}>
       <div style={{ textAlign: 'center', color: 'var(--verde-claro)' }}>
-        <div style={{ fontSize: '4rem', animation: 'float 2s ease-in-out infinite' }}>🗺️</div>
         <p style={{ marginTop: '1rem', fontWeight: 600, letterSpacing: 2 }}>CARGANDO MAPA...</p>
       </div>
     </div>
@@ -120,13 +119,14 @@ export const MapaMundi = () => {
                 {/* Ícono gigante y Estrellas */}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: activo ? '0' : 'auto', marginBottom: activo ? 'auto' : '1rem' }}>
                   <div style={{ fontSize: activo ? '5rem' : '3.5rem', transition: 'all 0.4s ease', filter: 'drop-shadow(0 10px 10px rgba(0,0,0,0.5))', marginBottom: '1rem', animation: activo ? 'float 3s ease-in-out infinite' : 'none' }}>
-                    {bloqueado ? '🔒' : mundo.emoji}
+                    {bloqueado ? 'BLOQUEADO' : mundo.emoji}
                   </div>
                   
                   {est.completado && !bloqueado && (
-                    <div style={{ display: 'flex', gap: 4, opacity: activo ? 1 : 0, transition: 'opacity 0.3s ease', marginBottom: '1rem' }}>
+                    <div style={{ fontSize: '1.2rem', marginBottom: '0.5rem', opacity: activo ? 1 : 0.5, transition: 'opacity 0.3s' }}>
+                      {activo ? '' : ''}
                       {[...Array(3)].map((_, i) => (
-                        <span key={i} style={{ fontSize: '1.2rem', filter: i < est.estrellas ? 'drop-shadow(0 0 5px gold)' : 'grayscale(1) opacity(0.3)' }}>⭐</span>
+                        <span key={i} style={{ fontSize: '1rem', color: i < est.estrellas ? 'var(--dorado)' : 'rgba(255,255,255,0.2)' }}>★</span>
                       ))}
                     </div>
                   )}

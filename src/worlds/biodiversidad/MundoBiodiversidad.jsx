@@ -185,7 +185,6 @@ export const MundoBiodiversidad = ({ onSalir }) => {
       {introVisible && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(5, 20, 10, 0.95)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem', backdropFilter: 'blur(10px)' }}>
           <div className="anim-slide-up" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(64,145,108,0.5)', borderRadius: 24, padding: '3rem', maxWidth: 600, textAlign: 'center', boxShadow: '0 20px 50px rgba(0,0,0,0.5)' }}>
-            <div style={{ fontSize: '4rem', marginBottom: '1rem', animation: 'float 3s ease-in-out infinite' }}>🌿</div>
             <h2 style={{ fontSize: '2rem', fontWeight: 900, color: 'white', marginBottom: '0.5rem' }}>Mundo 1: Biodiversidad</h2>
             <p style={{ color: 'var(--verde-claro)', fontWeight: 600, marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '2px' }}>El Pulmón del Mundo</p>
             

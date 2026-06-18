@@ -55,7 +55,7 @@ export const Coleccionables = () => {
             <button key={f} onClick={() => setFiltro(f)}
               aria-pressed={filtro === f}
               style={{ background: filtro === f ? 'var(--verde-bosque)' : 'rgba(255,255,255,0.06)', border: `1px solid ${filtro === f ? 'var(--verde-hoja)' : 'rgba(255,255,255,0.1)'}`, borderRadius: 20, padding: '8px 20px', color: 'white', cursor: 'pointer', fontFamily: 'var(--font-ui)', fontWeight: 600, fontSize: '0.85rem', transition: 'all 0.2s ease' }}>
-              {{ todos: '🌍 Todos', fauna: '🦜 Fauna', cultura: '🎭 Cultura' }[f]}
+              {{ todos: 'Todos', fauna: 'Fauna', cultura: 'Cultura' }[f]}
             </button>
           ))}
         </div>
@@ -93,11 +93,11 @@ export const Coleccionables = () => {
                     onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }}
                   />
                 ) : null}
-                <span style={{ fontSize: '2.5rem', display: item.imagen ? 'none' : 'block' }} aria-hidden="true">{item.emoji}</span>
+                {!item.imagen && <div style={{ width: 64, height: 64, borderRadius: 12, border: `2px solid ${desbloqueado ? 'rgba(64,145,108,0.5)' : 'rgba(255,255,255,0.1)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.05)', color: 'white', fontWeight: 900, fontSize: '1.5rem', marginBottom: '0.5rem' }}>{item.nombre.substring(0,2).toUpperCase()}</div>}
                 <span style={{ fontSize: '0.72rem', textAlign: 'center', color: desbloqueado ? 'white' : 'rgba(255,255,255,0.4)', fontWeight: 600, lineHeight: 1.3 }}>
                   {desbloqueado ? item.nombre : '???'}
                 </span>
-                {!desbloqueado && <span style={{ fontSize: '0.9rem' }} aria-label="Bloqueado">🔒</span>}
+                {!desbloqueado && <span style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: 1, marginTop: 4, color: 'rgba(255,255,255,0.4)' }}>Bloqueado</span>}
               </button>
             );
           })}
@@ -105,7 +105,7 @@ export const Coleccionables = () => {
 
         {/* Botón volver */}
         <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
-          <Boton variante="glass" onClick={() => navegarA('inicio')} icono="🏠">Menú Principal</Boton>
+          <Boton variante="glass" onClick={() => navegarA('inicio')}>Menú Principal</Boton>
         </div>
       </div>
 
@@ -124,7 +124,7 @@ export const Coleccionables = () => {
                 }} 
               />
             ) : (
-              <div style={{ fontSize: '5rem', marginBottom: '1rem', animation: 'float 3s ease-in-out infinite' }}>{itemActivo.emoji}</div>
+              <div style={{ fontSize: '4rem', fontWeight: 900, color: 'var(--verde-claro)', border: '2px dashed rgba(64,145,108,0.5)', background: 'rgba(64,145,108,0.1)', width: 120, height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 24, margin: '0 auto 1.5rem' }}>{itemActivo.nombre.substring(0,2).toUpperCase()}</div>
             )}
             <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.9rem', lineHeight: 1.65, marginBottom: '1.5rem' }}>
               {itemActivo.descripcion}
