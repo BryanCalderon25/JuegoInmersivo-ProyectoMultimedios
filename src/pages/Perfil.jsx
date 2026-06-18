@@ -1,12 +1,11 @@
 import React from 'react';
 import { useGame } from '../hooks/useGame';
+import { Boton } from '../components/common/Boton';
+import { BotonVolver } from '../components/common/BotonVolver';
 import { BarraVida } from '../components/common/BarraVida';
-import '../styles/game.css';
-import '../styles/effects.css';
 
 /**
  * Pantalla de perfil del jugador con stats, nivel y mundos completados.
- * Rediseñado estilo Stitch ("Perfil del Guardián")
  */
 export const Perfil = () => {
   const { estado, nivelActual, progresoNivel, nivelSiguiente, navegarA } = useGame();
@@ -15,123 +14,72 @@ export const Perfil = () => {
     { id: 'biodiversidad', nombre: 'El Bosque Vivo', emoji: '🌿' },
     { id: 'geografia',     nombre: 'Provincias del Paraíso', emoji: '🗺️' },
     { id: 'cultura',       nombre: 'El Pueblo Tico', emoji: '🎭' },
-    { id: 'ingles',        nombre: 'Práctica de Inglés', emoji: '🌎' },
+    { id: 'ingles',        nombre: 'Mundo Bilingüe', emoji: '🌎' },
   ];
 
-  const progresoGlobal = Math.round((Object.keys(estado.mundosCompletados).length / mundos.length) * 100) || 0;
-
   return (
-    <div style={{ 
-      minHeight: '100vh', 
-      background: 'radial-gradient(circle at top, #111a26 0%, #06090d 100%)', 
-      position: 'relative', 
-      overflow: 'hidden', 
-      paddingBottom: '100px',
-      fontFamily: 'var(--font-ui), sans-serif'
-    }}>
+    <div className="anim-fade-in" style={{ minHeight: '100vh', background: 'linear-gradient(160deg, #1f0d2b, #0d0614)', paddingTop: '80px', padding: '80px 2rem 2rem', position: 'relative' }}>
+      <BotonVolver destino="inicio" />
+      <div style={{ maxWidth: 800, margin: '0 auto' }}>
+        <h1 style={{ textAlign: 'center', fontWeight: 900, fontSize: 'clamp(1.8rem, 4vw, 3rem)', marginBottom: '2rem' }}>
+          <span className="text-gradient-verde">Tu Perfil</span>
+        </h1>
 
-      <div style={{ padding: '0 20px', maxWidth: '800px', margin: '40px auto 0' }}>
-        
-        {/* Títulos Centrales */}
-        <div style={{ textAlign: 'center', marginBottom: '30px', animation: 'slideUp 0.6s ease' }}>
-          <h1 style={{ color: '#eaf2eb', fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 900, marginBottom: '16px', lineHeight: 1.1 }}>
-            Perfil del<br />Guardián
-          </h1>
-          <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', maxWidth: '500px', margin: '0 auto', lineHeight: 1.5, textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600 }}>
-            E S T A D Í S T I C A S
-          </p>
+        {/* Tarjeta principal del jugador */}
+        <div style={{ background: 'rgba(255,255,255,0.06)', borderRadius: 20, padding: '2rem', border: '1px solid rgba(255,255,255,0.1)', marginBottom: '1.5rem', textAlign: 'center' }}>
+          <div style={{ width: 100, height: 100, borderRadius: '50%', background: 'linear-gradient(135deg, var(--verde-hoja), var(--verde-bosque))', margin: '0 auto 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '3px solid rgba(255,255,255,0.2)' }}>
+            <span style={{ fontSize: '2.5rem', fontWeight: 900, color: 'white', letterSpacing: 2 }}>{estado.nombre.substring(0,2).toUpperCase()}</span>
+          </div>
+          <h2 style={{ fontSize: '1.8rem', fontWeight: 900 }}>{estado.nombre}</h2>
+          <p style={{ color: 'var(--verde-claro)', fontWeight: 600, marginBottom: '1.5rem' }}>{nivelActual.titulo}</p>
+
+          {/* Nivel y XP */}
+          <div style={{ maxWidth: 400, margin: '0 auto' }}>
+            <BarraVida
+              valor={progresoNivel}
+              color="var(--verde-hoja)"
+              colorSecundario="var(--verde-claro)"
+              etiqueta={`Nivel ${nivelActual.nivel}`}
+              etiquetaDerecha={`${estado.xpTotal} / ${nivelSiguiente.xpNecesaria > 0 ? nivelSiguiente.xpNecesaria : '∞'} XP`}
+              altura={10}
+            />
+          </div>
         </div>
 
-        {/* Tarjeta 1: Información del Jugador */}
-        <div style={{ 
-          background: 'rgba(255,255,255,0.02)', 
-          border: '1px solid rgba(255,255,255,0.05)', 
-          borderRadius: '30px', 
-          padding: '40px 30px', 
-          marginBottom: '20px',
-          boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
-          animation: 'slideUp 0.8s ease 0.1s both',
-          textAlign: 'center'
-        }}>
-          <div style={{ width: 100, height: 100, borderRadius: '50%', background: 'linear-gradient(135deg, #74c69d, #2d6a4f)', margin: '0 auto 20px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3.5rem', boxShadow: '0 10px 20px rgba(45,106,79,0.3)', border: '4px solid #b7e4c7' }}>
-            <span style={{ filter: 'grayscale(1) brightness(0.2)' }}>🌿</span>
-          </div>
-          
-          <h2 style={{ fontSize: '2rem', fontWeight: 900, color: '#eaf2eb', marginBottom: '4px' }}>{estado.nombre}</h2>
-          <p style={{ color: '#74c69d', fontWeight: 700, fontSize: '0.9rem', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '30px' }}>
-            {nivelActual.titulo} • NV. {nivelActual.nivel}
-          </p>
-
-          {/* Barra de Progreso XP */}
-          <div style={{ maxWidth: '400px', margin: '0 auto', textAlign: 'left' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-              <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.05em' }}>PROGRESS TO NEXT LEVEL</span>
-              <span style={{ color: '#e9c46a', fontSize: '0.75rem', fontWeight: 800 }}>{estado.xpTotal} / {nivelSiguiente.xpNecesaria > 0 ? nivelSiguiente.xpNecesaria : '∞'} XP</span>
+        {/* Stats rápidos */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
+          {[
+            { etiqueta: 'XP Total', valor: estado.xpTotal.toLocaleString('es-CR') },
+            { etiqueta: 'Coleccionables', valor: estado.coleccionables.length },
+            { etiqueta: 'Insignias', valor: estado.insignias.length },
+          ].map(s => (
+            <div key={s.etiqueta} style={{ background: 'rgba(255,255,255,0.05)', borderRadius: 16, padding: '1.25rem', textAlign: 'center', border: '1px solid rgba(255,255,255,0.08)' }}>
+              <div style={{ fontSize: '1.8rem', fontWeight: 900, color: 'var(--dorado)' }}>{s.valor}</div>
+              <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)', marginTop: 4 }}>{s.etiqueta}</div>
             </div>
-            <div style={{ height: '12px', background: 'rgba(255,255,255,0.05)', borderRadius: '50px', overflow: 'hidden' }}>
-              <div style={{ width: `${Math.min(progresoNivel, 100)}%`, height: '100%', background: 'linear-gradient(90deg, #40916c, #74c69d)', borderRadius: '50px', transition: 'width 1s ease-out' }} />
-            </div>
-          </div>
+          ))}
         </div>
 
-        {/* Tarjeta 2: Estadísticas Rápidas */}
-        <div style={{ 
-          background: 'rgba(255,255,255,0.02)', 
-          border: '1px solid rgba(255,255,255,0.05)', 
-          borderRadius: '30px', 
-          padding: '30px',
-          marginBottom: '20px',
-          boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
-          animation: 'slideUp 0.8s ease 0.2s both'
-        }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
-            {[
-              { label: 'TOTAL XP', val: estado.xpTotal.toLocaleString('en-US'), icon: '🪙', color: '#e9c46a' },
-              { label: 'COLLECTIONS', val: estado.coleccionables.length, icon: '🎒', color: '#457b9d' },
-              { label: 'BADGES', val: estado.insignias.length, icon: '🏅', color: '#e76f51' },
-            ].map(item => (
-              <div key={item.label} style={{ background: 'rgba(255,255,255,0.03)', borderRadius: '20px', padding: '20px 10px', textAlign: 'center', border: '1px solid rgba(255,255,255,0.05)' }}>
-                <div style={{ fontSize: '1.5rem', marginBottom: '8px' }}>{item.icon}</div>
-                <div style={{ fontSize: '1.5rem', color: item.color, fontWeight: 900, marginBottom: '4px' }}>{item.val}</div>
-                <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.5)', letterSpacing: '0.05em' }}>{item.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Tarjeta 3: Mundos Completados */}
-        <div style={{ 
-          background: 'rgba(255,255,255,0.02)', 
-          border: '1px solid rgba(255,255,255,0.05)', 
-          borderRadius: '30px', 
-          padding: '30px 20px', 
-          marginBottom: '20px',
-          boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
-          animation: 'slideUp 0.8s ease 0.3s both'
-        }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', padding: '0 10px' }}>
-            <h3 style={{ color: '#457b9d', fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.1em' }}>WORLD EXPLORATION</h3>
-            <span style={{ color: 'white', fontWeight: 800, fontSize: '0.9rem' }}>{progresoGlobal}%</span>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '12px' }}>
+        {/* Mundos completados */}
+        <div style={{ background: 'rgba(255,255,255,0.04)', borderRadius: 20, padding: '1.5rem', border: '1px solid rgba(255,255,255,0.08)', marginBottom: '2rem' }}>
+          <h3 style={{ marginBottom: '1.5rem', color: 'var(--verde-claro)', fontWeight: 800 }}>Progreso por Mundo</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {mundos.map(m => {
               const progreso = estado.mundosCompletados[m.id];
               const completado = progreso?.completado;
               const estrellas = progreso?.estrellas || 0;
-              
               return (
-                <div key={m.id} style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '16px 20px', background: completado ? 'rgba(69, 123, 157, 0.1)' : 'rgba(255,255,255,0.03)', borderRadius: '20px', border: completado ? '1px solid rgba(69, 123, 157, 0.3)' : '1px solid rgba(255,255,255,0.05)' }}>
-                  <span style={{ fontSize: '2rem', filter: completado ? 'none' : 'grayscale(1) opacity(0.5)' }}>{m.emoji}</span>
+                <div key={m.id} style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '0.75rem 1rem', background: completado ? 'rgba(64,145,108,0.12)' : 'rgba(255,255,255,0.03)', borderRadius: 14, border: `1px solid ${completado ? 'rgba(64,145,108,0.3)' : 'rgba(255,255,255,0.08)'}` }}>
+                  <div style={{ width: 40, height: 40, borderRadius: 8, background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, color: 'rgba(255,255,255,0.5)' }}>{m.id.substring(0,2).toUpperCase()}</div>
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontWeight: 800, color: completado ? '#eaf2eb' : 'rgba(255,255,255,0.6)', fontSize: '1.05rem', marginBottom: '2px' }}>{m.nombre}</div>
-                    <div style={{ fontSize: '0.75rem', color: completado ? '#457b9d' : 'rgba(255,255,255,0.4)', letterSpacing: '0.05em' }}>
-                      {completado ? `COMPLETED • +${progreso.xpGanada || 0} XP` : 'LOCKED'}
+                    <div style={{ fontWeight: 700, color: 'white', fontSize: '0.95rem' }}>{m.nombre}</div>
+                    <div style={{ fontSize: '0.75rem', color: completado ? 'var(--verde-claro)' : 'rgba(255,255,255,0.4)', marginTop: 2 }}>
+                      {completado ? `Completado · ${progreso.xpGanada || 0} XP ganada` : 'Pendiente'}
                     </div>
                   </div>
-                  <div style={{ display: 'flex', gap: '4px' }}>
+                  <div style={{ display: 'flex', gap: 2 }} aria-label={`${estrellas} de 3 estrellas`}>
                     {[...Array(3)].map((_, i) => (
-                      <span key={i} style={{ fontSize: '1rem', color: i < estrellas ? '#e9c46a' : 'rgba(255,255,255,0.1)' }}>★</span>
+                      <span key={i} style={{ fontSize: '1.1rem', color: i < estrellas ? 'var(--dorado)' : 'rgba(255,255,255,0.2)' }}>★</span>
                     ))}
                   </div>
                 </div>
@@ -140,54 +88,9 @@ export const Perfil = () => {
           </div>
         </div>
 
-      </div>
-
-      {/* Floating Bottom Navigation Bar global del juego */}
-      <div style={{
-        position: 'fixed',
-        bottom: '24px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        background: 'rgba(20, 15, 12, 0.9)',
-        backdropFilter: 'blur(10px)',
-        border: '1px solid rgba(255,255,255,0.05)',
-        borderRadius: '50px',
-        padding: '8px 16px',
-        display: 'flex',
-        gap: '8px',
-        zIndex: 100,
-        boxShadow: '0 10px 40px rgba(0,0,0,0.5)'
-      }}>
-        {[
-          { id: 'inicio', label: 'HOME', icon: '🏠', active: false },
-          { id: 'mapa', label: 'MAP', icon: '🗺️', active: false },
-          { id: 'coleccionables', label: 'JOURNAL', icon: '📔', active: false },
-          { id: 'perfil', label: 'PROFILE', icon: '👤', active: true }
-        ].map(item => (
-          <button
-            key={item.id}
-            onClick={() => navegarA(item.id)}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '4px',
-              width: item.active ? '70px' : '60px',
-              height: '60px',
-              borderRadius: '30px',
-              border: 'none',
-              background: item.active ? '#f9c74f' : 'transparent',
-              color: item.active ? '#120f0d' : 'rgba(255,255,255,0.4)',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              fontFamily: 'var(--font-ui), sans-serif'
-            }}
-          >
-            <span style={{ fontSize: '1.2rem', filter: item.active ? 'none' : 'grayscale(1)' }}>{item.icon}</span>
-            <span style={{ fontSize: '0.6rem', fontWeight: 800, letterSpacing: '0.05em' }}>{item.label}</span>
-          </button>
-        ))}
+        <div style={{ textAlign: 'center' }}>
+          <Boton variante="glass" onClick={() => navegarA('inicio')}>Menú Principal</Boton>
+        </div>
       </div>
     </div>
   );

@@ -20,7 +20,12 @@
     "parqueProtege": "Parque Nacional Los Quetzales",
     "coleccionable": true,
     "xpAlEncontrar": 80,
-    "xpAlResponder": 120
+    "xpAlResponder": 120,
+    "desafio": {
+      "pregunta": "¿Cuál es el alimento principal del quetzal en los bosques nubosos de Costa Rica?",
+      "opciones": ["Aguacatillo silvestre", "Serpientes pequeñas", "Semillas de pino", "Hojas tiernas de roble"],
+      "respuestaCorrecta": 0
+    }
   },
   {
     "id": "tortuga-baula",
@@ -43,7 +48,12 @@
     "parqueProtege": "Parque Nacional Marino Las Baulas",
     "coleccionable": true,
     "xpAlEncontrar": 100,
-    "xpAlResponder": 150
+    "xpAlResponder": 150,
+    "desafio": {
+      "pregunta": "¿Por qué se caracteriza principalmente la Tortuga Baula a diferencia de otras tortugas marinas?",
+      "opciones": ["Es la tortuga marina más pequeña", "Solo habita en ríos de agua dulce", "Tiene un caparazón de cartílago y piel suave", "Tiene caparazón de colores brillantes"],
+      "respuestaCorrecta": 2
+    }
   },
   {
     "id": "jaguar",
@@ -51,7 +61,7 @@
     "nombre": "Jaguar",
     "nombreCientifico": "Panthera onca",
     "imagen": "/images/fauna/jaguar.webp",
-    "sonido": "/audio/efectos/encuentro.mp3",
+    "sonido": "/audio/ambiente/aves.mp3",
     "habitat": "bosque_lluvioso",
     "habitats": ["Bosque lluvioso tropical", "Selvas densas", "Humedales"],
     "altitud": "0-2000 metros sobre el nivel del mar",
@@ -66,7 +76,12 @@
     "parqueProtege": "Parque Nacional Corcovado",
     "coleccionable": true,
     "xpAlEncontrar": 120,
-    "xpAlResponder": 180
+    "xpAlResponder": 180,
+    "desafio": {
+      "pregunta": "¿Qué característica distingue a las manchas (rosetas) del jaguar respecto a las del leopardo?",
+      "opciones": ["Son completamente cuadradas", "Tienen puntos negros en el centro", "No tienen manchas, son rayas", "Son de color blanco brillante"],
+      "respuestaCorrecta": 1
+    }
   },
   {
     "id": "perezoso",
@@ -89,7 +104,12 @@
     "parqueProtege": "Parque Nacional Manuel Antonio",
     "coleccionable": true,
     "xpAlEncontrar": 60,
-    "xpAlResponder": 90
+    "xpAlResponder": 90,
+    "desafio": {
+      "pregunta": "¿Cuál de estas increíbles habilidades posee el perezoso a pesar de su gran lentitud?",
+      "opciones": ["Correr a 10 km/h si está asustado", "Cavar madrigueras subterráneas", "Volar distancias cortas", "Son excelentes nadadores"],
+      "respuestaCorrecta": 3
+    }
   },
   {
     "id": "lapa-roja",
@@ -112,7 +132,12 @@
     "parqueProtege": "Parque Nacional Carara",
     "coleccionable": true,
     "xpAlEncontrar": 70,
-    "xpAlResponder": 100
+    "xpAlResponder": 100,
+    "desafio": {
+      "pregunta": "¿Qué comportamiento extraño realizan las lapas rojas para desintoxicarse después de comer ciertas semillas venenosas?",
+      "opciones": ["Beben agua de mar", "Comen arcilla o barro", "Muerden cortezas de eucalipto", "Se bañan en ceniza volcánica"],
+      "respuestaCorrecta": 1
+    }
   },
   {
     "id": "rana-ojos-rojos",
@@ -135,7 +160,12 @@
     "parqueProtege": "Parque Nacional Tortuguero",
     "coleccionable": true,
     "xpAlEncontrar": 50,
-    "xpAlResponder": 80
+    "xpAlResponder": 80,
+    "desafio": {
+      "pregunta": "¿Dónde deposita estratégicamente sus huevos la rana de ojos rojos para proteger a los renacuajos?",
+      "opciones": ["Enterrados en la arena cálida", "En el fondo de charcos oscuros", "Debajo de rocas de río", "En la parte inferior de hojas sobre el agua"],
+      "respuestaCorrecta": 3
+    }
   },
   {
     "id": "mono-congo",
@@ -158,7 +188,12 @@
     "parqueProtege": "Parque Nacional Santa Rosa",
     "coleccionable": true,
     "xpAlEncontrar": 55,
-    "xpAlResponder": 85
+    "xpAlResponder": 85,
+    "desafio": {
+      "pregunta": "¿Cuál es la función principal del potente rugido que emite el mono congo al amanecer?",
+      "opciones": ["Anunciar y defender el territorio del grupo", "Atraer a la lluvia", "Asustar a los jaguares", "Celebrar que encontró frutas maduras"],
+      "respuestaCorrecta": 0
+    }
   },
   {
     "id": "manati",
@@ -181,6 +216,11 @@
     "parqueProtege": "Parque Nacional Tortuguero",
     "coleccionable": true,
     "xpAlEncontrar": 90,
-    "xpAlResponder": 130
+    "xpAlResponder": 130,
+    "desafio": {
+      "pregunta": "¿Qué tipo de dieta tiene el manatí del Caribe, conocido popularmente como la 'vaca del mar'?",
+      "opciones": ["Carnívora (peces y crustáceos)", "Omnívora", "Completamente herbívora (pastos y algas)", "Insectívora marina"],
+      "respuestaCorrecta": 2
+    }
   }
 ]

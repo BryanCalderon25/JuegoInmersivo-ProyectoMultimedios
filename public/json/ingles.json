@@ -9,21 +9,21 @@
       "dialogos": [
         {
           "hablante": "Sarah",
-          "texto": "Oh wow! Is that a quetzal? I can't believe I'm seeing one! Do you know where it lives?",
+          "texto": "Hello! I am a birdwatcher looking for the Resplendent Quetzal. Do you know what this beautiful bird mainly eats?",
           "audio": "/audio/ingles/quetzal-question.mp3"
         },
         {
           "hablante": "jugador",
           "opciones": [
-            { "texto": "It lives in the cloud forest, at high altitudes.", "esCorrecta": true, "respuesta": "Exactly! The resplendent quetzal lives in cloud forests, usually between 1,500 and 3,000 meters above sea level." },
-            { "texto": "It lives on the beach, near the ocean.", "esCorrecta": false, "respuesta": "Not quite! The quetzal needs cold, misty cloud forests, not beaches." },
-            { "texto": "It lives in the desert.", "esCorrecta": false, "respuesta": "That's wrong. The quetzal needs humid forest, not dry desert." }
+            { "texto": "It mainly eats wild avocados and small insects.", "esCorrecta": true, "respuesta": "Exactly! The 'aguacatillo' is its favorite food in the cloud forest." },
+            { "texto": "It eats only fish from the rivers.", "esCorrecta": false, "respuesta": "Not quite! Quetzals live high in the trees, not near rivers." },
+            { "texto": "It eats coconuts from the beach.", "esCorrecta": false, "respuesta": "That's wrong. Coconuts grow on beaches, but quetzals live in cold mountains!" }
           ]
         }
       ],
       "vocabulario": [
         { "espanol": "bosque nuboso", "ingles": "cloud forest", "pronunciacion": "/klaʊd fɒrɪst/" },
-        { "espanol": "altitud", "ingles": "altitude", "pronunciacion": "/ˈæltɪtjuːd/" },
+        { "espanol": "aguacate silvestre", "ingles": "wild avocado", "pronunciacion": "/waɪld ˌævəˈkɑːdəʊ/" },
         { "espanol": "pájaro", "ingles": "bird", "pronunciacion": "/bɜːrd/" }
       ],
       "xpAlCompletar": 100
@@ -37,22 +37,22 @@
       "dialogos": [
         {
           "hablante": "Marco",
-          "texto": "Excuse me, I want to learn about Costa Rica. What is the capital city?",
-          "audio": "/audio/ingles/capital-question.mp3"
+          "texto": "Hi! I love the beaches in Guanacaste. I heard leatherback turtles nest here. When do they usually come?",
+          "audio": "/audio/ingles/playa-question.mp3"
         },
         {
           "hablante": "jugador",
           "opciones": [
-            { "texto": "The capital is San José.", "esCorrecta": true, "respuesta": "That's right! San José is the capital and largest city of Costa Rica." },
-            { "texto": "The capital is Alajuela.", "esCorrecta": false, "respuesta": "Close! Alajuela is an important city, but San José is the capital." },
-            { "texto": "The capital is Cartago.", "esCorrecta": false, "respuesta": "Historically, Cartago was the first capital, but San José became the capital in 1823." }
+            { "texto": "They nest at night, on the same beach they were born.", "esCorrecta": true, "respuesta": "That's right! Leatherback turtles are amazing navigators." },
+            { "texto": "They nest during the hottest time of the day to get a tan.", "esCorrecta": false, "respuesta": "Haha, no! The hot sand would be dangerous for their eggs." },
+            { "texto": "They only nest high in the mountains.", "esCorrecta": false, "respuesta": "Turtles are marine animals, they nest on sandy beaches, not mountains!" }
           ]
         }
       ],
       "vocabulario": [
-        { "espanol": "capital", "ingles": "capital city", "pronunciacion": "/ˈkæpɪtl sɪti/" },
-        { "espanol": "ciudad", "ingles": "city", "pronunciacion": "/ˈsɪti/" },
-        { "espanol": "país", "ingles": "country", "pronunciacion": "/ˈkʌntri/" }
+        { "espanol": "tortuga baula", "ingles": "leatherback turtle", "pronunciacion": "/ˈlɛðərbæk ˈtɜrtl/" },
+        { "espanol": "playa", "ingles": "beach", "pronunciacion": "/biːtʃ/" },
+        { "espanol": "nido", "ingles": "nest", "pronunciacion": "/nɛst/" }
       ],
       "xpAlCompletar": 80
     },
@@ -65,22 +65,22 @@
       "dialogos": [
         {
           "hablante": "Emma",
-          "texto": "Oh my goodness! Look at that sloth! How long do they sleep every day?",
-          "audio": "/audio/ingles/sloth-question.mp3"
+          "texto": "Oh my goodness! Look at that sloth! I know they are very slow, but do they have any hidden skills?",
+          "audio": "/audio/ingles/perezoso-question.mp3"
         },
         {
           "hablante": "jugador",
           "opciones": [
-            { "texto": "They sleep about 15-20 hours a day.", "esCorrecta": true, "respuesta": "Exactly! Sloths sleep up to 20 hours a day to save energy, since their diet of leaves gives them very little nutrition." },
-            { "texto": "They sleep only 4-5 hours a day.", "esCorrecta": false, "respuesta": "Actually, sloths sleep much more than that — up to 20 hours!" },
-            { "texto": "They never sleep.", "esCorrecta": false, "respuesta": "Sloths are actually famous for sleeping the most of any mammal!" }
+            { "texto": "Yes! Surprisingly, they are excellent swimmers.", "esCorrecta": true, "respuesta": "Wow, I didn't know that! They drop into rivers to move faster." },
+            { "texto": "Yes, they can run very fast when scared.", "esCorrecta": false, "respuesta": "Actually, their muscles don't allow them to run at all." },
+            { "texto": "Yes, they can fly short distances.", "esCorrecta": false, "respuesta": "Sloths definitely cannot fly!" }
           ]
         }
       ],
       "vocabulario": [
         { "espanol": "perezoso", "ingles": "sloth", "pronunciacion": "/slɒθ/" },
-        { "espanol": "dormir", "ingles": "sleep", "pronunciacion": "/sliːp/" },
-        { "espanol": "árbol", "ingles": "tree", "pronunciacion": "/triː/" }
+        { "espanol": "nadador", "ingles": "swimmer", "pronunciacion": "/ˈswɪmər/" },
+        { "espanol": "lento", "ingles": "slow", "pronunciacion": "/sloʊ/" }
       ],
       "xpAlCompletar": 90
     },
@@ -93,22 +93,22 @@
       "dialogos": [
         {
           "hablante": "David",
-          "texto": "Fascinating! I'm studying Costa Rican volcanoes. How many active volcanoes does Costa Rica have?",
+          "texto": "Greetings! I am studying the Arenal Volcano. Can you tell me what kind of energy Costa Rica produces using volcanoes?",
           "audio": "/audio/ingles/volcan-question.mp3"
         },
         {
           "hablante": "jugador",
           "opciones": [
-            { "texto": "Costa Rica has about 5 to 7 active volcanoes.", "esCorrecta": true, "respuesta": "Correct! Costa Rica has between 5 and 7 active volcanoes, including Poás, Irazú, Turrialba, Rincón de la Vieja, and Arenal." },
-            { "texto": "Costa Rica has no volcanoes.", "esCorrecta": false, "respuesta": "Costa Rica actually has many volcanoes! It sits on the Pacific Ring of Fire." },
-            { "texto": "Costa Rica has over 50 active volcanoes.", "esCorrecta": false, "respuesta": "That's too many. Costa Rica has about 5 to 7 active volcanoes." }
+            { "texto": "Costa Rica uses geothermal energy from volcanoes.", "esCorrecta": true, "respuesta": "Correct! It's a clean, renewable energy source used nationwide." },
+            { "texto": "They use volcanoes to cook giant pizzas.", "esCorrecta": false, "respuesta": "Well, that sounds delicious, but it's not how they generate electricity." },
+            { "texto": "They throw trash into the volcano to destroy it.", "esCorrecta": false, "respuesta": "Absolutely not! Costa Rica protects its environment." }
           ]
         }
       ],
       "vocabulario": [
-        { "espanol": "volcán", "ingles": "volcano", "pronunciacion": "/vɒlˈkeɪnəʊ/" },
-        { "espanol": "activo", "ingles": "active", "pronunciacion": "/ˈæktɪv/" },
-        { "espanol": "erupción", "ingles": "eruption", "pronunciacion": "/ɪˈrʌpʃən/" }
+        { "espanol": "energía geotérmica", "ingles": "geothermal energy", "pronunciacion": "/ˌdʒiːoʊˈθɜrməl ˈɛnərdʒi/" },
+        { "espanol": "volcán", "ingles": "volcano", "pronunciacion": "/vɒlˈkeɪnoʊ/" },
+        { "espanol": "renovable", "ingles": "renewable", "pronunciacion": "/rɪˈnuːəbəl/" }
       ],
       "xpAlCompletar": 110
     },
@@ -121,20 +121,20 @@
       "dialogos": [
         {
           "hablante": "Ana",
-          "texto": "I love this market! What is the most famous traditional dish of Costa Rica?",
+          "texto": "I love this market! What is the most famous traditional breakfast dish of Costa Rica?",
           "audio": "/audio/ingles/comida-question.mp3"
         },
         {
           "hablante": "jugador",
           "opciones": [
-            { "texto": "The most famous dish is Gallo Pinto, rice and beans.", "esCorrecta": true, "respuesta": "Yes! Gallo Pinto is Costa Rica's national dish, made with rice, black beans, onion, cilantro, and Lizano sauce. It's usually eaten for breakfast." },
-            { "texto": "The most famous dish is tacos.", "esCorrecta": false, "respuesta": "Tacos are more Mexican. Costa Rica's national dish is Gallo Pinto!" },
-            { "texto": "The most famous dish is pizza.", "esCorrecta": false, "respuesta": "Pizza is Italian! The traditional Costa Rican dish is Gallo Pinto." }
+            { "texto": "The most famous breakfast is Gallo Pinto, made with rice and beans.", "esCorrecta": true, "respuesta": "Yes! Gallo Pinto is delicious, especially with Lizano sauce." },
+            { "texto": "The most famous dish is hamburgers.", "esCorrecta": false, "respuesta": "Hamburgers are popular globally, but the traditional Costa Rican dish is Gallo Pinto!" },
+            { "texto": "The most famous dish is sushi.", "esCorrecta": false, "respuesta": "Sushi is Japanese! The traditional Costa Rican breakfast is Gallo Pinto." }
           ]
         }
       ],
       "vocabulario": [
-        { "espanol": "comida", "ingles": "food", "pronunciacion": "/fuːd/" },
+        { "espanol": "desayuno", "ingles": "breakfast", "pronunciacion": "/ˈbrɛkfəst/" },
         { "espanol": "arroz", "ingles": "rice", "pronunciacion": "/raɪs/" },
         { "espanol": "frijoles", "ingles": "beans", "pronunciacion": "/biːnz/" }
       ],
