@@ -1,0 +1,144 @@
+{
+  "conversaciones": [
+    {
+      "id": "conv-quetzal",
+      "npc": "Tourist Sarah",
+      "avatarEmoji": "👩‍💼",
+      "locacion": "Parque Nacional Los Quetzales",
+      "locacionDescripcion": "You are in a cloud forest trail",
+      "dialogos": [
+        {
+          "hablante": "Sarah",
+          "texto": "Hello! I am a birdwatcher looking for the Resplendent Quetzal. Do you know what this beautiful bird mainly eats?",
+          "audio": "/audio/ingles/quetzal-question.mp3"
+        },
+        {
+          "hablante": "jugador",
+          "opciones": [
+            { "texto": "It mainly eats wild avocados and small insects.", "esCorrecta": true, "respuesta": "Exactly! The 'aguacatillo' is its favorite food in the cloud forest." },
+            { "texto": "It eats only fish from the rivers.", "esCorrecta": false, "respuesta": "Not quite! Quetzals live high in the trees, not near rivers." },
+            { "texto": "It eats coconuts from the beach.", "esCorrecta": false, "respuesta": "That's wrong. Coconuts grow on beaches, but quetzals live in cold mountains!" }
+          ]
+        }
+      ],
+      "vocabulario": [
+        { "espanol": "bosque nuboso", "ingles": "cloud forest", "pronunciacion": "/klaʊd fɒrɪst/" },
+        { "espanol": "aguacate silvestre", "ingles": "wild avocado", "pronunciacion": "/waɪld ˌævəˈkɑːdəʊ/" },
+        { "espanol": "pájaro", "ingles": "bird", "pronunciacion": "/bɜːrd/" }
+      ],
+      "xpAlCompletar": 100
+    },
+    {
+      "id": "conv-playa",
+      "npc": "Tourist Marco",
+      "avatarEmoji": "🧑‍🦱",
+      "locacion": "Playa Tamarindo",
+      "locacionDescripcion": "You are on a beautiful beach in Guanacaste",
+      "dialogos": [
+        {
+          "hablante": "Marco",
+          "texto": "Hi! I love the beaches in Guanacaste. I heard leatherback turtles nest here. When do they usually come?",
+          "audio": "/audio/ingles/playa-question.mp3"
+        },
+        {
+          "hablante": "jugador",
+          "opciones": [
+            { "texto": "They nest at night, on the same beach they were born.", "esCorrecta": true, "respuesta": "That's right! Leatherback turtles are amazing navigators." },
+            { "texto": "They nest during the hottest time of the day to get a tan.", "esCorrecta": false, "respuesta": "Haha, no! The hot sand would be dangerous for their eggs." },
+            { "texto": "They only nest high in the mountains.", "esCorrecta": false, "respuesta": "Turtles are marine animals, they nest on sandy beaches, not mountains!" }
+          ]
+        }
+      ],
+      "vocabulario": [
+        { "espanol": "tortuga baula", "ingles": "leatherback turtle", "pronunciacion": "/ˈlɛðərbæk ˈtɜrtl/" },
+        { "espanol": "playa", "ingles": "beach", "pronunciacion": "/biːtʃ/" },
+        { "espanol": "nido", "ingles": "nest", "pronunciacion": "/nɛst/" }
+      ],
+      "xpAlCompletar": 80
+    },
+    {
+      "id": "conv-perezoso",
+      "npc": "Tourist Emma",
+      "avatarEmoji": "👩‍🦰",
+      "locacion": "Parque Nacional Manuel Antonio",
+      "locacionDescripcion": "You see a sloth hanging from a tree",
+      "dialogos": [
+        {
+          "hablante": "Emma",
+          "texto": "Oh my goodness! Look at that sloth! I know they are very slow, but do they have any hidden skills?",
+          "audio": "/audio/ingles/perezoso-question.mp3"
+        },
+        {
+          "hablante": "jugador",
+          "opciones": [
+            { "texto": "Yes! Surprisingly, they are excellent swimmers.", "esCorrecta": true, "respuesta": "Wow, I didn't know that! They drop into rivers to move faster." },
+            { "texto": "Yes, they can run very fast when scared.", "esCorrecta": false, "respuesta": "Actually, their muscles don't allow them to run at all." },
+            { "texto": "Yes, they can fly short distances.", "esCorrecta": false, "respuesta": "Sloths definitely cannot fly!" }
+          ]
+        }
+      ],
+      "vocabulario": [
+        { "espanol": "perezoso", "ingles": "sloth", "pronunciacion": "/slɒθ/" },
+        { "espanol": "nadador", "ingles": "swimmer", "pronunciacion": "/ˈswɪmər/" },
+        { "espanol": "lento", "ingles": "slow", "pronunciacion": "/sloʊ/" }
+      ],
+      "xpAlCompletar": 90
+    },
+    {
+      "id": "conv-volcanes",
+      "npc": "Professor David",
+      "avatarEmoji": "👨‍🏫",
+      "locacion": "Volcán Arenal",
+      "locacionDescripcion": "You are at the Arenal Volcano observation deck",
+      "dialogos": [
+        {
+          "hablante": "David",
+          "texto": "Greetings! I am studying the Arenal Volcano. Can you tell me what kind of energy Costa Rica produces using volcanoes?",
+          "audio": "/audio/ingles/volcan-question.mp3"
+        },
+        {
+          "hablante": "jugador",
+          "opciones": [
+            { "texto": "Costa Rica uses geothermal energy from volcanoes.", "esCorrecta": true, "respuesta": "Correct! It's a clean, renewable energy source used nationwide." },
+            { "texto": "They use volcanoes to cook giant pizzas.", "esCorrecta": false, "respuesta": "Well, that sounds delicious, but it's not how they generate electricity." },
+            { "texto": "They throw trash into the volcano to destroy it.", "esCorrecta": false, "respuesta": "Absolutely not! Costa Rica protects its environment." }
+          ]
+        }
+      ],
+      "vocabulario": [
+        { "espanol": "energía geotérmica", "ingles": "geothermal energy", "pronunciacion": "/ˌdʒiːoʊˈθɜrməl ˈɛnərdʒi/" },
+        { "espanol": "volcán", "ingles": "volcano", "pronunciacion": "/vɒlˈkeɪnoʊ/" },
+        { "espanol": "renovable", "ingles": "renewable", "pronunciacion": "/rɪˈnuːəbəl/" }
+      ],
+      "xpAlCompletar": 110
+    },
+    {
+      "id": "conv-cultura",
+      "npc": "Tourist Ana",
+      "avatarEmoji": "👩",
+      "locacion": "Mercado Central, San José",
+      "locacionDescripcion": "You are at the historic Mercado Central",
+      "dialogos": [
+        {
+          "hablante": "Ana",
+          "texto": "I love this market! What is the most famous traditional breakfast dish of Costa Rica?",
+          "audio": "/audio/ingles/comida-question.mp3"
+        },
+        {
+          "hablante": "jugador",
+          "opciones": [
+            { "texto": "The most famous breakfast is Gallo Pinto, made with rice and beans.", "esCorrecta": true, "respuesta": "Yes! Gallo Pinto is delicious, especially with Lizano sauce." },
+            { "texto": "The most famous dish is hamburgers.", "esCorrecta": false, "respuesta": "Hamburgers are popular globally, but the traditional Costa Rican dish is Gallo Pinto!" },
+            { "texto": "The most famous dish is sushi.", "esCorrecta": false, "respuesta": "Sushi is Japanese! The traditional Costa Rican breakfast is Gallo Pinto." }
+          ]
+        }
+      ],
+      "vocabulario": [
+        { "espanol": "desayuno", "ingles": "breakfast", "pronunciacion": "/ˈbrɛkfəst/" },
+        { "espanol": "arroz", "ingles": "rice", "pronunciacion": "/raɪs/" },
+        { "espanol": "frijoles", "ingles": "beans", "pronunciacion": "/biːnz/" }
+      ],
+      "xpAlCompletar": 80
+    }
+  ]
+}
