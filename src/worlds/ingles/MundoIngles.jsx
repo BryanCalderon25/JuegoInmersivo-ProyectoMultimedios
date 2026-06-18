@@ -24,6 +24,7 @@ export const MundoIngles = ({ onSalir }) => {
   const [totalAciertos, setTotalAciertos] = useState(0);
   const [vocabularioActual, setVocabularioActual] = useState([]);
   const [mostrarVocabulario, setMostrarVocabulario] = useState(false);
+  const [introVisible, setIntroVisible] = useState(true);
 
   const conversaciones = inglesData?.conversaciones || [];
   const convActual = conversaciones[convIndex];
@@ -84,7 +85,36 @@ export const MundoIngles = ({ onSalir }) => {
   );
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(160deg, #0a0520, #1a0a35, #0a1520)', position: 'relative', paddingTop: 70 }}>
+    <div className="anim-fade-in" style={{ minHeight: '100vh', background: 'url(/images/fondos/playa-fondo.webp) center/cover no-repeat fixed', position: 'relative', paddingTop: 70 }}>
+      <div style={{ position: 'absolute', inset: 0, background: 'rgba(10,5,32,0.8)', zIndex: 0 }} />
+      <div style={{ position: 'relative', zIndex: 1, height: '100%', display: 'flex', flexDirection: 'column' }}>
+      
+      {/* PANTALLA INTRODUCTORIA */}
+      {introVisible && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(10, 5, 32, 0.95)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem', backdropFilter: 'blur(10px)' }}>
+          <div className="anim-slide-up" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(155,93,229,0.5)', borderRadius: 24, padding: '3rem', maxWidth: 600, textAlign: 'center', boxShadow: '0 20px 50px rgba(0,0,0,0.5)' }}>
+            <div style={{ fontSize: '4rem', marginBottom: '1rem', animation: 'float 3s ease-in-out infinite' }}>🌎</div>
+            <h2 style={{ fontSize: '2rem', fontWeight: 900, color: 'white', marginBottom: '0.5rem' }}>Mundo 4: Bilingüe</h2>
+            <p style={{ color: 'var(--color-logro)', fontWeight: 600, marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Práctica de Inglés</p>
+            
+            <div style={{ background: 'rgba(0,0,0,0.3)', borderRadius: 12, padding: '1.5rem', marginBottom: '2rem', textAlign: 'left' }}>
+              <p style={{ color: 'rgba(255,255,255,0.8)', lineHeight: 1.6, marginBottom: '1rem' }}>
+                Costa Rica recibe turistas de todo el mundo. ¡Es hora de poner en práctica tu inglés ayudando a visitantes en diferentes locaciones turísticas!
+              </p>
+              <ul style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem', paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <li>🗺️ Selecciona a un turista en el mapa para iniciar una conversación.</li>
+                <li>💬 Lee lo que te dicen y elige la mejor respuesta en inglés.</li>
+                <li>📚 Aprende nuevo vocabulario después de cada interacción.</li>
+              </ul>
+            </div>
+            
+            <Boton variante="dorado" tamaño="lg" onClick={() => setIntroVisible(false)} icono="🚀">
+              ¡Hablar con Turistas!
+            </Boton>
+          </div>
+        </div>
+      )}
+
       <HUD enMundo onSalir={onSalir} />
 
       <div style={{ padding: '1.5rem', maxWidth: 1000, margin: '0 auto' }}>
@@ -225,6 +255,7 @@ export const MundoIngles = ({ onSalir }) => {
             </div>
           </div>
         )}
+      </div>
       </div>
     </div>
   );

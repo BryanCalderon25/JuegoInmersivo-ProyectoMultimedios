@@ -1,7 +1,8 @@
 import React from 'react';
 import { useGame } from '../hooks/useGame';
-import { BarraVida } from '../components/common/BarraVida';
 import { Boton } from '../components/common/Boton';
+import { BotonVolver } from '../components/common/BotonVolver';
+import { BarraVida } from '../components/common/BarraVida';
 
 /**
  * Pantalla de perfil del jugador con stats, nivel y mundos completados.
@@ -17,7 +18,8 @@ export const Perfil = () => {
   ];
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(160deg, var(--negro-suave), #0a1020)', padding: '80px 2rem 2rem' }}>
+    <div className="anim-fade-in" style={{ minHeight: '100vh', background: 'linear-gradient(160deg, #1f0d2b, #0d0614)', paddingTop: '80px', padding: '80px 2rem 2rem', position: 'relative' }}>
+      <BotonVolver destino="inicio" />
       <div style={{ maxWidth: 800, margin: '0 auto' }}>
         <h1 style={{ textAlign: 'center', fontWeight: 900, fontSize: 'clamp(1.8rem, 4vw, 3rem)', marginBottom: '2rem' }}>
           <span className="text-gradient-verde">Tu Perfil</span>

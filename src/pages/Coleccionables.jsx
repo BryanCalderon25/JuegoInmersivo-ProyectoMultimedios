@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useGame } from '../hooks/useGame';
 import { useFetch } from '../hooks/useFetch';
 import { Boton } from '../components/common/Boton';
+import { BotonVolver } from '../components/common/BotonVolver';
 import { Modal } from '../components/common/Modal';
 import { AudioPlayer } from '../components/media/AudioPlayer';
 
@@ -31,7 +32,8 @@ export const Coleccionables = () => {
   const FILTROS = ['todos', 'fauna', 'cultura'];
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(160deg, var(--negro-suave), #0d1f1a)', paddingTop: '80px', padding: '80px 2rem 2rem' }}>
+    <div className="anim-fade-in" style={{ minHeight: '100vh', background: 'linear-gradient(160deg, var(--negro-suave), #0d1f1a)', paddingTop: '80px', padding: '80px 2rem 2rem', position: 'relative' }}>
+      <BotonVolver destino="inicio" />
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         <h1 style={{ textAlign: 'center', fontWeight: 900, fontSize: 'clamp(1.8rem, 4vw, 3rem)', marginBottom: '0.5rem' }}>
           <span className="text-gradient-verde">Tu Colección</span>

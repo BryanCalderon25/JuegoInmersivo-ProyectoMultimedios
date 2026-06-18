@@ -1,0 +1,73 @@
+{
+  "intro": {
+    "titulo": "Guardianes de Costa Rica",
+    "subtitulo": "Una aventura por la tierra de la Pura Vida",
+    "narrativa": "Costa Rica está en peligro. El conocimiento de su biodiversidad, geografía, cultura e idioma se está perdiendo. Tú eres un Guardián, elegido para recorrer el país y restaurar ese saber. Cuatro mundos te esperan. ¿Estás listo?"
+  },
+  "mundos": [
+    {
+      "id": "biodiversidad",
+      "nombre": "El Bosque Vivo",
+      "subtitulo": "Descubre la vida salvaje",
+      "emoji": "🌿",
+      "color": "#2d6a4f",
+      "colorSecundario": "#74c69d",
+      "descripcion": "Explora el bosque tropical y encuentra animales increíbles. Cada encuentro te enseña sobre la biodiversidad de Costa Rica.",
+      "bloqueado": false,
+      "xpRequerido": 0,
+      "bgm": "/audio/musica/bosque.mp3",
+      "fondoImagen": "/images/fondos/bosque-fondo.webp"
+    },
+    {
+      "id": "geografia",
+      "nombre": "Provincias del Paraíso",
+      "subtitulo": "Recorre la tierra costarricense",
+      "emoji": "🗺️",
+      "color": "#0077b6",
+      "colorSecundario": "#48cae4",
+      "descripcion": "Navega el mapa de Costa Rica. Descubre sus siete provincias, volcanes y parques nacionales.",
+      "bloqueado": false,
+      "xpRequerido": 0,
+      "bgm": "/audio/musica/aventura.mp3",
+      "fondoImagen": "/images/fondos/montaña-fondo.webp"
+    },
+    {
+      "id": "cultura",
+      "nombre": "El Pueblo Tico",
+      "subtitulo": "Vive la tradición",
+      "emoji": "🎭",
+      "color": "#e9c46a",
+      "colorSecundario": "#f4a261",
+      "descripcion": "Recorre un pueblo típico y descubre los símbolos, comidas y tradiciones que hacen única a Costa Rica.",
+      "bloqueado": false,
+      "xpRequerido": 0,
+      "bgm": "/audio/musica/pueblo.mp3",
+      "fondoImagen": "/images/fondos/pueblo-fondo.webp"
+    },
+    {
+      "id": "ingles",
+      "nombre": "Mundo Bilingüe",
+      "subtitulo": "Habla con el mundo",
+      "emoji": "🗣️",
+      "color": "#9b5de5",
+      "colorSecundario": "#c77dff",
+      "descripcion": "Interactúa con turistas de todo el mundo. Practica tu inglés mientras aprendes sobre Costa Rica.",
+      "bloqueado": false,
+      "xpRequerido": 0,
+      "bgm": "/audio/musica/rpg-ingles.mp3",
+      "fondoImagen": "/images/fondos/playa-fondo.webp"
+    }
+  ],
+  "tips": [
+    "Los perezosos de Costa Rica duermen hasta 20 horas al día.",
+    "Costa Rica fue el primer país del mundo en abolir constitucionalmente su ejército.",
+    "El Quetzal es el ave sagrada de los mayas y vive en los bosques nubosos de Costa Rica.",
+    "Guanacaste se anexó a Costa Rica el 25 de julio de 1824 mediante un plebiscito.",
+    "El 'Gallo Pinto' es el desayuno más tradicional de Costa Rica.",
+    "El Parque Nacional Corcovado alberga el 2.5% de la biodiversidad mundial.",
+    "Costa Rica tiene más de 500,000 especies de animales, el 6% de la biodiversidad del planeta.",
+    "La carreta típica de Sarchí es Patrimonio Cultural Inmaterial de la Humanidad (UNESCO).",
+    "El Volcán Irazú es el más alto de Costa Rica, con 3,432 metros.",
+    "La tortuga baula puede pesar hasta 900 kg y es el reptil más grande del mundo."
+  ]
+}

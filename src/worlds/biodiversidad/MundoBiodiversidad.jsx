@@ -49,6 +49,7 @@ export const MundoBiodiversidad = ({ onSalir }) => {
   const [feedback, setFeedback] = useState(null);
   const [lluvia, setLluvia] = useState(false);
   const [inventarioAbierto, setInventarioAbierto] = useState(false);
+  const [introVisible, setIntroVisible] = useState(true);
   const animacionRef = useRef(null);
 
   // Iniciar música y ambience
@@ -63,7 +64,7 @@ export const MundoBiodiversidad = ({ onSalir }) => {
 
   // Loop de movimiento
   useEffect(() => {
-    if (mostrarEncuentro) return;
+    if (mostrarEncuentro || introVisible) return;
 
     const mover = () => {
       setPosJugador(prev => {
@@ -102,7 +103,7 @@ export const MundoBiodiversidad = ({ onSalir }) => {
       if (distX < colision && distY < colision) {
         const animal = fauna.find(a => a.id === spawn.animalId);
         if (animal) {
-          reproducirSFX('/audio/efectos/encuentro.mp3', 0.6);
+          reproducirSFX(animal.sonido || '/audio/efectos/victoria.mp3', 0.6);
           setAnimalEncontrado(animal);
           setMostrarEncuentro(true);
           setOpcionSeleccionada(null);
@@ -133,13 +134,10 @@ export const MundoBiodiversidad = ({ onSalir }) => {
   }, [fauna, posJugador, animalesVistos, mostrarEncuentro]);
 
   const responderPregunta = (opcionIndex) => {
-    if (!animalEncontrado || opcionSeleccionada !== null) return;
+    if (!animalEncontrado || !animalEncontrado.desafio || opcionSeleccionada !== null) return;
     setOpcionSeleccionada(opcionIndex);
-    const esCorrecta = opcionIndex === 1; // La opción correcta en fauna es siempre el hábitat real
-    // Verificar con el dato real del JSON
-    const opciones = generarOpciones(animalEncontrado);
-    const correcta = opciones.findIndex(o => o.correcta);
-    const acierto = opcionIndex === correcta;
+    
+    const acierto = opcionIndex === animalEncontrado.desafio.respuestaCorrecta;
 
     const xpGanada = acierto ? animalEncontrado.xpAlResponder : Math.floor(animalEncontrado.xpAlEncontrar / 2);
     ganarXP(xpGanada, `Encuentro: ${animalEncontrado.nombre}`);
@@ -170,29 +168,45 @@ export const MundoBiodiversidad = ({ onSalir }) => {
     }
   };
 
-  // Generar opciones para el reto del animal
-  const generarOpciones = (animal) => {
-    const correcta = animal.habitats[0];
-    const distractores = ['Desierto árido', 'Tundra ártica', 'Pradera seca', 'Zona urbana', 'Manglar costero'].filter(d => d !== correcta);
-    const opciones = [
-      { texto: distractores[0], correcta: false },
-      { texto: correcta, correcta: true },
-      { texto: distractores[1], correcta: false },
-      { texto: distractores[2], correcta: false },
-    ].sort(() => Math.random() - 0.5);
-    return opciones;
-  };
-
   // Offset de cámara centrado en el jugador
   const camaraX = Math.min(Math.max(posJugador.x - window.innerWidth / 2, 0), MAPA_COLS * TILE_SIZE - window.innerWidth);
   const camaraY = Math.min(Math.max(posJugador.y - (window.innerHeight - 80) / 2, 0), MAPA_FILAS * TILE_SIZE - (window.innerHeight - 80));
 
   if (loading) return <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--verde-selva)' }}><div className="loading-dots"><span /><span /><span /></div></div>;
 
-  const opciones = animalEncontrado ? generarOpciones(animalEncontrado) : [];
+  const opciones = animalEncontrado?.desafio?.opciones || [];
 
   return (
-    <div style={{ position: 'fixed', inset: 0, overflow: 'hidden', background: '#1a3a1a', userSelect: 'none' }}>
+    <div className="anim-fade-in" style={{ position: 'fixed', inset: 0, overflow: 'hidden', background: 'url(/images/fondos/bosque-fondo.webp) center/cover no-repeat fixed', userSelect: 'none' }}>
+      <div style={{ position: 'absolute', inset: 0, background: 'rgba(0, 20, 10, 0.4)', zIndex: 0 }} />
+      <div style={{ position: 'relative', zIndex: 1, width: '100%', height: '100%' }}>
+      
+      {/* PANTALLA INTRODUCTORIA */}
+      {introVisible && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(5, 20, 10, 0.95)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem', backdropFilter: 'blur(10px)' }}>
+          <div className="anim-slide-up" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(64,145,108,0.5)', borderRadius: 24, padding: '3rem', maxWidth: 600, textAlign: 'center', boxShadow: '0 20px 50px rgba(0,0,0,0.5)' }}>
+            <div style={{ fontSize: '4rem', marginBottom: '1rem', animation: 'float 3s ease-in-out infinite' }}>🌿</div>
+            <h2 style={{ fontSize: '2rem', fontWeight: 900, color: 'white', marginBottom: '0.5rem' }}>Mundo 1: Biodiversidad</h2>
+            <p style={{ color: 'var(--verde-claro)', fontWeight: 600, marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '2px' }}>El Pulmón del Mundo</p>
+            
+            <div style={{ background: 'rgba(0,0,0,0.3)', borderRadius: 12, padding: '1.5rem', marginBottom: '2rem', textAlign: 'left' }}>
+              <p style={{ color: 'rgba(255,255,255,0.8)', lineHeight: 1.6, marginBottom: '1rem' }}>
+                Costa Rica posee casi el 6% de la biodiversidad mundial. Tu misión es explorar este bosque lluvioso y encontrar a las especies ocultas.
+              </p>
+              <ul style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem', paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <li>🕹️ Usa las teclas <strong>W, A, S, D</strong> o las flechas para moverte.</li>
+                <li>🐾 Acércate a los animales escondidos para interactuar con ellos.</li>
+                <li>🧠 Responde correctamente sus desafíos para ganar XP.</li>
+              </ul>
+            </div>
+            
+            <Boton variante="dorado" tamaño="lg" onClick={() => setIntroVisible(false)} icono="🚀">
+              ¡Comenzar Expedición!
+            </Boton>
+          </div>
+        </div>
+      )}
+
       {/* HUD */}
       <HUD enMundo onToggleInventario={() => setInventarioAbierto(p => !p)} onSalir={onSalir} />
 
@@ -226,9 +240,26 @@ export const MundoBiodiversidad = ({ onSalir }) => {
               const esBorde = col === 0 || col === MAPA_COLS - 1 || fila === 0 || fila === MAPA_FILAS - 1;
               const esAgua = fila === 10 || fila === 11;
               const esCamino = (col === 8 && fila >= 3 && fila <= 9) || (fila === 6 && col >= 3 && col <= 13);
-              let color = esBorde ? '#1a3a1a' : esAgua ? '#1565c0' : esCamino ? '#6d4c41' : `hsl(${120 + (col * fila % 10)}deg, ${55 + (col % 10)}%, ${22 + (fila % 5)}%)`;
+              
+              let style = {
+                position: 'absolute', left: col * TILE_SIZE, top: fila * TILE_SIZE, width: TILE_SIZE, height: TILE_SIZE,
+                background: 'transparent',
+                border: '1px solid rgba(255,255,255,0.02)'
+              };
+
+              if (esBorde) {
+                style.background = 'rgba(10, 30, 15, 0.85)';
+                style.backdropFilter = 'blur(10px)';
+              } else if (esAgua) {
+                style.background = 'rgba(21, 101, 192, 0.4)';
+                style.backdropFilter = 'blur(4px)';
+              } else if (esCamino) {
+                style.background = 'rgba(109, 76, 65, 0.5)';
+                style.backdropFilter = 'blur(2px)';
+              }
+
               return (
-                <div key={`${col}-${fila}`} style={{ position: 'absolute', left: col * TILE_SIZE, top: fila * TILE_SIZE, width: TILE_SIZE, height: TILE_SIZE, background: color, border: '1px solid rgba(0,0,0,0.1)' }} />
+                <div key={`${col}-${fila}`} style={style} />
               );
             })
           )}
@@ -302,80 +333,79 @@ export const MundoBiodiversidad = ({ onSalir }) => {
         </div>
       </div>
 
-      {/* OVERLAY DE ENCUENTRO CON ANIMAL */}
+      {/* OVERLAY ESPECTACULAR DE ENCUENTRO CON ANIMAL */}
       {mostrarEncuentro && animalEncontrado && (
-        <div className="encuentro-overlay" role="dialog" aria-modal="true" aria-label={`Encuentro con ${animalEncontrado.nombre}`}>
-          <div className="encuentro-panel" style={{ maxWidth: 700, width: '90%' }}>
-            {/* Imagen/emoji del animal */}
-            <div className="encuentro-animal-placeholder" style={{ fontSize: '7rem' }}>
+        <div className="anim-fade-in" style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', flexDirection: 'column', overflowY: 'auto', background: 'rgba(5, 20, 10, 0.9)', backdropFilter: 'blur(15px)', padding: '2rem 1rem' }}>
+          <div className="anim-zoom-in" style={{ margin: 'auto', background: 'linear-gradient(145deg, rgba(20,50,30,0.95), rgba(10,30,15,0.95))', border: `2px solid var(--verde-hoja)`, borderRadius: 30, padding: '3rem', maxWidth: 800, width: '100%', textAlign: 'center', boxShadow: `0 20px 60px rgba(64,145,108,0.4)`, position: 'relative' }}>
+            
+            {/* Imagen/emoji del animal gigante */}
+            <div style={{ fontSize: '6rem', marginBottom: '1rem', animation: 'float 3s ease-in-out infinite', filter: 'drop-shadow(0 0 20px rgba(64,145,108,0.8))' }}>
               {animalEncontrado.emoji}
             </div>
 
-            <div className="encuentro-nombre">{animalEncontrado.nombre}</div>
-            <div className="encuentro-nombre-cientifico">{animalEncontrado.nombreCientifico}</div>
-            <div className="encuentro-descripcion" style={{ maxHeight: 80, overflow: 'hidden' }}>
+            <h2 style={{ color: 'var(--verde-claro)', fontSize: '2rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: 2, marginBottom: '0.2rem' }}>
+              {animalEncontrado.nombre}
+            </h2>
+            <p style={{ color: 'rgba(255,255,255,0.5)', fontStyle: 'italic', marginBottom: '1.5rem', fontSize: '1rem' }}>
+              {animalEncontrado.nombreCientifico}
+            </p>
+            
+            <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: '1.1rem', lineHeight: 1.6, marginBottom: '2.5rem', maxWidth: '600px', margin: '0 auto 2.5rem' }}>
               {animalEncontrado.descripcion.slice(0, 180)}...
-            </div>
+            </p>
 
             {!feedback ? (
               /* Pregunta del reto */
               <div>
-                <p style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--dorado)', marginBottom: '1rem', textAlign: 'center' }}>
-                  🌿 ¿En qué hábitat vive el {animalEncontrado.nombre}?
+                <p style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--dorado)', marginBottom: '2rem', textShadow: '0 2px 5px rgba(0,0,0,0.5)' }}>
+                  ❓ {animalEncontrado.desafio?.pregunta}
                 </p>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
-                  {opciones.map((op, i) => (
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
+                  {opciones.map((opTexto, i) => {
+                    const esCorrecta = i === animalEncontrado.desafio?.respuestaCorrecta;
+                    return (
                     <button
                       key={i}
                       onClick={() => responderPregunta(i)}
                       disabled={opcionSeleccionada !== null}
-                      aria-label={`Opción: ${op.texto}`}
                       style={{
-                        background: opcionSeleccionada === i ? (op.correcta ? 'rgba(64,145,108,0.4)' : 'rgba(249,65,68,0.3)') : 'rgba(255,255,255,0.08)',
-                        border: `2px solid ${opcionSeleccionada === i ? (op.correcta ? 'var(--verde-claro)' : 'var(--color-vida)') : 'rgba(255,255,255,0.1)'}`,
-                        borderRadius: 12,
-                        padding: '12px 16px',
-                        color: 'white',
-                        cursor: opcionSeleccionada !== null ? 'not-allowed' : 'pointer',
-                        fontFamily: 'var(--font-ui)',
-                        fontSize: '0.9rem',
-                        transition: 'all 0.2s ease',
-                        transform: opcionSeleccionada === null ? 'none' : 'scale(0.98)',
+                        background: opcionSeleccionada === i ? (esCorrecta ? 'rgba(64,145,108,0.8)' : 'rgba(249,65,68,0.6)') : 'rgba(255,255,255,0.05)',
+                        border: `2px solid ${opcionSeleccionada === i ? (esCorrecta ? 'var(--verde-claro)' : 'var(--color-vida)') : 'rgba(255,255,255,0.1)'}`,
+                        borderRadius: 16, padding: '1.2rem', color: 'white', cursor: opcionSeleccionada !== null ? 'not-allowed' : 'pointer', fontSize: '1.1rem', fontWeight: 600, transition: 'all 0.3s ease'
                       }}
+                      onMouseEnter={e => { if (opcionSeleccionada === null) { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; } }}
+                      onMouseLeave={e => { if (opcionSeleccionada === null) { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; } }}
                     >
-                      {op.texto}
+                      {opTexto}
                     </button>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             ) : (
-              /* Feedback de la respuesta */
-              <div className="anim-slide-up" style={{ textAlign: 'center' }}>
-                <p style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>{feedback.acierto ? '🎉' : '😅'}</p>
-                <h3 style={{ color: feedback.acierto ? 'var(--verde-claro)' : 'var(--rojo-lapa)', marginBottom: '0.5rem' }}>
-                  {feedback.acierto ? '¡Correcto!' : 'No exactamente...'}
+              /* Feedback Espectacular */
+              <div className="anim-slide-up" style={{ marginTop: '2rem', padding: '2rem', background: feedback.acierto ? 'rgba(64,145,108,0.15)' : 'rgba(249,65,68,0.15)', borderRadius: 20, border: `2px solid ${feedback.acierto ? 'var(--verde-claro)' : 'var(--color-vida)'}` }}>
+                <p style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>{feedback.acierto ? '🎉' : '😅'}</p>
+                <h3 style={{ color: feedback.acierto ? 'var(--verde-claro)' : 'var(--rojo-lapa)', marginBottom: '1rem', fontSize: '1.8rem', fontWeight: 900 }}>
+                  {feedback.acierto ? '¡Excelente Trabajo!' : 'Casi...'}
                 </h3>
-                <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.75)', lineHeight: 1.6, marginBottom: '1rem' }}>
+                <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.9)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
                   {feedback.explicacion}
                 </p>
-                <div style={{ background: 'rgba(233,196,106,0.2)', borderRadius: 10, padding: '8px 16px', display: 'inline-block', marginBottom: '1rem' }}>
-                  <span style={{ color: 'var(--dorado)', fontWeight: 700 }}>+{feedback.xpGanada} XP</span>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(0,0,0,0.4)', padding: '10px 20px', borderRadius: 50, color: 'var(--dorado)', fontWeight: 800, fontSize: '1.3rem', marginBottom: '2rem' }}>
+                  <span>🌟</span> +{feedback.xpGanada} XP
                 </div>
-                <div style={{ marginTop: '0.5rem' }}>
-                  <p style={{ color: 'var(--dorado)', fontSize: '0.8rem', marginBottom: '0.25rem' }}>En inglés:</p>
-                  <p style={{ fontStyle: 'italic', color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem' }}>
-                    🇬🇧 {animalEncontrado.descripcionIngles}
-                  </p>
-                </div>
+                
                 {animalEncontrado.datoCurioso && (
-                  <div style={{ marginTop: '1rem', background: 'rgba(64,145,108,0.15)', borderLeft: '3px solid var(--verde-claro)', borderRadius: '0 8px 8px 0', padding: '10px 14px', textAlign: 'left' }}>
-                    <p style={{ fontSize: '0.75rem', color: 'var(--verde-claro)', fontWeight: 700, marginBottom: 4 }}>💡 Dato Curioso:</p>
-                    <p style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.8)', lineHeight: 1.5 }}>{animalEncontrado.datoCurioso}</p>
+                  <div style={{ marginTop: '1rem', background: 'rgba(64,145,108,0.2)', borderLeft: '4px solid var(--verde-claro)', borderRadius: '0 12px 12px 0', padding: '16px 20px', textAlign: 'left', marginBottom: '2rem' }}>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--verde-claro)', fontWeight: 800, marginBottom: 8, textTransform: 'uppercase', letterSpacing: 1 }}>💡 Dato Curioso</p>
+                    <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.9)', lineHeight: 1.5 }}>{animalEncontrado.datoCurioso}</p>
                   </div>
                 )}
-                <div style={{ marginTop: '1.5rem' }}>
-                  <Boton variante="dorado" onClick={cerrarEncuentro} ariaLabel="Continuar explorando">
-                    ¡Seguir explorando! 🌿
+                
+                <div>
+                  <Boton variante="dorado" tamaño="lg" onClick={cerrarEncuentro} icono="🌿">
+                    ¡Seguir Explorando!
                   </Boton>
                 </div>
               </div>
@@ -383,6 +413,7 @@ export const MundoBiodiversidad = ({ onSalir }) => {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 };

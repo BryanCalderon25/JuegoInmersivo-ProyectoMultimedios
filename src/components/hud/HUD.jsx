@@ -12,8 +12,19 @@ export const HUD = ({ enMundo = false, onToggleInventario, onSalir }) => {
   return (
     <div className="hud-container">
       <div className="hud-panel">
-        {/* Sección izquierda: Avatar y nivel */}
-        <div className="hud-jugador">
+        {/* Sección izquierda: Botón Volver (si aplica) y Avatar */}
+        <div className="hud-jugador" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          {enMundo && onSalir && (
+            <button 
+              onClick={onSalir} 
+              aria-label="Volver a la pantalla anterior" 
+              style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: 20, padding: '6px 12px', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 600, fontSize: '0.85rem', transition: 'all 0.2s ease' }}
+              onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.2)'}
+              onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
+            >
+              <span aria-hidden="true" style={{ fontSize: '1.2rem' }}>⬅</span> Volver
+            </button>
+          )}
           <div className="hud-avatar" aria-hidden="true">🌿</div>
           <div>
             <div className="hud-nombre">{estado.nombre}</div>
@@ -55,11 +66,6 @@ export const HUD = ({ enMundo = false, onToggleInventario, onSalir }) => {
           {onToggleInventario && (
             <button className="hud-btn" onClick={onToggleInventario} aria-label="Abrir inventario" title="Inventario">
               🎒
-            </button>
-          )}
-          {enMundo && onSalir && (
-            <button className="hud-btn" onClick={onSalir} aria-label="Salir al mapa" title="Salir al mapa" style={{ color: 'var(--rojo-lapa)' }}>
-              🗺️
             </button>
           )}
         </div>

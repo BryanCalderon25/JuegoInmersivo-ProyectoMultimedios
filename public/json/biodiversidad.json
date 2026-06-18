@@ -1,0 +1,58 @@
+[
+  {
+    "id": "bio-1",
+    "tipo": "pregunta",
+    "pregunta": "¿Cuál es el hábitat natural de la Rana de Ojos Rojos (Agalychnis callidryas)?",
+    "imagen": "/images/rana-ojos-rojos.jpg",
+    "opciones": [
+      "Zonas áridas y desiertos",
+      "Bosques tropicales húmedos",
+      "Páramos de gran altitud",
+      "Playas arenosas"
+    ],
+    "respuestaCorrecta": 1,
+    "explicacion": "La rana de ojos rojos es un símbolo de los bosques tropicales húmedos de Costa Rica, donde utiliza las hojas de los árboles para poner sus huevos."
+  },
+  {
+    "id": "bio-2",
+    "tipo": "asociacion",
+    "pregunta": "¿Qué especie se considera un símbolo de conservación marina y anida en el Parque Nacional Marino Las Baulas?",
+    "imagen": "/images/tortuga-baula.jpg",
+    "opciones": [
+      "Manatí",
+      "Tortuga Carey",
+      "Tortuga Baula",
+      "Tiburón Martillo"
+    ],
+    "respuestaCorrecta": 2,
+    "explicacion": "La Tortuga Baula es la tortuga marina más grande del mundo y anida en las playas del Parque Nacional Marino Las Baulas en Guanacaste."
+  },
+  {
+    "id": "bio-3",
+    "tipo": "pregunta",
+    "pregunta": "¿En cuál Parque Nacional es más probable observar un Quetzal Resplandeciente?",
+    "imagen": "/images/quetzal.jpg",
+    "opciones": [
+      "Parque Nacional Manuel Antonio",
+      "Parque Nacional Tortuguero",
+      "Parque Nacional Cahuita",
+      "Parque Nacional Los Quetzales"
+    ],
+    "respuestaCorrecta": 3,
+    "explicacion": "El Parque Nacional Los Quetzales, ubicado en la zona de los Santos, protege el hábitat del bosque nuboso, hogar del Quetzal."
+  },
+  {
+    "id": "bio-4",
+    "tipo": "pregunta",
+    "pregunta": "Este animal es conocido por sus movimientos extremadamente lentos y pasa la mayor parte de su vida en los árboles.",
+    "imagen": "/images/perezoso.jpg",
+    "opciones": [
+      "Mono Congo",
+      "Perezoso de tres dedos",
+      "Oso Hormiguero",
+      "Danta"
+    ],
+    "respuestaCorrecta": 1,
+    "explicacion": "El perezoso es un animal emblemático de Costa Rica y ha sido declarado símbolo nacional."
+  }
+]

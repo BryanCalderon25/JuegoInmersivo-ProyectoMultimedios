@@ -6,11 +6,13 @@ import { HUD } from '../../components/hud/HUD';
 import { Boton } from '../../components/common/Boton';
 import { Modal } from '../../components/common/Modal';
 import { Particulas } from '../../components/effects/Particulas';
+import { MapaCostaRica } from '../../components/game/MapaCostaRica';
 import '../../styles/game.css';
 import '../../styles/effects.css';
 
 /**
  * MUNDO 2: Geografía — Mapa SVG interactivo de las 7 provincias de Costa Rica.
+ * Incorpora el mapa en React para interacciones directas con las provincias.
  */
 export const MundoGeografia = ({ onSalir }) => {
   const { data: provincias, loading } = useFetch('/json/provincias.json');
@@ -29,10 +31,16 @@ export const MundoGeografia = ({ onSalir }) => {
   }, []);
 
   const seleccionarProvincia = (provincia) => {
+    if (!provincia) return;
     setProvinciaActiva(provincia);
     setDesafioActivo(false);
     setOpcionSeleccionada(null);
     setFeedback(null);
+  };
+
+  const handleProvinciaMapSelect = (id) => {
+    const prov = provincias?.find(p => p.id === id);
+    if (prov) seleccionarProvincia(prov);
   };
 
   const iniciarDesafio = () => {
@@ -79,63 +87,44 @@ export const MundoGeografia = ({ onSalir }) => {
   );
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(160deg, #051525, #0a1e35)', position: 'relative', overflow: 'hidden', paddingTop: 70 }}>
-      <HUD enMundo onSalir={onSalir} />
+    <div className="anim-fade-in" style={{ minHeight: '100vh', background: 'url(/images/fondos/montaña-fondo.webp) center/cover no-repeat fixed', position: 'relative', overflowX: 'hidden', overflowY: 'auto', paddingTop: 70, paddingBottom: '2rem' }}>
+      <div style={{ position: 'absolute', inset: 0, background: 'rgba(5,21,37,0.75)', zIndex: 0 }} />
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <HUD enMundo onSalir={onSalir} />
       <Particulas cantidad={10} tipo="estrellas" velocidad={0.3} />
 
-      <div style={{ padding: '1.5rem', maxWidth: 1200, margin: '0 auto' }}>
-        <h1 style={{ textAlign: 'center', fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', fontWeight: 900, marginBottom: '0.5rem' }}>
+      <div style={{ padding: '1rem', maxWidth: 1300, margin: '0 auto' }}>
+        <h1 style={{ textAlign: 'center', fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', fontWeight: 900, marginBottom: '0.2rem', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.8))' }}>
           <span className="text-gradient-verde">Provincias de Costa Rica</span>
         </h1>
-        <p style={{ textAlign: 'center', color: 'rgba(255,255,255,0.5)', marginBottom: '2rem', fontSize: '0.9rem' }}>
+        <p style={{ textAlign: 'center', color: 'rgba(255,255,255,0.8)', marginBottom: '1rem', fontSize: '0.9rem', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
           Haz clic en una provincia para conocerla y superar su desafío
         </p>
 
         <div style={{ display: 'grid', gridTemplateColumns: window.innerWidth > 900 ? '3fr 2fr' : '1fr', gap: '2rem', alignItems: 'start' }}>
-          {/* MAPA SVG */}
-          <div style={{ background: 'rgba(255,255,255,0.04)', borderRadius: 20, padding: '1.5rem', border: '1px solid rgba(255,255,255,0.08)' }}>
-            <div style={{ position: 'relative', maxWidth: '100%' }}>
-              {/* Intentar cargar el SVG externo */}
-              <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                <object
-                  data="/mapa.svg"
-                  type="image/svg+xml"
-                  style={{ width: '100%', maxHeight: 450, display: 'block' }}
-                  aria-label="Mapa de Costa Rica"
-                  onError={() => {}}
-                >
-                  {/* Fallback: grid visual de provincias */}
-                  <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                    <p style={{ textAlign: 'center', color: 'rgba(255,255,255,0.4)', fontSize: '0.75rem', marginBottom: '0.5rem' }}>
-                      (Coloca mapa.svg en la carpeta /public/ para ver el mapa interactivo)
-                    </p>
-                    {/* Vista alternativa en cards */}
-                    {provincias?.map(p => (
-                      <button key={p.id}
-                        onClick={() => seleccionarProvincia(p)}
-                        style={{
-                          background: provinciaActiva?.id === p.id ? `${p.color}40` : 'rgba(255,255,255,0.04)',
-                          border: `2px solid ${provinciaActiva?.id === p.id ? p.color : 'rgba(255,255,255,0.1)'}`,
-                          borderRadius: 10, padding: '10px 16px',
-                          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                          cursor: 'pointer', transition: 'all 0.2s ease', color: 'white',
-                          textAlign: 'left',
-                        }}>
-                        <span style={{ fontWeight: 700 }}>{p.emoji} {p.nombre}</span>
-                        {provinciasCompletadas.includes(p.id) && <span>✅</span>}
-                      </button>
-                    ))}
-                  </div>
-                </object>
-              </div>
+          {/* MAPA SVG INTERACTIVO */}
+          <div style={{ background: 'rgba(255,255,255,0.02)', borderRadius: 24, padding: '1.5rem', border: '1px solid rgba(255,255,255,0.05)', boxShadow: '0 10px 40px rgba(0,0,0,0.2)' }}>
+            <div style={{ position: 'relative', width: '100%', minHeight: 300, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <MapaCostaRica
+                provinciaActiva={provinciaActiva?.id}
+                provinciasCompletadas={provinciasCompletadas}
+                onProvinciaSelect={handleProvinciaMapSelect}
+              />
             </div>
-            {/* Leyenda */}
+            {/* Leyenda Visual */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '1rem', justifyContent: 'center' }}>
               {provincias?.map(p => (
                 <button key={p.id}
                   onClick={() => seleccionarProvincia(p)}
-                  style={{ background: provinciaActiva?.id === p.id ? `${p.color}60` : 'rgba(255,255,255,0.06)', border: `1px solid ${p.color}80`, borderRadius: 20, padding: '4px 12px', color: 'white', fontSize: '0.78rem', cursor: 'pointer', transition: 'all 0.2s ease', fontFamily: 'var(--font-ui)' }}
-                  aria-label={`Seleccionar ${p.nombre}${provinciasCompletadas.includes(p.id) ? ' (completada)' : ''}`}
+                  style={{ 
+                    background: provinciaActiva?.id === p.id ? 'var(--dorado)' : 'rgba(255,255,255,0.05)', 
+                    border: `1px solid ${provinciaActiva?.id === p.id ? '#ffffff' : 'rgba(255,255,255,0.1)'}`, 
+                    borderRadius: 20, padding: '6px 14px', 
+                    color: provinciaActiva?.id === p.id ? '#000' : 'white', 
+                    fontSize: '0.8rem', cursor: 'pointer', transition: 'all 0.3s ease', fontWeight: provinciaActiva?.id === p.id ? 800 : 500,
+                    boxShadow: provinciaActiva?.id === p.id ? '0 0 15px rgba(249, 199, 79, 0.4)' : 'none'
+                  }}
+                  aria-label={`Seleccionar ${p.nombre}`}
                   aria-pressed={provinciaActiva?.id === p.id}
                 >
                   {p.emoji} {p.nombre} {provinciasCompletadas.includes(p.id) ? '✅' : ''}
@@ -203,52 +192,102 @@ export const MundoGeografia = ({ onSalir }) => {
 
                 {/* Botón de desafío */}
                 {!desafioActivo ? (
-                  <Boton variante="dorado" onClick={iniciarDesafio} ariaLabel={`Comenzar desafío de ${provinciaActiva.nombre}`} icono="🎯">
+                  <Boton variante="dorado" onClick={iniciarDesafio} ariaLabel={`Comenzar desafío de ${provinciaActiva.nombre}`} icono="🎯" estiloExtra={{ width: '100%', justifyContent: 'center' }}>
                     ¡Superar el Desafío!
                   </Boton>
                 ) : (
-                  /* DESAFÍO */
-                  <div className="anim-slide-up" style={{ background: 'rgba(0,0,0,0.3)', borderRadius: 12, padding: '1.2rem' }}>
-                    <p style={{ fontWeight: 700, color: 'var(--dorado)', marginBottom: '1rem', fontSize: '0.95rem' }}>
-                      ❓ {provinciaActiva.desafio.pregunta}
-                    </p>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                      {provinciaActiva.desafio.opciones.map((op, i) => {
-                        const esCorrecta = i === provinciaActiva.desafio.respuestaCorrecta;
-                        const seleccionada = opcionSeleccionada === i;
-                        let bg = 'rgba(255,255,255,0.05)';
-                        let border = 'rgba(255,255,255,0.1)';
-                        if (opcionSeleccionada !== null) {
-                          if (esCorrecta) { bg = 'rgba(64,145,108,0.4)'; border = 'var(--verde-claro)'; }
-                          else if (seleccionada) { bg = 'rgba(249,65,68,0.3)'; border = 'var(--color-vida)'; }
-                        }
-                        return (
-                          <button key={i} onClick={() => responder(i)} disabled={opcionSeleccionada !== null}
-                            style={{ background: bg, border: `2px solid ${border}`, borderRadius: 10, padding: '10px 14px', color: 'white', cursor: opcionSeleccionada !== null ? 'not-allowed' : 'pointer', textAlign: 'left', fontSize: '0.87rem', fontFamily: 'var(--font-ui)', transition: 'all 0.2s ease' }}
-                            aria-label={op}>
-                            {['A', 'B', 'C', 'D'][i]}) {op}
-                          </button>
-                        );
-                      })}
-                    </div>
-                    {feedback && (
-                      <div className="anim-slide-up" style={{ marginTop: '1rem', padding: '12px', background: feedback.esCorrecta ? 'rgba(64,145,108,0.2)' : 'rgba(249,65,68,0.2)', borderRadius: 10, borderLeft: `3px solid ${feedback.esCorrecta ? 'var(--verde-claro)' : 'var(--color-vida)'}` }}>
-                        <p style={{ fontWeight: 700, marginBottom: 6, color: feedback.esCorrecta ? 'var(--verde-claro)' : 'var(--rojo-lapa)' }}>
-                          {feedback.esCorrecta ? '🎉 ¡Correcto!' : '😅 Incorrecto'}
-                        </p>
-                        <p style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.75)', lineHeight: 1.5 }}>{feedback.explicacion}</p>
-                        <p style={{ color: 'var(--dorado)', fontWeight: 700, marginTop: 8 }}>+{feedback.xpGanada} XP</p>
-                        <Boton variante="glass" tamaño="sm" onClick={() => setProvinciaActiva(null)} estiloExtra={{ marginTop: '0.75rem' }}>
-                          Ver otro lugar
-                        </Boton>
-                      </div>
-                    )}
-                  </div>
+                  <Boton variante="glass" onClick={() => setDesafioActivo(false)} icono="⬅️" estiloExtra={{ width: '100%', justifyContent: 'center' }}>
+                    Ocultar Desafío
+                  </Boton>
                 )}
               </div>
             )}
           </div>
         </div>
+      </div>
+
+      {/* OVERLAY ESPECTACULAR DEL DESAFÍO */}
+      {desafioActivo && provinciaActiva && (
+        <div className="anim-fade-in" style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', flexDirection: 'column', overflowY: 'auto', background: 'rgba(5, 15, 25, 0.9)', backdropFilter: 'blur(15px)', padding: '2rem 1rem' }}>
+          <div className="anim-zoom-in" style={{ margin: 'auto', background: 'linear-gradient(145deg, rgba(20,40,60,0.95), rgba(10,20,30,0.95))', border: `2px solid ${provinciaActiva.color}`, borderRadius: 30, padding: '3rem', maxWidth: 800, width: '100%', textAlign: 'center', boxShadow: `0 20px 60px ${provinciaActiva.color}40`, position: 'relative' }}>
+            
+            {/* Botón cerrar */}
+            <button onClick={() => setDesafioActivo(false)} style={{ position: 'absolute', top: 20, right: 20, background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%', width: 40, height: 40, color: 'white', fontSize: '1.2rem', cursor: 'pointer', transition: 'all 0.2s' }} onMouseEnter={e => e.target.style.background = 'rgba(255,255,255,0.2)'} onMouseLeave={e => e.target.style.background = 'rgba(255,255,255,0.1)'}>
+              ✕
+            </button>
+
+            <div style={{ fontSize: '5rem', marginBottom: '1rem', animation: 'float 3s ease-in-out infinite', filter: `drop-shadow(0 0 20px ${provinciaActiva.color})` }}>
+              {provinciaActiva.emoji}
+            </div>
+            
+            <h2 style={{ color: provinciaActiva.color, fontSize: '1.5rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: 2, marginBottom: '0.5rem' }}>
+              Desafío de {provinciaActiva.nombre}
+            </h2>
+            
+            <p style={{ color: 'white', fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 800, lineHeight: 1.4, marginBottom: '3rem', textShadow: '0 4px 10px rgba(0,0,0,0.5)' }}>
+              {provinciaActiva.desafio.pregunta}
+            </p>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
+              {provinciaActiva.desafio.opciones.map((op, i) => {
+                const esCorrecta = i === provinciaActiva.desafio.respuestaCorrecta;
+                const seleccionada = opcionSeleccionada === i;
+                let bg = 'rgba(255,255,255,0.05)';
+                let border = 'rgba(255,255,255,0.1)';
+                let transform = 'scale(1)';
+                let boxShadow = 'none';
+
+                if (opcionSeleccionada !== null) {
+                  if (esCorrecta) { 
+                    bg = 'rgba(64,145,108,0.8)'; 
+                    border = 'var(--verde-claro)'; 
+                    boxShadow = '0 0 20px rgba(64,145,108,0.6)';
+                    transform = 'scale(1.02)';
+                  }
+                  else if (seleccionada) { 
+                    bg = 'rgba(249,65,68,0.6)'; 
+                    border = 'var(--color-vida)'; 
+                  }
+                }
+
+                return (
+                  <button key={i} onClick={() => responder(i)} disabled={opcionSeleccionada !== null}
+                    style={{ background: bg, border: `2px solid ${border}`, borderRadius: 16, padding: '1.2rem', color: 'white', cursor: opcionSeleccionada !== null ? 'default' : 'pointer', fontSize: '1.1rem', fontWeight: 600, transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)', transform, boxShadow, display: 'flex', alignItems: 'center', gap: '1rem' }}
+                    onMouseEnter={e => { if (opcionSeleccionada === null) { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; } }}
+                    onMouseLeave={e => { if (opcionSeleccionada === null) { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; } }}
+                  >
+                    <div style={{ background: 'rgba(0,0,0,0.3)', width: 36, height: 36, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>
+                      {['A', 'B', 'C', 'D'][i]}
+                    </div>
+                    <div style={{ textAlign: 'left', flex: 1 }}>{op}</div>
+                    {opcionSeleccionada !== null && esCorrecta && <span style={{ fontSize: '1.5rem' }}>✅</span>}
+                    {opcionSeleccionada !== null && seleccionada && !esCorrecta && <span style={{ fontSize: '1.5rem' }}>❌</span>}
+                  </button>
+                );
+              })}
+            </div>
+
+            {feedback && (
+              <div className="anim-slide-up" style={{ marginTop: '2rem', padding: '1.5rem', background: feedback.esCorrecta ? 'rgba(64,145,108,0.15)' : 'rgba(249,65,68,0.15)', borderRadius: 20, border: `2px solid ${feedback.esCorrecta ? 'var(--verde-claro)' : 'var(--color-vida)'}` }}>
+                <h3 style={{ fontSize: '1.8rem', fontWeight: 900, marginBottom: '0.5rem', color: feedback.esCorrecta ? 'var(--verde-claro)' : 'var(--rojo-lapa)' }}>
+                  {feedback.esCorrecta ? '¡Respuesta Correcta! 🎉' : 'Respuesta Incorrecta 😅'}
+                </h3>
+                <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.9)', lineHeight: 1.6, marginBottom: '1rem' }}>
+                  {feedback.explicacion}
+                </p>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(0,0,0,0.4)', padding: '8px 16px', borderRadius: 50, color: 'var(--dorado)', fontWeight: 800, fontSize: '1.2rem', marginBottom: '1.5rem' }}>
+                  <span>🌟</span> +{feedback.xpGanada} XP
+                </div>
+                <div>
+                  <Boton variante={feedback.esCorrecta ? "dorado" : "glass"} tamaño="lg" onClick={() => setDesafioActivo(false)} icono="🗺️">
+                    Volver al Mapa
+                  </Boton>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
       </div>
     </div>
   );

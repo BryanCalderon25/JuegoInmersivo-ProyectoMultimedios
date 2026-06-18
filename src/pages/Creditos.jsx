@@ -1,6 +1,7 @@
 import React from 'react';
 import { useGame } from '../hooks/useGame';
 import { Boton } from '../components/common/Boton';
+import { BotonVolver } from '../components/common/BotonVolver';
 
 /**
  * Pantalla de créditos con scroll animado estilo cine.
@@ -9,8 +10,9 @@ export const Creditos = () => {
   const { navegarA } = useGame();
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(180deg, #000, var(--verde-selva) 80%, #000)', overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '80px 2rem 2rem' }}>
-      <div style={{ maxWidth: 700, width: '100%', textAlign: 'center' }}>
+    <div className="anim-fade-in" style={{ minHeight: '100vh', background: 'var(--negro-suave)', paddingTop: '80px', padding: '80px 2rem 2rem', position: 'relative' }}>
+      <BotonVolver destino="inicio" />
+      <div style={{ maxWidth: 800, margin: '0 auto', background: 'rgba(255,255,255,0.02)', borderRadius: 20, padding: '2.5rem', border: '1px solid rgba(255,255,255,0.05)' }}>
         <div style={{ animation: 'scroll-creditos 25s linear forwards', padding: '2rem' }}>
           <style>{`@keyframes scroll-creditos { from { transform: translateY(60vh); } to { transform: translateY(-200%); } }`}</style>
 
